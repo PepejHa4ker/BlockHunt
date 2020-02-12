@@ -1,0 +1,37 @@
+name: BlockHunt
+main: ru.mclegendary.blockhunt.BlockHunt
+authors: [pepej, mclegendary]
+version: '4.0'
+website: https://squareland.ru
+softdepend: [FeatherBoard, HideAndSeek, iConomy]
+
+commands:
+  lottery:
+    description: 'Gives random cash number(from: to:) to player'
+    usage: From console only = /<command> <player> <from number> <to number>
+    permission: blockhunt.adm
+  exchange:
+    description: 'Exchange'
+    usage: From console only = /<command> <money/coins> <player> <one> <to another>
+    permission: blockhunt.adm
+  csgo:
+    description: 'CSGO crate exchanger'
+    usage: From console only! = /<command> give <player> <crate-name> <amount> <price>
+    permission: blockhunt.adm
+  where:
+    description: 'Checking where is player'
+    usage: /<command> <online player>
+    permission: blockhunt.adm
+  bh:
+    usage: |
+     §с/<command> §b<kick> <Игрок> [Причина]
+     §с/<command> §b<kickall> <Мир> [Причина]
+    permission: blockhunt.kick
+  op:
+    usage: /<command> <player>
+  deop:
+    usage: /<command> <player>
+  spec:
+    usage: |
+      §b/<command> §e<Мир>
+      §b/<command> <off>

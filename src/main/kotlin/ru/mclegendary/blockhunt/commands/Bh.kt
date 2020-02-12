@@ -1,0 +1,32 @@
+package ru.mclegendary.blockhunt.commands
+
+import org.bukkit.command.Command
+import org.bukkit.command.CommandExecutor
+import org.bukkit.command.CommandSender
+
+import ru.mclegendary.blockhunt.executors.KickExecutor
+
+class Bh : CommandExecutor {
+    override fun onCommand(
+        sender: CommandSender,
+        command: Command,
+        label: String,
+        args: Array<out String>
+    ): Boolean {
+        when {
+            args.isEmpty() || args.size == 1 -> {
+                sender.sendMessage("§cЧто-то не так с аргументами:"); return false
+            }
+
+            args[0].equals("kick", true) -> {
+                KickExecutor(sender, args).kick()
+            }
+
+            args[0].equals("kickall", true) -> {
+                KickExecutor(sender, args).kickAll()
+            }
+            else -> return false
+        }
+        return true
+    }
+}
