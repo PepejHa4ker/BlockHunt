@@ -1,13 +1,13 @@
 package ru.mclegendary.blockhunt.event
 
-import me.wazup.hideandseek.HideAndSeek
-import me.wazup.hideandseek.HideAndSeekAPI
+
 import org.bukkit.GameMode
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.player.*
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause
+
 import ru.mclegendary.blockhunt.prefix
 
 import ru.mclegendary.blockhunt.util.Utils.fbFix
@@ -62,9 +62,8 @@ object BhListener : Listener {
                 player.gameMode = GameMode.ADVENTURE
                 server.dispatchCommand(server.consoleSender, "spawn ${player.name}")
             }
-        } else {
-            player.gameMode = GameMode.SURVIVAL
-        }
+        } else player.gameMode = GameMode.SURVIVAL
+
     }
 
     @EventHandler
