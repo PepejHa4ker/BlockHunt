@@ -72,5 +72,4 @@ object BhListener : Listener {
         e.player.sendMessage("$prefix §cНе в этот раз, дружок")
         e.isCancelled = true
     }
-
 }
