@@ -6,6 +6,7 @@ import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.player.*
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause
+import ru.mclegendary.blockhunt.prefix
 
 import ru.mclegendary.blockhunt.util.Utils.fbFix
 
@@ -41,7 +42,7 @@ object BhListener : Listener {
         val player = e.player
 
         if (!player.hasPermission("blockhunt.adm") && e.cause == TeleportCause.SPECTATE) {
-            player.sendMessage("Низя!")
+            player.sendMessage("$prefix §cНизя!")
             e.isCancelled = true
         }
     }
@@ -61,6 +62,22 @@ object BhListener : Listener {
             }
         } else {
             player.gameMode = GameMode.SURVIVAL
+        }
+    }
+
+    @EventHandler
+    fun secondHandFix(e: PlayerSwapHandItemsEvent){
+        if(e.player.world.name == "blockhunt" || e.player.isOp) return
+        e.player.sendMessage("$prefix §cНе в этот раз, дружок")
+        e.isCancelled = true
+    }
+
+    @EventHandler
+    fun ggFix(e: AsyncPlayerChatEvent){
+        val p = e.player
+        if(p.gameMode == GameMode.SPECTATOR && p.world.name != "blockhunt" && e.message.equals("gg", true)){
+            p.sendMessage("$prefix §cНизя, сладкий :)")
+            e.isCancelled = true
         }
     }
 }

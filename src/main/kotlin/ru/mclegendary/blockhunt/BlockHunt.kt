@@ -5,6 +5,8 @@ import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.commands.*
 import ru.mclegendary.blockhunt.event.BhListener
 
+const val prefix = "§3[§6Прятки§3]"
+
 class BlockHunt : JavaPlugin() {
 
 
@@ -12,7 +14,6 @@ class BlockHunt : JavaPlugin() {
         logger.info("Get out of my board!")
         setupFeatherBoard() // FB api
         setupHAS() // HideAndSeek api
-
         instance = this
         this.getCommand("lottery").executor = Lottery()
         this.getCommand("exchange").executor = ExChange()
