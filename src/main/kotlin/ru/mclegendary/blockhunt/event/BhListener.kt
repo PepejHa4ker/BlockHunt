@@ -72,11 +72,11 @@ object BhListener : Listener {
     }
     
     @EventHandler
-    fun secondHandFix(e: PlayerSwapHandItemsEvent){
-        if(e.player.world.name == "blockhunt" || e.player.isOp) return
-        e.player.sendMessage("§cНе в этот раз, дружок")
-        e.isCancelled = true
-
-
+    fun ggFix(e: AsyncPlayerChatEvent){
+        val p = e.player
+        if(p.gameMode == GameMode.SPECTATOR && p.world.name != "blockhunt" && e.message.equals("gg", true)){
+            p.sendMessage("$prefix §cНизя, сладкий :)")
+            e.isCancelled = true
+        }
     }
 }
