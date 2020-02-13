@@ -72,13 +72,4 @@ object BhListener : Listener {
         e.player.sendMessage("$prefix §cНе в этот раз, дружок")
         e.isCancelled = true
     }
-
-    @EventHandler
-    fun ggFix(e: AsyncPlayerChatEvent){
-        val p = e.player
-        if(p.gameMode == GameMode.SPECTATOR && p.world.name != "blockhunt" && e.message.equals("gg", true)){
-            p.sendMessage("$prefix §cНизя, сладкий :)")
-            e.isCancelled = true
-        }
-    }
 }
