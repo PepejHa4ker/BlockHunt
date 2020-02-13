@@ -22,7 +22,7 @@ class BlockHunt : JavaPlugin() {
         this.getCommand("op").executor = Op()
         this.getCommand("deop").executor = DeOp()
         this.getCommand("bh").executor = Bh()
-        this.getCommand("spec").executor = Spectator()
+        
         //
         Bukkit.getPluginManager().registerEvents(BhListener, this)
     }
