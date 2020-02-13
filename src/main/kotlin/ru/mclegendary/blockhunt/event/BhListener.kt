@@ -1,5 +1,7 @@
 package ru.mclegendary.blockhunt.event
 
+import me.wazup.hideandseek.HideAndSeek
+import me.wazup.hideandseek.HideAndSeekAPI
 import org.bukkit.GameMode
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
