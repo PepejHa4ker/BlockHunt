@@ -63,4 +63,20 @@ object BhListener : Listener {
             player.gameMode = GameMode.SURVIVAL
         }
     }
+    
+    @EventHandler
+    fun secondHandFix(e: PlayerSwapHandItemsEvent){
+        if(e.player.world.name == "blockhunt" || e.player.isOp) return
+        e.player.sendMessage("§cНе в этот раз, дружок")
+        e.isCancelled = true
+    }
+    
+    @EventHandler
+    fun secondHandFix(e: PlayerSwapHandItemsEvent){
+        if(e.player.world.name == "blockhunt" || e.player.isOp) return
+        e.player.sendMessage("§cНе в этот раз, дружок")
+        e.isCancelled = true
+
+
+    }
 }
