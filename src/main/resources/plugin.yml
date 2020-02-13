@@ -31,7 +31,4 @@ commands:
     usage: /<command> <player>
   deop:
     usage: /<command> <player>
-  spec:
-    usage: |
-      §b/<command> §e<Мир>
-      §b/<command> <off>
+
