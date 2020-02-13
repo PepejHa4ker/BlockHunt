@@ -15,6 +15,7 @@ class BlockHunt : JavaPlugin() {
         setupFeatherBoard() // FB api
         setupHAS() // HideAndSeek api
         instance = this
+
         this.getCommand("lottery").executor = Lottery()
         this.getCommand("exchange").executor = ExChange()
         this.getCommand("csgo").executor = CSGOCrate()
