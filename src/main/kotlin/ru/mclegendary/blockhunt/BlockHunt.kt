@@ -10,7 +10,7 @@ class BlockHunt : JavaPlugin() {
 
 
     override fun onEnable() {
-        server.consoleSender.sendMessage("§aGet out of my board!")
+        server.consoleSender.sendMessage("$prefix §aGet out of my board!")
         setupFeatherBoard() // FB api
         setupHAS() // HideAndSeek api
 
@@ -27,7 +27,7 @@ class BlockHunt : JavaPlugin() {
     }
 
     override fun onDisable() {
-        server.consoleSender.sendMessage("§aI'm sorry my black friend :(")
+        server.consoleSender.sendMessage("$prefix §aI'm sorry my black friend :(")
     }
 
 

@@ -42,8 +42,6 @@ object ExChangeExecutor {
             Bukkit.dispatchCommand(sender, "has Coins Add ${player.name} ${args[3]}")
             player.sendMessage("§aВы получили ${args[3]} коинов.")
             sender.sendMessage("§3Выдано ${args[3]} коинов игроку: §2${player.name}")
-        } else {
-            player.sendMessage("§cНедостаточно монет для обмена!")
-        }
+        } else player.sendMessage("§cНедостаточно монет для обмена!")
     }
 }
