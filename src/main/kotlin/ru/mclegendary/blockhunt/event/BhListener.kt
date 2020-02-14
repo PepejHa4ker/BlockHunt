@@ -2,14 +2,14 @@ package ru.mclegendary.blockhunt.event
 
 
 import me.wazup.hideandseek.HideAndSeek
+import org.bukkit.Bukkit
 import org.bukkit.GameMode
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.player.*
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause
-import ru.mclegendary.blockhunt.BlockHunt.Companion.console
-import ru.mclegendary.blockhunt.BlockHunt.Companion.server
+
 
 import ru.mclegendary.blockhunt.prefix
 
@@ -21,6 +21,7 @@ object BhListener : Listener {
     fun onChat(e: AsyncPlayerChatEvent) {
         val r = e.recipients
         val sender = e.player
+        val server = sender.server
 
         for (player in r.iterator()) {
             if (sender.world != player.world) {
@@ -58,7 +59,7 @@ object BhListener : Listener {
             if (player.gameMode != GameMode.SPECTATOR) {
 
                 player.gameMode = GameMode.ADVENTURE
-                server.dispatchCommand(console, "spawn ${player.name}")
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spawn ${player.name}")
             }
         } else player.gameMode = GameMode.SURVIVAL
     }
@@ -80,7 +81,7 @@ object BhListener : Listener {
                 p.sendMessage("$prefix Нельзя использовать в режиме спектатора! За это было снято 50 коинов!")
             } else p.sendMessage("$prefix §cНельзя использовать в режиме спектатора!")
             e.isCancelled = true
-            server.consoleSender.sendMessage("$prefix §aИгрок §c${p.name} §aиспользовал 'gg' в режиме спектатора ")
+            Bukkit.getConsoleSender().sendMessage("$prefix §aИгрок §c${p.name} §aиспользовал 'gg' в режиме спектатора ")
 
         }
     }
