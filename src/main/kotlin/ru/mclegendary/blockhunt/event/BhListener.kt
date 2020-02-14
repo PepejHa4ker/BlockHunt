@@ -4,15 +4,17 @@ package ru.mclegendary.blockhunt.event
 import me.wazup.hideandseek.HideAndSeek
 import org.bukkit.Bukkit
 import org.bukkit.GameMode
+import org.bukkit.Material
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
-import org.bukkit.event.player.*
+import org.bukkit.event.player.AsyncPlayerChatEvent
+import org.bukkit.event.player.PlayerChangedWorldEvent
+import org.bukkit.event.player.PlayerSwapHandItemsEvent
+import org.bukkit.event.player.PlayerTeleportEvent
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause
-
-
+import org.bukkit.inventory.ItemStack
 import ru.mclegendary.blockhunt.prefix
-
 import ru.mclegendary.blockhunt.util.Utils.fbFix
 
 object BhListener : Listener {
@@ -66,7 +68,7 @@ object BhListener : Listener {
 
     @EventHandler
     fun onHandSwap(e: PlayerSwapHandItemsEvent) {
-        if (e.player.world.name == "blockhunt" || e.player.isOp) return
+        if (e.player.world.name == "blockhunt" || e.player.isOp || e.mainHandItem != ItemStack(Material.FIREWORK)) return
         e.player.sendMessage("$prefix §cНе в этот раз, дружок")
         e.isCancelled = true
     }
