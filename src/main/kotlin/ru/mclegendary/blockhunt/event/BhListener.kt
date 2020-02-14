@@ -1,12 +1,15 @@
 package ru.mclegendary.blockhunt.event
 
 
+import me.wazup.hideandseek.HideAndSeek
 import org.bukkit.GameMode
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.player.*
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause
+import ru.mclegendary.blockhunt.BlockHunt.Companion.console
+import ru.mclegendary.blockhunt.BlockHunt.Companion.server
 
 import ru.mclegendary.blockhunt.prefix
 
@@ -16,25 +19,21 @@ object BhListener : Listener {
 
     @EventHandler
     fun onChat(e: AsyncPlayerChatEvent) {
-        val server = e.player.server
-        val re = e.recipients
+        val r = e.recipients
         val sender = e.player
 
-        for (player in re.iterator()) {
+        for (player in r.iterator()) {
             if (sender.world != player.world) {
 
                 if (sender.hasPermission("blockhunt.user")) {
-                    re.remove(player)
+                    r.remove(player)
                     if (!sender.hasPermission("blockhunt.adm")) { //Sending message to admins
                         server.broadcast(
                             "§5[${sender.world.name}] ${sender.displayName}§6: ${e.message}",
                             "blockhunt.adm"
                         )
-                    } else {
-                        return
-                    }
+                    } else return
                 }
-
             }
         }
     }
@@ -56,20 +55,33 @@ object BhListener : Listener {
         fbFix(player) //In Utils
 
         if (player.world.name == "blockhunt") {
-            val server = player.server
             if (player.gameMode != GameMode.SPECTATOR) {
 
                 player.gameMode = GameMode.ADVENTURE
-                server.dispatchCommand(server.consoleSender, "spawn ${player.name}")
+                server.dispatchCommand(console, "spawn ${player.name}")
             }
         } else player.gameMode = GameMode.SURVIVAL
-
     }
 
     @EventHandler
-    fun secondHandFix(e: PlayerSwapHandItemsEvent){
-        if(e.player.world.name == "blockhunt" || e.player.isOp) return
+    fun onHandSwap(e: PlayerSwapHandItemsEvent) {
+        if (e.player.world.name == "blockhunt" || e.player.isOp) return
         e.player.sendMessage("$prefix §cНе в этот раз, дружок")
         e.isCancelled = true
+    }
+
+    @EventHandler
+    fun ggFix(e: AsyncPlayerChatEvent) {
+        val p = e.player
+        val playerData = HideAndSeek.api.getPlayerData(p)
+        if (p.gameMode == GameMode.SPECTATOR && e.message.equals("gg", true) && p.world.name != "blockhunt") {
+            if (playerData.hasCoins(p, 50)) {
+                playerData.removeCoins(p, 50)
+                p.sendMessage("$prefix Нельзя использовать в режиме спектатора! За это было снято 50 коинов!")
+            } else p.sendMessage("$prefix §cНельзя использовать в режиме спектатора!")
+            e.isCancelled = true
+            console.sendMessage("$prefix §aИгрок §c${p.name} §aиспользовал 'gg' в режиме спектатора ")
+
+        }
     }
 }

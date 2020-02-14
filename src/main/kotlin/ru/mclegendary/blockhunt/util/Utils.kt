@@ -5,12 +5,11 @@ import be.maximvdw.featherboard.api.FeatherBoardAPI
 
 import org.bukkit.GameMode
 import org.bukkit.entity.Player
-import org.bukkit.event.EventHandler
-import org.bukkit.event.player.PlayerSwapHandItemsEvent
+
 
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 
-object Utils {
+object Utils  {
 
     //Fix for FeatherBoard (restore scoreboard if player joined lobby)
     fun fbFix(player: Player) {
