@@ -9,9 +9,14 @@ import ru.mclegendary.blockhunt.event.BhListener
 const val prefix = "§3[§6Прятки§3]"
 
 class BlockHunt : JavaPlugin() {
+    companion object {
+        lateinit var instance: BlockHunt
+        lateinit var server: Server
+        lateinit var console: ConsoleCommandSender
+    }
 
     override fun onEnable() {
-        console.sendMessage("§aGet out of my board!")
+        logger.info("Get out of my board!")
         setupFeatherBoard() // FB api
         setupHAS() // HideAndSeek api
 
@@ -45,9 +50,4 @@ class BlockHunt : JavaPlugin() {
         }
     }
 
-    companion object {
-        lateinit var instance: BlockHunt
-        lateinit var server: Server
-        lateinit var console: ConsoleCommandSender
-    }
 }

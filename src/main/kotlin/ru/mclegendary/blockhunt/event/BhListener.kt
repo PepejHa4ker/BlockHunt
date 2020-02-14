@@ -80,7 +80,7 @@ object BhListener : Listener {
                 p.sendMessage("$prefix Нельзя использовать в режиме спектатора! За это было снято 50 коинов!")
             } else p.sendMessage("$prefix §cНельзя использовать в режиме спектатора!")
             e.isCancelled = true
-            console.sendMessage("$prefix §aИгрок §c${p.name} §aиспользовал 'gg' в режиме спектатора ")
+            server.consoleSender.sendMessage("$prefix §aИгрок §c${p.name} §aиспользовал 'gg' в режиме спектатора ")
 
         }
     }
