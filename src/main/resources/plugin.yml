@@ -4,6 +4,7 @@ authors: [pepej, mclegendary]
 version: '4.3'
 website: https://squareland.ru
 softdepend: [FeatherBoard, HideAndSeek, iConomy]
+prefix: "§3[§6Прятки§3]"
 
 commands:
   lottery:

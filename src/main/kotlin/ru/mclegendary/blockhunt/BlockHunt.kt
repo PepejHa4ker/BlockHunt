@@ -1,8 +1,5 @@
 package ru.mclegendary.blockhunt
 
-import org.bukkit.Bukkit
-import org.bukkit.Server
-import org.bukkit.command.ConsoleCommandSender
 import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.commands.*
 import ru.mclegendary.blockhunt.event.BhListener
@@ -13,12 +10,11 @@ class BlockHunt : JavaPlugin() {
 
 
     override fun onEnable() {
-        server.consoleSender.sendMessage("Get out of my board!")
+        server.consoleSender.sendMessage("$prefix §aGet out of my board!")
         setupFeatherBoard() // FB api
         setupHAS() // HideAndSeek api
 
         instance = this
-
         this.getCommand("lottery").executor = Lottery()
         this.getCommand("exchange").executor = ExChange()
         this.getCommand("csgo").executor = CSGOCrate()
@@ -31,7 +27,7 @@ class BlockHunt : JavaPlugin() {
     }
 
     override fun onDisable() {
-        logger.info("I'm sorry my black friend :(")
+        server.consoleSender.sendMessage("$prefix §aI'm sorry my black friend :(")
     }
 
 
