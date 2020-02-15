@@ -24,6 +24,7 @@ object CSGOCrateExecutor {
         if (hasPlayerData.getCoins(player) >= coins) {
             Bukkit.dispatchCommand(sender, "has coins remove ${player.name} $coins")
 
+
             player.sendMessage("$prefix §3$coins коинов снято с Вашего аккаунта.")
 
             Bukkit.dispatchCommand(sender, "crate give to ${player.name} ${args[2]} ${args[3].toInt()} online")

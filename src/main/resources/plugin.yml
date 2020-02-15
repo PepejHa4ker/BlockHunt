@@ -27,11 +27,14 @@ commands:
     usage: |
      §с/<command> §b<kick> <Игрок> [Причина]
      §с/<command> §b<kickall> <Мир> [Причина]
-    permission: blockhunt.kick
+    permission: blockhunt.kick.other
   op:
     usage: /<command> <player>
   deop:
     usage: /<command> <player>
+  chat:
+    usage: /command on/off
+    permission: blockhunt.togglechat
 
 
 permissions:
@@ -45,10 +48,11 @@ permissions:
         blockhunt.kick.*:
           default: false
           children:
-            blockhunt.kick:
+            blockhunt.kick.other:
               default: op
             blockhunt.kick.bypass:
               default: false
-
+        blockhunt.togglechat:
+          default: op
 
 

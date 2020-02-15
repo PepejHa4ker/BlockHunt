@@ -17,16 +17,14 @@ import ru.mclegendary.blockhunt.log
 import ru.mclegendary.blockhunt.prefix
 import ru.mclegendary.blockhunt.util.Utils.fbFix
 
-object BhListener : Listener  {
-
-
+class BhListener(var isChatProcessed:Boolean = true) : Listener  {
 
     @EventHandler
     fun onChat(e: AsyncPlayerChatEvent) {
+        if(!isChatProcessed) return
         val r = e.recipients
         val sender = e.player
         val server = sender.server
-
         for (player in r.iterator()) {
             if (sender.world != player.world) {
                 if (sender.hasPermission("blockhunt.user")) {
