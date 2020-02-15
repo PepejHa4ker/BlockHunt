@@ -13,34 +13,35 @@ class BlockHunt : JavaPlugin() {
         server.consoleSender.sendMessage("$prefix §aGet out of my board!")
         setupFeatherBoard() // FB api
         setupHAS() // HideAndSeek api
-
-        instance = this
-        this.getCommand("lottery").executor = Lottery()
-        this.getCommand("exchange").executor = ExChange()
-        this.getCommand("csgo").executor = CSGOCrate()
-        this.getCommand("where").executor = Where()
-        this.getCommand("op").executor = Op()
-        this.getCommand("deop").executor = DeOp()
-        this.getCommand("bh").executor = Bh()
+        getCommand("lottery").executor = Lottery()
+        getCommand("exchange").executor = ExChange()
+        getCommand("csgo").executor = CSGOCrate()
+        getCommand("where").executor = Where()
+        getCommand("op").executor = Op()
+        getCommand("deop").executor = DeOp()
+        getCommand("bh").executor = Bh()
         //
         server.pluginManager.registerEvents(BhListener, this)
     }
 
-    override fun onDisable() {
-        server.consoleSender.sendMessage("$prefix §aI'm sorry my black friend :(")
-    }
+    override fun onDisable(){ server.consoleSender.sendMessage("$prefix §aI'm sorry my black friend :(")}
 
 
-    private fun setupHAS() {
+
+    private fun setupHAS() : Boolean {
         if (server.pluginManager.getPlugin("HideAndSeek") == null) {
-            return
-        }
+            server.consoleSender.sendMessage("$prefix §cCan't find HideAndSeek plugin!")
+            return false
+        } else server.consoleSender.sendMessage("$prefix §aHideAndSeek plugin was found! Good!")
+        return true
     }
 
-    private fun setupFeatherBoard() {
+    private fun setupFeatherBoard() : Boolean {
         if (server.pluginManager.getPlugin("FeatherBoard") == null) {
-            return
-        }
+            server.consoleSender.sendMessage("$prefix §cCan't find FeatherBoard plugin!")
+            return false
+        } else server.consoleSender.sendMessage("$prefix §aFeatherBoard plugin was found! Good!")
+        return true
     }
 
     companion object {
