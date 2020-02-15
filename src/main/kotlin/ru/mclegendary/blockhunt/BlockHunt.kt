@@ -5,12 +5,13 @@ import ru.mclegendary.blockhunt.commands.*
 import ru.mclegendary.blockhunt.event.BhListener
 
 const val prefix = "§3[§6Прятки§3]"
+const val log = "§3[§6BlockHunt§3]"
 
 class BlockHunt : JavaPlugin() {
 
 
     override fun onEnable() {
-        server.consoleSender.sendMessage("$prefix §aGet out of my board!")
+        server.consoleSender.sendMessage("$log §aGet out of my board!")
         setupFeatherBoard() // FB api
         setupHAS() // HideAndSeek api
         getCommand("lottery").executor = Lottery()
@@ -24,23 +25,23 @@ class BlockHunt : JavaPlugin() {
         server.pluginManager.registerEvents(BhListener, this)
     }
 
-    override fun onDisable(){ server.consoleSender.sendMessage("$prefix §aI'm sorry my black friend :(")}
+    override fun onDisable(){ server.consoleSender.sendMessage("$log §aI'm sorry my black friend :(")}
 
 
 
     private fun setupHAS() : Boolean {
         if (server.pluginManager.getPlugin("HideAndSeek") == null) {
-            server.consoleSender.sendMessage("$prefix §cCan't find HideAndSeek plugin!")
+            server.consoleSender.sendMessage("$log §cCan't find HideAndSeek plugin!")
             return false
-        } else server.consoleSender.sendMessage("$prefix §aHideAndSeek plugin was found! Good!")
+        } else server.consoleSender.sendMessage("$log §aHideAndSeek plugin was found! Good!")
         return true
     }
 
     private fun setupFeatherBoard() : Boolean {
         if (server.pluginManager.getPlugin("FeatherBoard") == null) {
-            server.consoleSender.sendMessage("$prefix §cCan't find FeatherBoard plugin!")
+            server.consoleSender.sendMessage("$log §cCan't find FeatherBoard plugin!")
             return false
-        } else server.consoleSender.sendMessage("$prefix §aFeatherBoard plugin was found! Good!")
+        } else server.consoleSender.sendMessage("$log §aFeatherBoard plugin was found! Good!")
         return true
     }
 

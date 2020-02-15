@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerChangedWorldEvent
 import org.bukkit.event.player.PlayerSwapHandItemsEvent
 import org.bukkit.event.player.PlayerTeleportEvent
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause
-import org.bukkit.inventory.ItemStack
+import ru.mclegendary.blockhunt.log
 import ru.mclegendary.blockhunt.prefix
 import ru.mclegendary.blockhunt.util.Utils.fbFix
 
@@ -84,7 +84,7 @@ object BhListener : Listener {
                 p.sendMessage("$prefix Нельзя использовать в режиме спектатора! За это было снято 50 коинов!")
             } else p.sendMessage("$prefix §cНельзя использовать в режиме спектатора!")
             e.isCancelled = true
-            Bukkit.getConsoleSender().sendMessage("$prefix §aИгрок §c${p.name} §aиспользовал 'gg' в режиме спектатора ")
+            Bukkit.getConsoleSender().sendMessage("$log §aИгрок §c${p.name} §aиспользовал 'gg' в режиме спектатора ")
 
         }
     }

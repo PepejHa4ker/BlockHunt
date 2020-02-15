@@ -2,6 +2,7 @@ package ru.mclegendary.blockhunt.executors
 
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
+import ru.mclegendary.blockhunt.log
 
 
 class KickExecutor(val sender: CommandSender, val args: Array<out String>) {
@@ -23,7 +24,7 @@ class KickExecutor(val sender: CommandSender, val args: Array<out String>) {
 
         sender.sendMessage("§2Вы успешно кикнули игрока §a${target.name} §2из игры.")
         Bukkit.getConsoleSender()
-            .sendMessage("§a${target.name} §2был исключен игроком: §a${sender.name} §2по причине: §a${playerReason}")
+            .sendMessage("$log §a${target.name} §2был исключен игроком: §a${sender.name} §2по причине: §a${playerReason}")
     }
 
     fun kickAll() {
@@ -37,7 +38,7 @@ class KickExecutor(val sender: CommandSender, val args: Array<out String>) {
         }
         sender.sendMessage("§2Все игроки успешно исключены из арены в мире: §a${targetWorld.name}§2.")
 
-        Bukkit.getConsoleSender()
-            .sendMessage("§2Все игроки из арены в мире: §a${targetWorld.name} §2успешно исключены игроком: §a${sender.name}")
+        Bukkit.getConsoleSender().
+            sendMessage("$log §2Все игроки из арены в мире: §a${targetWorld.name} §2успешно исключены игроком: §a${sender.name}")
     }
 }

@@ -21,7 +21,7 @@ class CSGOCrate : CommandExecutor {
         when {
             (args[0].equals("give", true)) -> csgoGive(sender, args)
         }
-        
+
         return true
     }
 }
