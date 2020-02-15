@@ -2,7 +2,6 @@
   <library name="Core">
     <CLASSES>
       <root url="jar://C:/Libs/Core.jar!/" />
-      <root url="jar://C:/Libs/iConomy.jar!/" />
       <root url="jar://C:/Libs/HideAndSeek.jar!/" />
       <root url="jar://C:/Libs/FeatherBoard.jar!/" />
     </CLASSES>

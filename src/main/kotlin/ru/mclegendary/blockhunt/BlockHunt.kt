@@ -3,7 +3,6 @@ package ru.mclegendary.blockhunt
 import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.commands.*
 import ru.mclegendary.blockhunt.event.BhListener
-import java.io.File
 
 const val prefix = "§3[§6Прятки§3]"
 const val log = "§3[§6BlockHunt§3]"
@@ -31,8 +30,7 @@ class BlockHunt : JavaPlugin() {
         this.getCommand("deop").executor = DeOp()
         this.getCommand("bh").executor = Bh()
         //
-
-        server.pluginManager.registerEvents(BhListener(), this)
+        server.pluginManager.registerEvents(listener, this)
 
     }
 
