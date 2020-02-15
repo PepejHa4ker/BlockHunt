@@ -43,7 +43,7 @@ permissions:
         blockhunt.adm:
           default: op
         blockhunt.kick.*:
-          default: op
+          default: false
           children:
             blockhunt.kick:
               default: op
