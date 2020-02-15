@@ -24,10 +24,6 @@ class Chat : CommandExecutor{
             }
             else -> return false
 
-
-
-
-
         }
         return true
     }
