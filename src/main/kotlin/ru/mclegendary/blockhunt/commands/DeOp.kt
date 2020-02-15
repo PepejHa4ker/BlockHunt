@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
 
 import ru.mclegendary.blockhunt.executors.OpExecutor
+import ru.mclegendary.blockhunt.prefix
 
 class DeOp : CommandExecutor {
     override fun onCommand(
@@ -23,7 +24,7 @@ class DeOp : CommandExecutor {
                 sender.sendMessage("§cКоманда неверно записана!"); return false
             }
         } else {
-            sender.sendMessage("§c§lНет прав!")
+            sender.sendMessage("$prefix §c§lНет прав!")
         }
 
 

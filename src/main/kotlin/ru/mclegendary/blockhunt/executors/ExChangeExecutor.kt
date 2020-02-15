@@ -8,6 +8,7 @@ import org.bukkit.Bukkit
 
 import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
+import ru.mclegendary.blockhunt.prefix
 
 object ExChangeExecutor {
 
@@ -24,7 +25,7 @@ object ExChangeExecutor {
 
             Bukkit.dispatchCommand(sender, "money give ${player.name} ${args[3]}")
         } else {
-            player.sendMessage("§cНедостаточно коинов для обмена!")
+            player.sendMessage("$prefix §cНедостаточно коинов для обмена!")
         }
 
     }
@@ -37,11 +38,11 @@ object ExChangeExecutor {
 
         if (bankAccount >= money) {
             Bukkit.dispatchCommand(sender, "money take ${player.name} $money")
-            player.sendMessage("§a$money монет снятно с Вашего аккаунта.")
+            player.sendMessage("$prefix §a$money монет снятно с Вашего аккаунта.")
 
             Bukkit.dispatchCommand(sender, "has Coins Add ${player.name} ${args[3]}")
-            player.sendMessage("§aВы получили ${args[3]} коинов.")
-            sender.sendMessage("§3Выдано ${args[3]} коинов игроку: §2${player.name}")
-        } else player.sendMessage("§cНедостаточно монет для обмена!")
+            player.sendMessage("$prefix §aВы получили ${args[3]} коинов.")
+            sender.sendMessage("$prefix §3Выдано ${args[3]} коинов игроку: §2${player.name}")
+        } else player.sendMessage("$prefix §cНедостаточно монет для обмена!")
     }
 }
