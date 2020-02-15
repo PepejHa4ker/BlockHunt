@@ -20,8 +20,12 @@ class Op : CommandExecutor {
 
                 OpExecutor(sender, args).op()
 
-            } else sender.sendMessage("$log §cКоманда неверно записана!"); return false
-        } else sender.sendMessage("§c§lТолько для консоли!")
+            } else {
+                sender.sendMessage("$log §cКоманда неверно записана!"); return false
+            }
+        } else {
+            sender.sendMessage("§c§lТолько для консоли!")
+        }
 
         return true
     }
