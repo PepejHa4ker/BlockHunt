@@ -17,7 +17,7 @@ import ru.mclegendary.blockhunt.log
 import ru.mclegendary.blockhunt.prefix
 import ru.mclegendary.blockhunt.util.Utils.fbFix
 
-class BhListener(var isChatProcessed:Boolean = true) : Listener  {
+class BhListener(var isChatProcessed: Boolean = true) : Listener  {
 
     @EventHandler
     fun onChat(e: AsyncPlayerChatEvent) {
@@ -67,10 +67,10 @@ class BhListener(var isChatProcessed:Boolean = true) : Listener  {
 
     @EventHandler
     fun onHandSwap(e: PlayerSwapHandItemsEvent) {
-        if (e.player.world.name == "blockhunt" || e.player.isOp || e.offHandItem.data.itemType != Material.FIREWORK) return
-        e.player.sendMessage("$prefix §cНе в этот раз, дружок")
-        e.isCancelled = true
-
+        if (e.offHandItem.data.itemType == Material.FIREWORK) {
+            e.player.sendMessage("$prefix §cНе в этот раз, дружок")
+            e.isCancelled = true
+        }
     }
 
     @EventHandler
@@ -87,4 +87,5 @@ class BhListener(var isChatProcessed:Boolean = true) : Listener  {
 
         }
     }
+
 }
