@@ -13,6 +13,7 @@ class Chat : CommandExecutor{
         label: String,
         args: Array<out String>
     ): Boolean {
+       if(args.isEmpty()) return false
         when {
             args[0].equals("on", true) -> {
                 listener.isChatProcessed = true

@@ -33,7 +33,7 @@ commands:
   deop:
     usage: /<command> <player>
   chat:
-    usage: /command on/off
+    usage: /<command> on/off
     permission: blockhunt.togglechat
 
 
