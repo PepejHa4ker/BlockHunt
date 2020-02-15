@@ -16,26 +16,28 @@ class KickExecutor(val sender: CommandSender, val args: Array<out String>) {
         target ?: return sender.sendMessage("§cИгрок не найден или оффлайн.")
 
         target.performCommand("has leave")
-        if(playerReason.isEmpty()) {
+        if (playerReason.isEmpty()) {
             target.sendMessage("§cВас выкинули из игры!")
 
         } else target.sendMessage("§cВас выкинули из игры! \n§cПричина: §6$playerReason")
 
         sender.sendMessage("§2Вы успешно кикнули игрока §a${target.name} §2из игры.")
-        Bukkit.getConsoleSender().sendMessage("§a${target.name} §2был исключен игроком: §a${sender.name} §2по причине: §a${playerReason}")
+        Bukkit.getConsoleSender()
+            .sendMessage("§a${target.name} §2был исключен игроком: §a${sender.name} §2по причине: §a${playerReason}")
     }
 
     fun kickAll() {
         targetWorld ?: return sender.sendMessage("§cМир не найден.")
         for (players in targetWorld.players) {
             players.performCommand("has leave")
-            if(playerReason.isEmpty()) {
+            if (playerReason.isEmpty()) {
                 players.sendMessage("§cВас выкинули из игры!")
 
             } else players.sendMessage("§cВас выкинули из игры! \n§cПричина: §6$playerReason")
         }
         sender.sendMessage("§2Все игроки успешно исключены из арены в мире: §a${targetWorld.name}§2.")
 
-        Bukkit.getConsoleSender().sendMessage("§2Все игроки из арены в мире: §a${targetWorld.name} §2успешно исключены игроком: §a${sender.name}")
+        Bukkit.getConsoleSender()
+            .sendMessage("§2Все игроки из арены в мире: §a${targetWorld.name} §2успешно исключены игроком: §a${sender.name}")
     }
 }

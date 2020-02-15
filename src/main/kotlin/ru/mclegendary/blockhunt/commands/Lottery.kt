@@ -28,7 +28,7 @@ class Lottery : CommandExecutor {
         sender.sendMessage("§aВыдано $cash коинов игроку: §2${args[0]}")
         return true
     }
-    
+
     private fun cashGive(player: Player, cash: Int) {
         HideAndSeek.api.getPlayerData(player).addCoins(player, cash)
     }

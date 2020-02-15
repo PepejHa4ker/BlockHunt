@@ -1,9 +1,10 @@
 @file:Suppress("DEPRECATION")
+
 package ru.mclegendary.blockhunt.executors
 
 import org.bukkit.command.CommandSender
 
-class OpExecutor(private val sender: CommandSender,  args: Array<out String>) {
+class OpExecutor(private val sender: CommandSender, args: Array<out String>) {
     private val target = sender.server.getPlayer(args[0])
     private val offlineTarget = sender.server.getOfflinePlayer(args[0])
     private val success = "§a§lУспешно"

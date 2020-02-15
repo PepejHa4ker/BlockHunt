@@ -69,8 +69,8 @@ object BhListener : Listener {
     @EventHandler
     fun onHandSwap(e: PlayerSwapHandItemsEvent) {
         if (e.player.world.name == "blockhunt" || e.player.isOp || e.offHandItem.data.itemType != Material.FIREWORK) return
-            e.player.sendMessage("$prefix §cНе в этот раз, дружок")
-            e.isCancelled = true
+        e.player.sendMessage("$prefix §cНе в этот раз, дружок")
+        e.isCancelled = true
 
     }
 

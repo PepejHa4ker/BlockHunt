@@ -47,8 +47,6 @@ class BlockHunt : JavaPlugin() {
         lateinit var instance: BlockHunt
 
 
-
-
     }
 
 }

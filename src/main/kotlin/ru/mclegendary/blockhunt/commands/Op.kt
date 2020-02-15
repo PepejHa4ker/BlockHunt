@@ -19,8 +19,8 @@ class Op : CommandExecutor {
 
                 OpExecutor(sender, args).op()
 
-            } else  sender.sendMessage("§cКоманда неверно записана!"); return false
-        } else  sender.sendMessage("§c§lТолько для консоли!")
+            } else sender.sendMessage("§cКоманда неверно записана!"); return false
+        } else sender.sendMessage("§c§lТолько для консоли!")
 
         return true
     }
