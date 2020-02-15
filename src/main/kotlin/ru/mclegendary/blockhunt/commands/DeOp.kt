@@ -23,7 +23,7 @@ class DeOp : CommandExecutor {
                 sender.sendMessage("§cКоманда неверно записана!"); return false
             }
         } else {
-            sender.sendMessage("§c§lТолько для консоли!")
+            sender.sendMessage("§c§lНет прав!")
         }
 
 

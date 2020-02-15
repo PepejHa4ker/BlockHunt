@@ -5,19 +5,21 @@ import me.wazup.hideandseek.HideAndSeek
 import org.bukkit.Bukkit
 import org.bukkit.GameMode
 import org.bukkit.Material
+
+
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
-import org.bukkit.event.player.AsyncPlayerChatEvent
-import org.bukkit.event.player.PlayerChangedWorldEvent
-import org.bukkit.event.player.PlayerSwapHandItemsEvent
-import org.bukkit.event.player.PlayerTeleportEvent
+
+import org.bukkit.event.player.*
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause
 import ru.mclegendary.blockhunt.log
 import ru.mclegendary.blockhunt.prefix
 import ru.mclegendary.blockhunt.util.Utils.fbFix
 
-object BhListener : Listener {
+object BhListener : Listener  {
+
+
 
     @EventHandler
     fun onChat(e: AsyncPlayerChatEvent) {
@@ -27,13 +29,12 @@ object BhListener : Listener {
 
         for (player in r.iterator()) {
             if (sender.world != player.world) {
-
                 if (sender.hasPermission("blockhunt.user")) {
                     r.remove(player)
-                    if (!sender.hasPermission("blockhunt.adm")) { //Sending message to admins
+                    if (!sender.hasPermission("blockhunt.chat")) { //Sending message to admins
                         server.broadcast(
                             "§5[${sender.world.name}] ${sender.displayName}§6: ${e.message}",
-                            "blockhunt.adm"
+                            "blockhunt.chat"
                         )
                     } else return
                 }

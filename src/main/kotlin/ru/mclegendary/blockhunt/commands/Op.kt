@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
 
 import ru.mclegendary.blockhunt.executors.OpExecutor
-import ru.mclegendary.blockhunt.log
+import ru.mclegendary.blockhunt.prefix
 
 class Op : CommandExecutor {
     override fun onCommand(
@@ -21,10 +21,10 @@ class Op : CommandExecutor {
                 OpExecutor(sender, args).op()
 
             } else {
-                sender.sendMessage("$log §cКоманда неверно записана!"); return false
+                sender.sendMessage("$prefix §cКоманда неверно записана!"); return false
             }
         } else {
-            sender.sendMessage("§c§lТолько для консоли!")
+            sender.sendMessage("$prefix §c§lНет прав!")
         }
 
         return true

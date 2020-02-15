@@ -3,6 +3,7 @@ package ru.mclegendary.blockhunt.executors
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
 import ru.mclegendary.blockhunt.log
+import ru.mclegendary.blockhunt.prefix
 
 
 class KickExecutor(val sender: CommandSender, val args: Array<out String>) {
@@ -15,6 +16,10 @@ class KickExecutor(val sender: CommandSender, val args: Array<out String>) {
 
     fun kick() {
         target ?: return sender.sendMessage("§cИгрок не найден или оффлайн.")
+        if(target.hasPermission("blockhunt.kick.bypass")){
+            sender.sendMessage("$prefix §cНельзя кикнуть этого игрока")
+            return
+        }
 
         target.performCommand("has leave")
         if (playerReason.isEmpty()) {
