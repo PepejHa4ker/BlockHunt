@@ -4,7 +4,32 @@ authors: [pepej, mclegendary]
 version: '4.3'
 website: https://squareland.ru
 softdepend: [FeatherBoard, HideAndSeek, iConomy]
+description:
+  blockhunnt.* - Все права этого плагина
+  blockhunt.chat - Возможность видеть чат других миров/Посылать туда сообщения
+  blockhunt.adm - админ права на команды
+  blockhunt.kick.* - Все права на кик
+  blockhunt.kick.other - Возможность исключать игроков с арены
+  blockhunt.kick.bypass - Обход кика(НЕ РАБОТАЕТ НА МИРЫ)
+  blockhunt.togglechat - Возможность выключения чата на миры
 
+permissions:
+    blockhunt.*:
+      default: false
+      children:
+        blockhunt.chat:
+          default: op
+        blockhunt.adm:
+          default: op
+        blockhunt.kick.*:
+          default: false
+          children:
+            blockhunt.kick.other:
+              default: op
+            blockhunt.kick.bypass:
+              default: false
+        blockhunt.togglechat:
+          default: op
 
 commands:
   lottery:
@@ -37,22 +62,6 @@ commands:
     permission: blockhunt.togglechat
 
 
-permissions:
-    blockhunt.*:
-      default: false
-      children:
-        blockhunt.chat:
-          default: op
-        blockhunt.adm:
-          default: op
-        blockhunt.kick.*:
-          default: false
-          children:
-            blockhunt.kick.other:
-              default: op
-            blockhunt.kick.bypass:
-              default: false
-        blockhunt.togglechat:
-          default: op
+
 
 

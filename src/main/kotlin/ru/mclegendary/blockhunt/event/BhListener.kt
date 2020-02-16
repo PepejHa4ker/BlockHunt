@@ -1,10 +1,10 @@
 package ru.mclegendary.blockhunt.event
 
 
-import me.wazup.hideandseek.HideAndSeek
 import org.bukkit.Bukkit
 import org.bukkit.GameMode
 import org.bukkit.Material
+import org.bukkit.entity.Player
 
 
 import org.bukkit.event.EventHandler
@@ -13,28 +13,33 @@ import org.bukkit.event.Listener
 
 import org.bukkit.event.player.*
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause
-import ru.mclegendary.blockhunt.log
 import ru.mclegendary.blockhunt.prefix
+
 import ru.mclegendary.blockhunt.util.Utils.fbFix
+import ru.mclegendary.blockhunt.util.Utils.ggFix
 
 class BhListener(var isChatProcessed: Boolean = true) : Listener  {
 
     @EventHandler
     fun onChat(e: AsyncPlayerChatEvent) {
-        if(!isChatProcessed) return
+
         val r = e.recipients
         val sender = e.player
         val server = sender.server
-        for (player in r.iterator()) {
-            if (sender.world != player.world) {
-                if (sender.hasPermission("blockhunt.user")) {
-                    r.remove(player)
-                    if (!sender.hasPermission("blockhunt.chat")) { //Sending message to admins
-                        server.broadcast(
-                            "§5[${sender.world.name}] ${sender.displayName}§6: ${e.message}",
-                            "blockhunt.chat"
-                        )
-                    } else return
+        if (sender.gameMode == GameMode.SPECTATOR && e.message.equals("gg", true) && sender.world.name != "blockhunt")
+            ggFix(e, sender)
+        if (isChatProcessed) {
+            for (player in r.iterator()) {
+                if (sender.world != player.world) {
+                    if (sender.hasPermission("blockhunt.user")) {
+                        r.remove(player)
+                        if (!sender.hasPermission("blockhunt.chat")) { //Sending message to admins
+                            server.broadcast(
+                                "§5[${sender.world.name}] ${sender.displayName}§6: ${e.message}",
+                                "blockhunt.chat"
+                            )
+                        } else return
+                    }
                 }
             }
         }
@@ -72,20 +77,4 @@ class BhListener(var isChatProcessed: Boolean = true) : Listener  {
             e.isCancelled = true
         }
     }
-
-    @EventHandler
-    fun ggFix(e: AsyncPlayerChatEvent) {
-        val p = e.player
-        val playerData = HideAndSeek.api.getPlayerData(p)
-        if (p.gameMode == GameMode.SPECTATOR && e.message.equals("gg", true) && p.world.name != "blockhunt") {
-            if (playerData.hasCoins(p, 50)) {
-                playerData.removeCoins(p, 50)
-                p.sendMessage("$prefix Нельзя использовать в режиме спектатора! За это было снято 50 коинов!")
-            } else p.sendMessage("$prefix §cНельзя использовать в режиме спектатора!")
-            e.isCancelled = true
-            Bukkit.getConsoleSender().sendMessage("$log §aИгрок §c${p.name} §aиспользовал 'gg' в режиме спектатора ")
-
-        }
-    }
-
 }
