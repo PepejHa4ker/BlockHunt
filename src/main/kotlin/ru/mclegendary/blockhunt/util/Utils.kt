@@ -40,7 +40,7 @@ object Utils  {
         if (sender.gameMode == GameMode.SPECTATOR && e.message.equals("gg", true) && sender.world.name != "blockhunt") {
             if (playerData.hasCoins(sender, 50)) {
                 playerData.removeCoins(sender, 50)
-                sender.sendMessage("$prefix Нельзя использовать в режиме спектатора! За это было снято 50 коинов!")
+                sender.sendMessage("$prefix §cНельзя использовать в режиме спектатора! За это было снято 50 коинов!")
             } else sender.sendMessage("$prefix §cНельзя использовать в режиме спектатора!")
             e.isCancelled = true
             Bukkit.getConsoleSender().sendMessage("$log §aИгрок §c${sender.name} §aиспользовал 'gg' в режиме спектатора ")

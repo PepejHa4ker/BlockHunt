@@ -26,7 +26,7 @@ class Bh : CommandExecutor {
                 KickExecutor(sender, args).kickAll()
             }
             else -> return false
-        }
+        } 
         return true
     }
 }

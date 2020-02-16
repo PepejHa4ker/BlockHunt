@@ -39,7 +39,6 @@ object ExChangeExecutor {
         if (bankAccount >= money) {
             Bukkit.dispatchCommand(sender, "money take ${player.name} $money")
             player.sendMessage("$prefix §a$money монет снятно с Вашего аккаунта.")
-
             Bukkit.dispatchCommand(sender, "has Coins Add ${player.name} ${args[3]}")
             player.sendMessage("$prefix §aВы получили ${args[3]} коинов.")
             sender.sendMessage("$prefix §3Выдано ${args[3]} коинов игроку: §2${player.name}")
