@@ -58,7 +58,11 @@ commands:
   deop:
     usage: /<command> <player>
   chat:
-    usage: /<command> on/off
+    usage: |
+      §b/<command> on §e-> §b Включить чат на миры
+      §b/<command> off §e-> §b Выключить чат на миры
+      §b/<command> toggle §e-> §b Переключить чат на миры
+      §b/<command> info §e-> §b Узнать состояние чата
     permission: blockhunt.togglechat
 
 

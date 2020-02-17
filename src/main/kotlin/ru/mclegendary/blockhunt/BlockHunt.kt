@@ -16,7 +16,7 @@ class BlockHunt : JavaPlugin() {
 
 
     override fun onEnable() {
-        server.consoleSender.sendMessage("$log §aGet out of my board!")
+        server.consoleSender.sendMessage("§3[§6BlockHunt§3] §aGet out of my board!")
         setupFB() // FB api
         setupHAS() // HideAndSeek api
         setupICO() // Vault api
@@ -38,30 +38,30 @@ class BlockHunt : JavaPlugin() {
     }
 
     override fun onDisable() {
-        server.consoleSender.sendMessage("$log §aI'm sorry my black friend :(")
+        server.consoleSender.sendMessage("§3[§6BlockHunt§3] §aI'm sorry my black friend :(")
     }
 
 
     private fun setupHAS(): Boolean {
         if (server.pluginManager.getPlugin("HideAndSeek") == null) {
-            server.consoleSender.sendMessage("$log §cCan't find HideAndSeek plugin! Disabling plugin!")
+            server.consoleSender.sendMessage("§3[§6BlockHunt§3] §cCan't find HideAndSeek plugin! Disabling plugin!")
             this.pluginLoader.disablePlugin(this)
-        } else server.consoleSender.sendMessage("$log §aHideAndSeek plugin was found! Good!"); return true
+        } else server.consoleSender.sendMessage("§3[§6BlockHunt§3] §aHideAndSeek plugin was found! Good!"); return true
     }
 
     private fun setupFB(): Boolean {
         if (server.pluginManager.getPlugin("FeatherBoard") == null) {
-            server.consoleSender.sendMessage("$log §cCan't find FeatherBoard plugin! Disabling plugin!")
+            server.consoleSender.sendMessage("§3[§6BlockHunt§3] §cCan't find FeatherBoard plugin! Disabling plugin!")
             this.pluginLoader.disablePlugin(this)
-        } else server.consoleSender.sendMessage("$log §aFeatherBoard plugin was found! Good!"); return true
+        } else server.consoleSender.sendMessage("§3[§6BlockHunt§3] §aFeatherBoard plugin was found! Good!"); return true
 
     }
 
     private fun setupICO(): Boolean {
         if (server.pluginManager.getPlugin("Vault") == null) {
-            server.consoleSender.sendMessage("$log §cCan't find Vault plugin! Disabling plugin!")
+            server.consoleSender.sendMessage("§3[§6BlockHunt§3] §cCan't find Vault plugin! Disabling plugin!")
             this.pluginLoader.disablePlugin(this)
-        } else server.consoleSender.sendMessage("$log §aVault plugin was found! Good!"); return true
+        } else server.consoleSender.sendMessage("§3[§6BlockHunt§3] §aVault plugin was found! Good!"); return true
 
     }
 

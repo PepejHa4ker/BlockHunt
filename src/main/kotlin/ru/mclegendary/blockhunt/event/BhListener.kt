@@ -23,13 +23,12 @@ class BhListener(var isChatProcessed: Boolean = true) : Listener  {
 
     @EventHandler
     fun onChat(e: AsyncPlayerChatEvent) {
-
         val r = e.recipients
         val sender = e.player
         val server = sender.server
         if (sender.gameMode == GameMode.SPECTATOR && e.message.equals("gg", true) && sender.world.name != "blockhunt")
             ggFix(e, sender)
-        if (isChatProcessed) {
+        if(isChatProcessed){
             for (player in r.iterator()) {
                 if (sender.world != player.world) {
                     if (sender.hasPermission("blockhunt.user")) {
