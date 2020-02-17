@@ -4,9 +4,9 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
+import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
 import ru.mclegendary.blockhunt.executors.OpExecutor
-import ru.mclegendary.blockhunt.prefix
 
 class Op : CommandExecutor {
     override fun onCommand(

@@ -4,7 +4,7 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import ru.mclegendary.blockhunt.BlockHunt.Companion.listener
-import ru.mclegendary.blockhunt.prefix
+import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
 class Chat : CommandExecutor{
     override fun onCommand(

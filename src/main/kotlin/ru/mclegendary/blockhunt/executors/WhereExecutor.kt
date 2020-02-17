@@ -1,7 +1,7 @@
 package ru.mclegendary.blockhunt.executors
 
 import org.bukkit.command.CommandSender
-import ru.mclegendary.blockhunt.prefix
+import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
 object WhereExecutor {
 

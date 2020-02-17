@@ -8,7 +8,7 @@ import org.bukkit.Bukkit
 
 import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
-import ru.mclegendary.blockhunt.prefix
+import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
 object ExChangeExecutor {
 
@@ -25,7 +25,7 @@ object ExChangeExecutor {
 
             Bukkit.dispatchCommand(sender, "money give ${player.name} ${args[3]}")
         } else {
-            player.sendMessage("$prefix §cНедостаточно коинов для обмена!")
+            player.sendMessage("$prefix ix §cНедостаточно коинов для обмена!")
         }
 
     }

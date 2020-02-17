@@ -6,7 +6,7 @@ import me.wazup.hideandseek.HideAndSeekAPI
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
-import ru.mclegendary.blockhunt.prefix
+import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
 
 object CSGOCrateExecutor {

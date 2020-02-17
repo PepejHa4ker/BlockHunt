@@ -4,16 +4,17 @@ package ru.mclegendary.blockhunt.event
 import org.bukkit.Bukkit
 import org.bukkit.GameMode
 import org.bukkit.Material
-import org.bukkit.entity.Player
-
 
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
-
-import org.bukkit.event.player.*
+import org.bukkit.event.player.AsyncPlayerChatEvent
+import org.bukkit.event.player.PlayerChangedWorldEvent
+import org.bukkit.event.player.PlayerSwapHandItemsEvent
+import org.bukkit.event.player.PlayerTeleportEvent
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause
-import ru.mclegendary.blockhunt.prefix
+
+import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
 import ru.mclegendary.blockhunt.util.Utils.fbFix
 import ru.mclegendary.blockhunt.util.Utils.ggFix

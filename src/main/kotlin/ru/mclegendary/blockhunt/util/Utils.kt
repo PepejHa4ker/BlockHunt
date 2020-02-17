@@ -3,7 +3,6 @@ package ru.mclegendary.blockhunt.util
 
 import be.maximvdw.featherboard.api.FeatherBoardAPI
 import me.wazup.hideandseek.HideAndSeek
-import me.wazup.hideandseek.HideAndSeekAPI
 import org.bukkit.Bukkit
 
 import org.bukkit.GameMode
@@ -12,8 +11,8 @@ import org.bukkit.event.player.AsyncPlayerChatEvent
 
 
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
-import ru.mclegendary.blockhunt.log
-import ru.mclegendary.blockhunt.prefix
+import ru.mclegendary.blockhunt.BlockHunt.Companion.log
+import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
 object Utils  {
 

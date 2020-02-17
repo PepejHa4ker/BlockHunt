@@ -4,14 +4,14 @@ import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.commands.*
 import ru.mclegendary.blockhunt.event.BhListener
 
-const val prefix = "§3[§6Прятки§3]"
-const val log = "§3[§6BlockHunt§3]"
+
 
 class BlockHunt : JavaPlugin() {
     companion object {
         lateinit var instance: BlockHunt
         lateinit var listener: BhListener
-
+        lateinit var prefix: String
+        lateinit var log: String
     }
 
 
@@ -19,8 +19,11 @@ class BlockHunt : JavaPlugin() {
         server.consoleSender.sendMessage("$log §aGet out of my board!")
         setupFB() // FB api
         setupHAS() // HideAndSeek api
-        listener = BhListener()
+        setupICO() // Vault api
+        prefix = "§3[§6Прятки§3]"
+        log = "§3[§6BlockHunt§3]"
         instance = this
+        listener = BhListener()
         this.getCommand("chat").executor = Chat()
         this.getCommand("lottery").executor = Lottery()
         this.getCommand("exchange").executor = ExChange()
@@ -30,7 +33,7 @@ class BlockHunt : JavaPlugin() {
         this.getCommand("deop").executor = DeOp()
         this.getCommand("bh").executor = Bh()
         //
-        server.pluginManager.registerEvents(listener, this)
+        if(isEnabled) server.pluginManager.registerEvents(listener, this)
 
     }
 
@@ -54,5 +57,12 @@ class BlockHunt : JavaPlugin() {
 
     }
 
+    private fun setupICO(): Boolean {
+        if (server.pluginManager.getPlugin("Vault") == null) {
+            server.consoleSender.sendMessage("$log §cCan't find Vault plugin!")
+            this.pluginLoader.disablePlugin(this)
+        } else server.consoleSender.sendMessage("$log §aVault plugin was found! Good!"); return true
+
+    }
 
 }

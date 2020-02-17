@@ -2,13 +2,13 @@ package ru.mclegendary.blockhunt.executors
 
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
-import ru.mclegendary.blockhunt.log
-import ru.mclegendary.blockhunt.prefix
+import ru.mclegendary.blockhunt.BlockHunt.Companion.log
+import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
 
 class KickExecutor(val sender: CommandSender, val args: Array<out String>) {
-    private val server = sender.server
 
+    private val server = sender.server
     private val target = server.getPlayer(args[1])
     private val targetWorld = server.getWorld(args[1])
     private val playerReason = args.drop(2).joinToString(" ")
@@ -27,8 +27,8 @@ class KickExecutor(val sender: CommandSender, val args: Array<out String>) {
         } else target.sendMessage("$prefix §cВас выкинули из игры! \n§cПричина: §6$playerReason")
 
         sender.sendMessage("$prefix §2Вы успешно кикнули игрока §a${target.name} §2из игры.")
-        Bukkit.getConsoleSender()
-            .sendMessage("$log §a${target.name} §2был исключен игроком: §a${sender.name} §2по причине: §a${playerReason}")
+            Bukkit.getConsoleSender().sendMessage("$log §a${target.name} §2был исключен игроком: §a${sender.name} §2по причине: §a${playerReason}")
+
     }
 
     fun kickAll() {
