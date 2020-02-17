@@ -44,14 +44,14 @@ class BlockHunt : JavaPlugin() {
 
     private fun setupHAS(): Boolean {
         if (server.pluginManager.getPlugin("HideAndSeek") == null) {
-            server.consoleSender.sendMessage("$log §cCan't find HideAndSeek plugin!")
+            server.consoleSender.sendMessage("$log §cCan't find HideAndSeek plugin! Disabling plugin!")
             this.pluginLoader.disablePlugin(this)
         } else server.consoleSender.sendMessage("$log §aHideAndSeek plugin was found! Good!"); return true
     }
 
     private fun setupFB(): Boolean {
         if (server.pluginManager.getPlugin("FeatherBoard") == null) {
-            server.consoleSender.sendMessage("$log §cCan't find FeatherBoard plugin!")
+            server.consoleSender.sendMessage("$log §cCan't find FeatherBoard plugin! Disabling plugin!")
             this.pluginLoader.disablePlugin(this)
         } else server.consoleSender.sendMessage("$log §aFeatherBoard plugin was found! Good!"); return true
 
@@ -59,7 +59,7 @@ class BlockHunt : JavaPlugin() {
 
     private fun setupICO(): Boolean {
         if (server.pluginManager.getPlugin("Vault") == null) {
-            server.consoleSender.sendMessage("$log §cCan't find Vault plugin!")
+            server.consoleSender.sendMessage("$log §cCan't find Vault plugin! Disabling plugin!")
             this.pluginLoader.disablePlugin(this)
         } else server.consoleSender.sendMessage("$log §aVault plugin was found! Good!"); return true
 
