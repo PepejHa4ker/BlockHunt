@@ -3,7 +3,7 @@ package ru.mclegendary.blockhunt.commands
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
-import ru.mclegendary.blockhunt.BlockHunt
+import ru.mclegendary.blockhunt.BlockHunt.Companion.listener
 import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
 class Chat : CommandExecutor {
@@ -50,18 +50,18 @@ class Chat : CommandExecutor {
     }
 
     private fun chatEnable(sender: CommandSender){
-        BlockHunt.listener.isChatProcessed = true
+        listener.isChatProcessed = true
         sender.sendMessage("§3[§6Прятки§3] §cЧат был успешно включен")
     }
 
     private fun chatDisable(sender: CommandSender){
-        BlockHunt.listener.isChatProcessed = false
+       listener.isChatProcessed = false
         sender.sendMessage("§3[§6Прятки§3] §cЧат был успешно выключен")
     }
 
     private fun isChatEnabled(): Boolean{
-        if(BlockHunt.listener.isChatProcessed) return true
-        if(!BlockHunt.listener.isChatProcessed) return false
+        if(listener.isChatProcessed) return true
+        if(listener.isChatProcessed) return false
         return true
     }
 
