@@ -34,10 +34,7 @@ class BhListener(var isChatProcessed: Boolean = true) : Listener  {
                     if (sender.hasPermission("blockhunt.user")) {
                         r.remove(player)
                         if (!sender.hasPermission("blockhunt.chat")) { //Sending message to admins
-                            server.broadcast(
-                                "§5[${sender.world.name}] ${sender.displayName}§6: ${e.message}",
-                                "blockhunt.chat"
-                            )
+                            server.broadcast("§5[${sender.world.name}] ${sender.displayName}§6: ${e.message}", "blockhunt.chat")
                         } else return
                     }
                 }
@@ -77,4 +74,5 @@ class BhListener(var isChatProcessed: Boolean = true) : Listener  {
             e.isCancelled = true
         }
     }
+
 }

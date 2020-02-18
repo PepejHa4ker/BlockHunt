@@ -1,9 +1,9 @@
 package ru.mclegendary.blockhunt
 
+import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.commands.*
 import ru.mclegendary.blockhunt.event.BhListener
-
 
 
 class BlockHunt : JavaPlugin() {
@@ -12,8 +12,19 @@ class BlockHunt : JavaPlugin() {
         lateinit var listener: BhListener
         lateinit var prefix: String
         lateinit var log: String
-    }
 
+        fun chatEnable(sender: CommandSender){
+            listener.isChatProcessed = true
+            sender.sendMessage("§3[§6Прятки§3] §cЧат был успешно включен")
+        }
+
+        fun chatDisable(sender: CommandSender){
+            listener.isChatProcessed = false
+            sender.sendMessage("§3[§6Прятки§3] §cЧат был успешно выключен")
+        }
+
+
+    }
 
     override fun onEnable() {
         server.consoleSender.sendMessage("§3[§6BlockHunt§3] §aGet out of my board!")
@@ -34,7 +45,6 @@ class BlockHunt : JavaPlugin() {
         this.getCommand("bh").executor = Bh()
         //
         if(isEnabled) server.pluginManager.registerEvents(listener, this)
-
     }
 
     override fun onDisable() {
@@ -45,14 +55,14 @@ class BlockHunt : JavaPlugin() {
     private fun setupHAS(): Boolean {
         if (server.pluginManager.getPlugin("HideAndSeek") == null) {
             server.consoleSender.sendMessage("§3[§6BlockHunt§3] §cCan't find HideAndSeek plugin! Disabling plugin!")
-            this.pluginLoader.disablePlugin(this)
+            instance.pluginLoader.disablePlugin(this)
         } else server.consoleSender.sendMessage("§3[§6BlockHunt§3] §aHideAndSeek plugin was found! Good!"); return true
     }
 
     private fun setupFB(): Boolean {
         if (server.pluginManager.getPlugin("FeatherBoard") == null) {
             server.consoleSender.sendMessage("§3[§6BlockHunt§3] §cCan't find FeatherBoard plugin! Disabling plugin!")
-            this.pluginLoader.disablePlugin(this)
+            instance.pluginLoader.disablePlugin(this)
         } else server.consoleSender.sendMessage("§3[§6BlockHunt§3] §aFeatherBoard plugin was found! Good!"); return true
 
     }
@@ -60,7 +70,7 @@ class BlockHunt : JavaPlugin() {
     private fun setupICO(): Boolean {
         if (server.pluginManager.getPlugin("Vault") == null) {
             server.consoleSender.sendMessage("§3[§6BlockHunt§3] §cCan't find Vault plugin! Disabling plugin!")
-            this.pluginLoader.disablePlugin(this)
+            instance.pluginLoader.disablePlugin(this)
         } else server.consoleSender.sendMessage("§3[§6BlockHunt§3] §aVault plugin was found! Good!"); return true
 
     }

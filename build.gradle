@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'ru.mclcgendary.tfix'
-version '4.3'
+version '4.5'
 
 sourceCompatibility = 1.8
 
@@ -27,9 +27,9 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compileOnly "org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT"
     compileOnly "net.md-5:bungeecord-api:1.12-SNAPSHOT"
-    compileOnly fileTree(dir: "C:\\Libs\\HideAndSeek.jar", include: "*.jar")
-    compileOnly fileTree(dir: "C:\\Libs\\FeatherBoard.jar", include: "*.jar")
-    compileOnly fileTree(dir: "C:\\Libs\\IConomy.jar", include: "*.jar")
+    implementation fileTree(dir: "C:\\Libs\\HideAndSeek.jar", include: "*.jar")
+    implementation fileTree(dir: "C:\\Libs\\FeatherBoard.jar", include: "*.jar")
+    implementation fileTree(dir: "C:\\Libs\\IConomy.jar", include: "*.jar")
 }
 
 targetCompatibility = 1.8
@@ -40,6 +40,7 @@ idea {
         downloadSources = true
     }
 }
+
 shadowJar {
     dependencies {
         include(dependency("org.jetbrains.kotlin:kotlin-stdlib"))

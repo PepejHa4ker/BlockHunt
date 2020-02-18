@@ -1,7 +1,7 @@
 name: BlockHunt
 main: ru.mclegendary.blockhunt.BlockHunt
 authors: [pepej, mclegendary]
-version: '4.3'
+version: '4.5'
 website: https://squareland.ru
 softdepend: [FeatherBoard, HideAndSeek, iConomy]
 description:

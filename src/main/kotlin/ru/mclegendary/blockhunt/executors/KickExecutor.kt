@@ -6,7 +6,7 @@ import ru.mclegendary.blockhunt.BlockHunt.Companion.log
 import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
 
-class KickExecutor(val sender: CommandSender, val args: Array<out String>) {
+class KickExecutor(val sender: CommandSender,  args: Array<out String>) {
 
     private val server = sender.server
     private val target = server.getPlayer(args[1])
