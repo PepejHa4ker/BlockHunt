@@ -14,7 +14,7 @@ class BlockHunt : JavaPlugin() {
         lateinit var log: String
 
         fun log(text: String){
-            Bukkit.getConsoleSender().sendMessage(text)
+            Bukkit.getConsoleSender().sendMessage("$log $text")
         }
 
     }

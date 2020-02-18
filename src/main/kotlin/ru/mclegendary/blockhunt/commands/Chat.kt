@@ -51,12 +51,12 @@ class Chat : CommandExecutor {
 
     private fun chatEnable(sender: CommandSender){
         listener.isChatProcessed = true
-        sender.sendMessage("§3[§6Прятки§3] §cЧат был успешно включен")
+        sender.sendMessage("$prefix §cЧат был успешно включен")
     }
 
     private fun chatDisable(sender: CommandSender){
        listener.isChatProcessed = false
-        sender.sendMessage("§3[§6Прятки§3] §cЧат был успешно выключен")
+        sender.sendMessage("$prefix §cЧат был успешно выключен")
     }
 
     private fun isChatEnabled(): Boolean{
