@@ -23,6 +23,11 @@ class BlockHunt : JavaPlugin() {
             sender.sendMessage("§3[§6Прятки§3] §cЧат был успешно выключен")
         }
 
+        fun isChatEnabled(): Boolean{
+            if(listener.isChatProcessed) return true
+            if(!listener.isChatProcessed) return false
+            return true
+        }
 
     }
 

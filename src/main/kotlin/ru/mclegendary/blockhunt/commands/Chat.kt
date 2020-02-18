@@ -5,7 +5,7 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import ru.mclegendary.blockhunt.BlockHunt.Companion.chatDisable
 import ru.mclegendary.blockhunt.BlockHunt.Companion.chatEnable
-import ru.mclegendary.blockhunt.BlockHunt.Companion.listener
+import ru.mclegendary.blockhunt.BlockHunt.Companion.isChatEnabled
 import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
 class Chat : CommandExecutor {
@@ -18,32 +18,30 @@ class Chat : CommandExecutor {
         if(args.isEmpty()) return false
         when {
             args[0].equals("on", true) -> {
-                if (!listener.isChatProcessed) {
+                if (!isChatEnabled()) {
                    chatEnable(sender)
                 } else
                     sender.sendMessage("$prefix §cЧат уже включен!"); return true
 
             }
             args[0].equals("off", true) -> {
-                if (listener.isChatProcessed) {
+                if (isChatEnabled()) {
                     chatDisable(sender)
                 } else sender.sendMessage("$prefix §cЧат уже выключен!"); return true
             }
 
             args[0].equals("toggle", true) -> {
-                if (listener.isChatProcessed) {
+                if (isChatEnabled()) {
                     chatDisable(sender)
-                } else {
-                    chatDisable(sender)
-                }
+                } else chatDisable(sender)
+
             }
 
             args[0].equals("info", true) -> {
-                if(listener.isChatProcessed){
+                if(isChatEnabled()){
                     sender.sendMessage("$prefix §cЧат включен")
                 } else sender.sendMessage("$prefix §cЧат выключен")
             }
-
 
 
             else -> return false
