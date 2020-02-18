@@ -27,7 +27,7 @@ class KickExecutor(val sender: CommandSender,  args: Array<out String>) {
         } else target.sendMessage("$prefix §cВас выкинули из игры! \n§cПричина: §6$playerReason")
 
         sender.sendMessage("$prefix §2Вы успешно кикнули игрока §a${target.name} §2из игры.")
-            Bukkit.getConsoleSender().sendMessage("$log §a${target.name} §2был исключен игроком: §a${sender.name} §2по причине: §a${playerReason}")
+           log("$log §a${target.name} §2был исключен игроком: §a${sender.name} §2по причине: §a${playerReason}")
 
     }
 
@@ -42,7 +42,6 @@ class KickExecutor(val sender: CommandSender,  args: Array<out String>) {
         }
         sender.sendMessage("$prefix §2Все игроки успешно исключены из арены в мире: §a${targetWorld.name}§2.")
 
-        Bukkit.getConsoleSender().
-            sendMessage("$log §2Все игроки из арены в мире: §a${targetWorld.name} §2успешно исключены игроком: §a${sender.name}")
+            log("$log §2Все игроки из арены в мире: §a${targetWorld.name} §2успешно исключены игроком: §a${sender.name}")
     }
 }

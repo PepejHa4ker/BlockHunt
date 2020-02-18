@@ -42,7 +42,7 @@ object Utils  {
                 sender.sendMessage("$prefix §cНельзя использовать в режиме спектатора! За это было снято 50 коинов!")
             } else sender.sendMessage("$prefix §cНельзя использовать в режиме спектатора!")
             e.isCancelled = true
-            Bukkit.getConsoleSender().sendMessage("$log §aИгрок §c${sender.name} §aиспользовал 'gg' в режиме спектатора ")
+          log("$log §aИгрок §c${sender.name} §aиспользовал 'gg' в режиме спектатора ")
 
         }
     }
