@@ -1,6 +1,5 @@
 package ru.mclegendary.blockhunt.executors
 
-import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
 import ru.mclegendary.blockhunt.BlockHunt.Companion.log
 import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix

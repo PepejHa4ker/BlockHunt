@@ -1,7 +1,6 @@
 package ru.mclegendary.blockhunt
 
 import org.bukkit.Bukkit
-import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.commands.*
 import ru.mclegendary.blockhunt.event.BhListener
@@ -13,22 +12,6 @@ class BlockHunt : JavaPlugin() {
         lateinit var listener: BhListener
         lateinit var prefix: String
         lateinit var log: String
-
-        fun chatEnable(sender: CommandSender){
-            listener.isChatProcessed = true
-            sender.sendMessage("§3[§6Прятки§3] §cЧат был успешно включен")
-        }
-
-        fun chatDisable(sender: CommandSender){
-            listener.isChatProcessed = false
-            sender.sendMessage("§3[§6Прятки§3] §cЧат был успешно выключен")
-        }
-
-        fun isChatEnabled(): Boolean{
-            if(listener.isChatProcessed) return true
-            if(!listener.isChatProcessed) return false
-            return true
-        }
 
         fun log(text: String){
             Bukkit.getConsoleSender().sendMessage(text)
