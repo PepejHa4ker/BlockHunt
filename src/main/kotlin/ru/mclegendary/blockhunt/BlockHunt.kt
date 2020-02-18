@@ -11,11 +11,8 @@ class BlockHunt : JavaPlugin() {
         lateinit var instance: BlockHunt
         lateinit var listener: BhListener
         lateinit var prefix: String
-        lateinit var log: String
 
-        fun log(text: String){
-            Bukkit.getConsoleSender().sendMessage("§3[§6BlockHunt§3] $text")
-        }
+        fun log(text: String){Bukkit.getConsoleSender().sendMessage("§3[§6BlockHunt§3] $text")}
 
     }
 
@@ -25,7 +22,6 @@ class BlockHunt : JavaPlugin() {
         setupHAS() // HideAndSeek api
         setupICO() // Vault api
         prefix = "§3[§6Прятки§3]"
-        log = "§3[§6BlockHunt§3]"
         instance = this
         listener = BhListener()
         this.getCommand("chat").executor = Chat()
