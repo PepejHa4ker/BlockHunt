@@ -2,9 +2,8 @@ package ru.mclegendary.blockhunt.executors
 
 import org.bukkit.command.CommandSender
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
-import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 import ru.mclegendary.blockhunt.BlockHunt.Companion.log
-import ru.mclegendary.blockhunt.BlockHunt.Companion.sendMsg
+
 
 
 class KickExecutor(val sender: CommandSender,  args: Array<out String>) {

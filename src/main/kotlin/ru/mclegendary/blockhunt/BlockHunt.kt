@@ -5,7 +5,6 @@ import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.commands.*
 import ru.mclegendary.blockhunt.event.BhListener
-import java.io.File
 import org.bukkit.Bukkit as b
 import org.bukkit.command.CommandSender as cmdSender
 
@@ -84,8 +83,5 @@ class BlockHunt : JavaPlugin() {
     }
 
 
-    override fun getConfig(): FileConfiguration {
-        return super.getConfig()
-    }
 
 }

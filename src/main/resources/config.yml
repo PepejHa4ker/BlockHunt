@@ -23,5 +23,6 @@ NoCoins: "&3[&6Прятки&3] &cНедостаточно коинов для о
 CoinsRemove: "&3[&6Прятки&3] &3%COINS% коинов снято с Вашего аккаунта."
 MoneyRemove: "&3[&6Прятки&3] &a%MONEY% было снято с вашего аккаунта."
 PlayerCoinsMsg: "&3[&6Прятки&3] &aВы получили %COINS% коинов"
-SenderCoinsMsg: "&3[&6Прятки&3] &3Выдано %COINS% коинов игроку: %PLAYER%. "
+SenderCoinsMsg: "&3[&6Прятки&3] &3Выдано %COINS% коинов игроку: %PLAYER%."
+ChatPerWorldFormat: "&5[%WORLD%] %PLAYER_NAME%§6: %MESSAGE%"
 
