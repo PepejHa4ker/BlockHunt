@@ -11,7 +11,7 @@ object WhereExecutor {
 
         sender.sendMessage(instance.config.getString("PlayerInWorld")
             .replace('&', '§')
-            .replace("%PLAYER%", "$player")
+            .replace("%PLAYER%", player.name)
             .replace("%WORLD%", player.world.name))
 
     }

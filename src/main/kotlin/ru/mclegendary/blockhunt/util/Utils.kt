@@ -11,7 +11,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent
 
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.BlockHunt.Companion.log
-import ru.mclegendary.blockhunt.BlockHunt.Companion.sendMsg
+
 
 object Utils  {
 
@@ -38,10 +38,12 @@ object Utils  {
         if (sender.gameMode == GameMode.SPECTATOR && e.message.equals("gg", true) && sender.world.name != "blockhunt") {
             if (playerData.hasCoins(sender, 50)) {
                 playerData.removeCoins(sender, 50)
-               sendMsg("§cНельзя использовать в режиме спектатора! За это было снято 50 коинов!", sender)
-            } else sendMsg("§cНельзя использовать в режиме спектатора!", sender)
+               sender.sendMessage(instance.config.getString("GgInSpecWithMoney").replace('&', '§'))
+            } else sender.sendMessage(instance.config.getString("GgInSpec").replace('&', '§'))
             e.isCancelled = true
-          log("§aИгрок §c${sender.name} §aиспользовал 'gg' в режиме спектатора ")
+          log(instance.config.getString("GgLog")
+              .replace('&', '§')
+              .replace("%PLAYER%", sender.name))
 
         }
     }

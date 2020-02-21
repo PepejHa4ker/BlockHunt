@@ -3,7 +3,6 @@ package ru.mclegendary.blockhunt.commands
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
-import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 
 import ru.mclegendary.blockhunt.executors.KickExecutor as KE
 

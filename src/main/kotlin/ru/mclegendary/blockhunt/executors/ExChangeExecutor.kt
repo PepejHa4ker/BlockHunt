@@ -9,9 +9,6 @@ import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.BlockHunt.Companion.doCmd
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
-import ru.mclegendary.blockhunt.BlockHunt.Companion.plMsg
-import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
-import ru.mclegendary.blockhunt.BlockHunt.Companion.sendMsg
 
 object ExChangeExecutor {
 
@@ -28,11 +25,9 @@ object ExChangeExecutor {
                 .replace('&', '§')
                 .replace("%COINS%", "$coins"))
 
-
             doCmd("money give ${player.name} ${args[3]}")
-        } else {
-            player.sendMessage(instance.config.getString("NoCoins").replace('&','§'))
-        }
+        } else player.sendMessage(instance.config.getString("NoCoins").replace('&','§'))
+
 
     }
 
@@ -49,13 +44,13 @@ object ExChangeExecutor {
                 .replace("%MONEY%", "$money"))
 
             doCmd("has Coins Add ${player.name} ${args[3]}")
-            player.sendMessage(instance.config.getString("CoinsGot")
+            player.sendMessage(instance.config.getString("CashGive")
                 .replace('&','§')
-                .replace("%COINS%", args[3]))
+                .replace("%CASH%", args[3]))
             sender.sendMessage(instance.config.getString("SenderCoinsMsg")
                 .replace('&','§')
                 .replace("%COINS%", args[3])
-                .replace("%PLAYER%", "$player"))
+                .replace("%PLAYER%", player.name))
 
 
         } else player.sendMessage(instance.config.getString("NoCoins").replace('&','§'))
