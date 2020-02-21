@@ -8,26 +8,27 @@ import org.bukkit.Material
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
-import org.bukkit.event.player.AsyncPlayerChatEvent
-import org.bukkit.event.player.PlayerChangedWorldEvent
-import org.bukkit.event.player.PlayerSwapHandItemsEvent
-import org.bukkit.event.player.PlayerTeleportEvent
-import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause
+import ru.mclegendary.blockhunt.BlockHunt.Companion.doCmd
+import ru.mclegendary.blockhunt.BlockHunt.Companion.plMsg
+import org.bukkit.event.player.AsyncPlayerChatEvent as ChatE
+import org.bukkit.event.player.PlayerChangedWorldEvent as ChWoE
+import org.bukkit.event.player.PlayerSwapHandItemsEvent as ISwapE
+import org.bukkit.event.player.PlayerTeleportEvent as TPE
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause as cause
 
 import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
-
-import ru.mclegendary.blockhunt.util.Utils.fbFix
-import ru.mclegendary.blockhunt.util.Utils.ggFix
+import ru.mclegendary.blockhunt.util.Utils.ggFix as gg
+import ru.mclegendary.blockhunt.util.Utils.fbFix as fb
 
 class BhListener(var isChatProcessed: Boolean = true) : Listener  {
 
     @EventHandler
-    fun onChat(e: AsyncPlayerChatEvent) {
+    fun onChat(e: ChatE) {
         val r = e.recipients
         val sender = e.player
         val server = sender.server
         if (sender.gameMode == GameMode.SPECTATOR && e.message.equals("gg", true) && sender.world.name != "blockhunt")
-            ggFix(e, sender)
+            gg(e, sender)
         if(isChatProcessed){
             for (player in r.iterator()) {
                 if (sender.world != player.world) {
@@ -43,32 +44,32 @@ class BhListener(var isChatProcessed: Boolean = true) : Listener  {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    fun onTeleport(e: PlayerTeleportEvent) {
+    fun onTeleport(e: TPE) {
         val player = e.player
 
-        if (!player.hasPermission("blockhunt.adm") && e.cause == TeleportCause.SPECTATE) {
-            player.sendMessage("$prefix §cНизя!")
+        if (!player.hasPermission("blockhunt.adm") && e.cause == cause.SPECTATE) {
+            plMsg("§cНизя!", player)
             e.isCancelled = true
         }
     }
 
     @EventHandler
-    fun onWorldChange(e: PlayerChangedWorldEvent) {
+    fun onWorldChange(e: ChWoE) {
         val player = e.player
 
-        fbFix(player) //In Utils
+        fb(player) //In Utils
 
         if (player.world.name == "blockhunt") {
             if (player.gameMode != GameMode.SPECTATOR) {
 
                 player.gameMode = GameMode.ADVENTURE
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spawn ${player.name}")
+                doCmd("spawn ${player.name}")
             }
         } else player.gameMode = GameMode.SURVIVAL
     }
 
     @EventHandler
-    fun onHandSwap(e: PlayerSwapHandItemsEvent) {
+    fun onHandSwap(e: ISwapE) {
         if (e.offHandItem.data.itemType == Material.FIREWORK) {
             e.player.sendMessage("$prefix §cНе в этот раз, дружок")
             e.isCancelled = true

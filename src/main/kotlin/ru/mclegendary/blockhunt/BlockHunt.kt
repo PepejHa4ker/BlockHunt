@@ -1,6 +1,8 @@
 package ru.mclegendary.blockhunt
 
 import org.bukkit.Bukkit
+import org.bukkit.command.CommandSender
+import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.commands.*
 import ru.mclegendary.blockhunt.event.BhListener
@@ -13,6 +15,13 @@ class BlockHunt : JavaPlugin() {
         lateinit var prefix: String
 
         fun log(text: String){Bukkit.getConsoleSender().sendMessage("§3[§6BlockHunt§3] $text")}
+
+        fun sendMsg(text: String, sender: CommandSender){(sender.sendMessage("§3[§6Прятки§3] $text"))}
+
+        fun plMsg(text: String, player: Player){(player.sendMessage("§3[§6Прятки§3] $text"))}
+
+        fun doCmd(cmd: String){Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd)}
+
 
     }
 

@@ -4,7 +4,7 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 
-import ru.mclegendary.blockhunt.executors.KickExecutor
+import ru.mclegendary.blockhunt.executors.KickExecutor as KE
 
 class Bh : CommandExecutor {
     override fun onCommand(
@@ -19,11 +19,11 @@ class Bh : CommandExecutor {
             }
 
             args[0].equals("kick", true) -> {
-                KickExecutor(sender, args).kick()
+               KE(sender, args).kick()
             }
 
             args[0].equals("kickall", true) -> {
-                KickExecutor(sender, args).kickAll()
+                KE(sender, args).kickAll()
             }
             else -> return false
         } 

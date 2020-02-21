@@ -3,7 +3,7 @@ package ru.mclegendary.blockhunt.executors
 import org.bukkit.command.CommandSender
 import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 import ru.mclegendary.blockhunt.BlockHunt.Companion.log
-
+import ru.mclegendary.blockhunt.BlockHunt.Companion.sendMsg
 
 
 class KickExecutor(val sender: CommandSender,  args: Array<out String>) {
@@ -14,9 +14,9 @@ class KickExecutor(val sender: CommandSender,  args: Array<out String>) {
     private val playerReason = args.drop(2).joinToString(" ")
 
     fun kick() {
-        target ?: return sender.sendMessage("$prefix §cИгрок не найден или оффлайн.")
+        target ?: return sendMsg("§cИгрок не найден или оффлайн.", sender)
         if(target.hasPermission("blockhunt.kick.bypass")){
-            sender.sendMessage("$prefix §cНельзя кикнуть этого игрока")
+            sendMsg("§cНельзя кикнуть этого игрока", sender)
             return
         }
 
@@ -26,13 +26,13 @@ class KickExecutor(val sender: CommandSender,  args: Array<out String>) {
 
         } else target.sendMessage("$prefix §cВас выкинули из игры! \n§cПричина: §6$playerReason")
 
-        sender.sendMessage("$prefix §2Вы успешно кикнули игрока §a${target.name} §2из игры.")
+        sendMsg("§2Вы успешно кикнули игрока §a${target.name} §2из игры.", sender)
            log("§a${target.name} §2был исключен игроком: §a${sender.name} §2по причине: §a${playerReason}")
 
     }
 
     fun kickAll() {
-        targetWorld ?: return sender.sendMessage("§cМир не найден.")
+        targetWorld ?: return sendMsg("§cМир не найден.", sender)
         for (players in targetWorld.players) {
             players.performCommand("has leave")
             if (playerReason.isEmpty()) {
@@ -40,7 +40,7 @@ class KickExecutor(val sender: CommandSender,  args: Array<out String>) {
 
             } else players.sendMessage("$prefix §cВас выкинули из игры! \n§cПричина: §6$playerReason")
         }
-        sender.sendMessage("$prefix §2Все игроки успешно исключены из арены в мире: §a${targetWorld.name}§2.")
+        sendMsg("§2Все игроки успешно исключены из арены в мире: §a${targetWorld.name}§2.", sender)
 
             log("§2Все игроки из арены в мире: §a${targetWorld.name} §2успешно исключены игроком: §a${sender.name}")
     }

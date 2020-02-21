@@ -3,7 +3,7 @@
 package ru.mclegendary.blockhunt.executors
 
 import org.bukkit.command.CommandSender
-import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
+import ru.mclegendary.blockhunt.BlockHunt.Companion.sendMsg
 
 class OpExecutor(private val sender: CommandSender, args: Array<out String>) {
     private val target = sender.server.getPlayer(args[0])
@@ -13,20 +13,20 @@ class OpExecutor(private val sender: CommandSender, args: Array<out String>) {
     fun op() {
         if (target != null && target.isOnline) {
             target.isOp = true
-            sender.sendMessage("$prefix $success")
+            sendMsg(success, sender)
         } else {
             offlineTarget.isOp = true
-            sender.sendMessage("$prefix $success")
+            sendMsg(success, sender)
         }
     }
 
     fun deOp() {
         if (target != null && target.isOnline) {
             target.isOp = false
-            sender.sendMessage("$prefix $success")
+            sendMsg(success, sender)
         } else {
             offlineTarget.isOp = false
-            sender.sendMessage("$prefix $success")
+            sendMsg(success, sender)
         }
     }
 }
