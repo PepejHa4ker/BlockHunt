@@ -15,7 +15,7 @@ class Bh : CommandExecutor {
         args: Array<out String>
     ): Boolean {
         when {
-            args.isEmpty() || args.size == 1 -> {
+            args.isEmpty() || (args.size == 1 && !args[0].equals("reload", true))-> {
                 sender.sendMessage("§cЧто-то не так с аргументами:"); return false
             }
 

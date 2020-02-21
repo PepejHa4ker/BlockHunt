@@ -27,14 +27,14 @@ class BlockHunt : JavaPlugin() {
 
 
     override fun onEnable() {
+        prefix = config.getString("prefix").replace('&', '§')
         setupFB() // FB api
+        setupHAS() // HideAndSeek api
+        setupICO() // Vault api
         log("$prefix §aLoading config.yml")
         config.options().copyDefaults(true)
         saveConfig()
         log("$prefix ${config.getString("Message_On_Enable").replace('&', '§')}")
-        setupHAS() // HideAndSeek api
-        setupICO() // Vault api
-        prefix = config.getString("prefix").replace('&', '§')
         instance = this
         listener = BhListener()
         this.getCommand("chat").executor = Chat()
@@ -46,35 +46,35 @@ class BlockHunt : JavaPlugin() {
         this.getCommand("deop").executor = DeOp()
         this.getCommand("bh").executor = Bh()
         //
-        if (isEnabled) server.pluginManager.registerEvents(listener, this)
+        server.pluginManager.registerEvents(listener, this)
 
 
     }
     override fun onDisable() {
-        log("§aI'm sorry my black friend :(")
+        log("$prefix §aI'm sorry my black friend :(")
     }
 
 
     private fun setupHAS(): Boolean {
         if (server.pluginManager.getPlugin("HideAndSeek") == null) {
-            log("§cCan't find HideAndSeek plugin! Disabling plugin!")
+            log("$prefix §cCan't find HideAndSeek plugin! Disabling plugin!")
             instance.pluginLoader.disablePlugin(this)
-        } else log("§aHideAndSeek plugin was found! Good!"); return true
+        } else log("$prefix §aHideAndSeek plugin was found! Good!"); return true
     }
 
     private fun setupFB(): Boolean {
         if (server.pluginManager.getPlugin("FeatherBoard") == null) {
-            log("§cCan't find FeatherBoard plugin! Disabling plugin!")
+            log("$prefix §cCan't find FeatherBoard plugin! Disabling plugin!")
             instance.pluginLoader.disablePlugin(this)
-        } else log("§aFeatherBoard plugin was found! Good!"); return true
+        } else log("$prefix §aFeatherBoard plugin was found! Good!"); return true
 
     }
 
     private fun setupICO(): Boolean {
         if (server.pluginManager.getPlugin("Vault") == null) {
-            log("§cCan't find Vault plugin! Disabling plugin!")
+            log("$prefix §cCan't find Vault plugin! Disabling plugin!")
             instance.pluginLoader.disablePlugin(this)
-        } else log("§aVault plugin was found! Good!"); return true
+        } else log("$prefix §aVault plugin was found! Good!"); return true
 
     }
 
