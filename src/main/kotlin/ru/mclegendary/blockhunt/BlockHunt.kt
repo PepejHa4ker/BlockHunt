@@ -37,7 +37,6 @@ class BlockHunt : JavaPlugin() {
         prefix = config.getString("prefix").replace('&', '§')
         instance = this
         listener = BhListener()
-        this.getCommand("reloadcfg").executor = ReloadCfg()
         this.getCommand("chat").executor = Chat()
         this.getCommand("lottery").executor = Lottery()
         this.getCommand("exchange").executor = ExChange()
