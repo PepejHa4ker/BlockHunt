@@ -3,6 +3,7 @@ package ru.mclegendary.blockhunt.commands
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
+import ru.mclegendary.blockhunt.executors.ReloadExecutor
 
 import ru.mclegendary.blockhunt.executors.KickExecutor as KE
 
@@ -24,6 +25,11 @@ class Bh : CommandExecutor {
 
             args[0].equals("kickall", true) -> {
                 KE(sender, args).kickAll()
+            }
+
+            args[0].equals("reload", true) -> {
+                ReloadExecutor(sender, args).reloadCfg()
+
             }
 
             else -> return false

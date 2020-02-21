@@ -57,7 +57,7 @@ commands:
     usage: |
      §с/<command> §b<kick> <Игрок> [Причина]
      §с/<command> §b<kickall> <Мир> [Причина]
-     §с/<command> §breloadcfg
+     §с/<command> §breload
     permission: blockhunt.kick.other
   op:
     usage: /<command> <player>
@@ -70,9 +70,7 @@ commands:
       §b/<command> toggle §e-> §b Переключить чат на миры
       §b/<command> info §e-> §b Узнать состояние чата
     permission: blockhunt.togglechat
-  reloadcfg:
-    usage: /<command>
-    permission: blockhunt.reloadconfig
+
 
 
 
