@@ -12,6 +12,7 @@ description:
   blockhunt.kick.other - Возможность исключать игроков с арены
   blockhunt.kick.bypass - Обход кика(НЕ РАБОТАЕТ НА МИРЫ)
   blockhunt.togglechat - Возможность выключения чата на миры
+  blockhunt.reloadconfig - перезагрузка конфига
 
 permissions:
     blockhunt.*:
@@ -30,6 +31,10 @@ permissions:
               default: false
         blockhunt.togglechat:
           default: op
+        blockhunt.reloadconfig:
+          default: op
+
+
 
 commands:
   lottery:
@@ -52,6 +57,7 @@ commands:
     usage: |
      §с/<command> §b<kick> <Игрок> [Причина]
      §с/<command> §b<kickall> <Мир> [Причина]
+     §с/<command> §breloadcfg
     permission: blockhunt.kick.other
   op:
     usage: /<command> <player>
@@ -64,6 +70,9 @@ commands:
       §b/<command> toggle §e-> §b Переключить чат на миры
       §b/<command> info §e-> §b Узнать состояние чата
     permission: blockhunt.togglechat
+  reloadcfg:
+    usage: /<command>
+    permission: blockhunt.reloadconfig
 
 
 

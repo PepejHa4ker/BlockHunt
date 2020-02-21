@@ -7,6 +7,7 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
 import org.bukkit.entity.Player
+import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 
 import kotlin.random.Random
 
@@ -24,8 +25,13 @@ class Lottery : CommandExecutor {
 
         if (sender !is ConsoleCommandSender) return false
         cashGive(player, cash)
-        player.sendMessage("§aВы получили $cash коинов.")
-        sender.sendMessage("§aВыдано $cash коинов игроку: §2${args[0]}")
+        player.sendMessage(instance.config.getString("CashGive")
+            .replace("%CASH%", "$cash")
+            .replace('&', '§'))
+        sender.sendMessage(instance.config.getString("CashGiven")
+            .replace("%CASH%", "$cash")
+            .replace('&', '§')
+            .replace("%PLAYER%", args[0]))
         return true
     }
 

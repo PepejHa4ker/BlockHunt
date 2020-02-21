@@ -3,6 +3,7 @@ package ru.mclegendary.blockhunt.commands
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
+import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.BlockHunt.Companion.listener
 import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
@@ -18,32 +19,32 @@ class Chat : CommandExecutor {
             args[0].equals("on", true) -> {
                 if (!listener.isChatProcessed) {
                    chatEnable()
-                    sender.sendMessage("$prefix §cЧат был успешно включен")
-                } else sender.sendMessage("$prefix §cЧат уже включен!"); return true
+                    sender.sendMessage(instance.config.getString("ChatOnSuccess").replace('&', '§'))
+                } else sender.sendMessage(instance.config.getString("ChatAlreadyEnabled").replace('&', '§')); return true
 
             }
             args[0].equals("off", true) -> {
                 if (listener.isChatProcessed) {
                     chatDisable()
-                    sender.sendMessage("$prefix §cЧат был успешно выключен")
-                } else sender.sendMessage("$prefix §cЧат уже выключен!"); return true
+                    sender.sendMessage(instance.config.getString("ChatOffSuccess").replace('&', '§'))
+                } else sender.sendMessage(instance.config.getString("ChatAlreadyEnabled").replace('&', '§')); return true
             }
 
             args[0].equals("toggle", true) -> {
                 if (listener.isChatProcessed) {
                     chatDisable()
-                    sender.sendMessage("$prefix §cЧат был успешно выключен")
+                    sender.sendMessage(instance.config.getString("ChatOffSuccess").replace('&', '§'))
                 } else {
                     chatEnable()
-                    sender.sendMessage("$prefix §cЧат был успешно включен")
+                    sender.sendMessage(instance.config.getString("ChatOnSuccess").replace('&', '§'))
                 }
 
             }
 
             args[0].equals("info", true) -> {
                 if(listener.isChatProcessed){
-                    sender.sendMessage("$prefix §cЧат включен")
-                } else sender.sendMessage("$prefix §cЧат выключен")
+                    sender.sendMessage(instance.config.getString("ChatOn").replace('&', '§'))
+                } else sender.sendMessage(instance.config.getString("ChatOff").replace('&', '§'))
 
             }
 

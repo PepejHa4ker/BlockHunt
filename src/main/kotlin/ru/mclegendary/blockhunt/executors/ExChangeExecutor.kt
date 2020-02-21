@@ -8,6 +8,7 @@ import me.wazup.hideandseek.HideAndSeekAPI
 import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.BlockHunt.Companion.doCmd
+import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.BlockHunt.Companion.plMsg
 import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 import ru.mclegendary.blockhunt.BlockHunt.Companion.sendMsg
@@ -23,11 +24,14 @@ object ExChangeExecutor {
 
         if (hasPlayerData.getCoins(player) >= coins) {
             doCmd("has Coins Remove ${player.name} $coins")
-            plMsg("§3$coins коинов снято с Вашего аккаунта.", player)
+            player.sendMessage(instance.config.getString("CoinsRemove")
+                .replace('&', '§')
+                .replace("%COINS%", "$coins"))
+
 
             doCmd("money give ${player.name} ${args[3]}")
         } else {
-            plMsg("$prefix ix §cНедостаточно коинов для обмена!", player)
+            player.sendMessage(instance.config.getString("NoCoins").replace('&','§'))
         }
 
     }
@@ -40,10 +44,20 @@ object ExChangeExecutor {
 
         if (bankAccount >= money) {
             doCmd("money take ${player.name} $money")
-            plMsg("§a$money монет снятно с Вашего аккаунта.", player)
+            player.sendMessage(instance.config.getString("MoneyRemove")
+                .replace('&', '§')
+                .replace("%MONEY%", "$money"))
+
             doCmd("has Coins Add ${player.name} ${args[3]}")
-            plMsg("§aВы получили ${args[3]} коинов.", player)
-            sendMsg("§3Выдано ${args[3]} коинов игроку: §2${player.name}", sender)
-        } else plMsg("§cНедостаточно монет для обмена!", player)
+            player.sendMessage(instance.config.getString("CoinsGot")
+                .replace('&','§')
+                .replace("%COINS%", args[3]))
+            sender.sendMessage(instance.config.getString("SenderCoinsMsg")
+                .replace('&','§')
+                .replace("%COINS%", args[3])
+                .replace("%PLAYER%", "$player"))
+
+
+        } else player.sendMessage(instance.config.getString("NoCoins").replace('&','§'))
     }
 }

@@ -1,7 +1,6 @@
 package ru.mclegendary.blockhunt.event
 
 
-import org.bukkit.Bukkit
 import org.bukkit.GameMode
 import org.bukkit.Material
 
@@ -9,6 +8,7 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import ru.mclegendary.blockhunt.BlockHunt.Companion.doCmd
+import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.BlockHunt.Companion.plMsg
 import org.bukkit.event.player.AsyncPlayerChatEvent as ChatE
 import org.bukkit.event.player.PlayerChangedWorldEvent as ChWoE
@@ -16,11 +16,10 @@ import org.bukkit.event.player.PlayerSwapHandItemsEvent as ISwapE
 import org.bukkit.event.player.PlayerTeleportEvent as TPE
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause as cause
 
-import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 import ru.mclegendary.blockhunt.util.Utils.ggFix as gg
 import ru.mclegendary.blockhunt.util.Utils.fbFix as fb
 
-class BhListener(var isChatProcessed: Boolean = true) : Listener  {
+class BhListener (var isChatProcessed: Boolean = true) : Listener {
 
     @EventHandler
     fun onChat(e: ChatE) {
@@ -29,13 +28,16 @@ class BhListener(var isChatProcessed: Boolean = true) : Listener  {
         val server = sender.server
         if (sender.gameMode == GameMode.SPECTATOR && e.message.equals("gg", true) && sender.world.name != "blockhunt")
             gg(e, sender)
-        if(isChatProcessed){
+        if (isChatProcessed) {
             for (player in r.iterator()) {
                 if (sender.world != player.world) {
                     if (sender.hasPermission("blockhunt.user")) {
                         r.remove(player)
                         if (!sender.hasPermission("blockhunt.chat")) { //Sending message to admins
-                            server.broadcast("§5[${sender.world.name}] ${sender.displayName}§6: ${e.message}", "blockhunt.chat")
+                            server.broadcast(
+                                "§5[${sender.world.name}] ${sender.displayName}§6: ${e.message}",
+                                "blockhunt.chat"
+                            )
                         } else return
                     }
                 }
@@ -71,7 +73,7 @@ class BhListener(var isChatProcessed: Boolean = true) : Listener  {
     @EventHandler
     fun onHandSwap(e: ISwapE) {
         if (e.offHandItem.data.itemType == Material.FIREWORK) {
-            e.player.sendMessage("$prefix §cНе в этот раз, дружок")
+            e.player.sendMessage(instance.config.getString("ItemChange").replace('&', '§'))
             e.isCancelled = true
         }
     }

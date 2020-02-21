@@ -1,38 +1,47 @@
 package ru.mclegendary.blockhunt
 
-import org.bukkit.Bukkit
-import org.bukkit.command.CommandSender
+import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.commands.*
 import ru.mclegendary.blockhunt.event.BhListener
+import java.io.File
+import org.bukkit.Bukkit as b
+import org.bukkit.command.CommandSender as cmdSender
 
 
 class BlockHunt : JavaPlugin() {
+
+
     companion object {
         lateinit var instance: BlockHunt
         lateinit var listener: BhListener
         lateinit var prefix: String
 
-        fun log(text: String){Bukkit.getConsoleSender().sendMessage("§3[§6BlockHunt§3] $text")}
+        fun log(text: String){b.getConsoleSender().sendMessage("§3[§6BlockHunt§3] $text")}
 
-        fun sendMsg(text: String, sender: CommandSender){(sender.sendMessage("§3[§6Прятки§3] $text"))}
+        fun sendMsg(text: String, sender: cmdSender){(sender.sendMessage("§3[§6Прятки§3] $text"))}
 
         fun plMsg(text: String, player: Player){(player.sendMessage("§3[§6Прятки§3] $text"))}
 
-        fun doCmd(cmd: String){Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd)}
-
-
+        fun doCmd(cmd: String){b.dispatchCommand(b.getConsoleSender(), cmd)}
+        
     }
 
+
+
     override fun onEnable() {
-        log("§aGet out of my board!")
         setupFB() // FB api
+        log("§aLoading config.yml")
+        config.options().copyDefaults(true)
+        saveConfig()
+        log(config.getString("Message_On_Enable").replace('&', '§'))
         setupHAS() // HideAndSeek api
         setupICO() // Vault api
         prefix = "§3[§6Прятки§3]"
         instance = this
         listener = BhListener()
+        this.getCommand("reloadcfg").executor = ReloadCfg()
         this.getCommand("chat").executor = Chat()
         this.getCommand("lottery").executor = Lottery()
         this.getCommand("exchange").executor = ExChange()
@@ -42,9 +51,10 @@ class BlockHunt : JavaPlugin() {
         this.getCommand("deop").executor = DeOp()
         this.getCommand("bh").executor = Bh()
         //
-        if(isEnabled) server.pluginManager.registerEvents(listener, this)
-    }
+        if (isEnabled) server.pluginManager.registerEvents(listener, this)
 
+
+    }
     override fun onDisable() {
         log("§aI'm sorry my black friend :(")
     }
@@ -71,6 +81,11 @@ class BlockHunt : JavaPlugin() {
             instance.pluginLoader.disablePlugin(this)
         } else log("§aVault plugin was found! Good!"); return true
 
+    }
+
+
+    override fun getConfig(): FileConfiguration {
+        return super.getConfig()
     }
 
 }

@@ -4,6 +4,7 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
+import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
 import ru.mclegendary.blockhunt.executors.OpExecutor
@@ -21,10 +22,10 @@ class Op : CommandExecutor {
                 OpExecutor(sender, args).op()
 
             } else {
-                sender.sendMessage("$prefix §cКоманда неверно записана!"); return false
+                sender.sendMessage(instance.config.getString("InvalidCommand").replace('&', '§')); return false
             }
         } else {
-            sender.sendMessage("$prefix §c§lНет прав!")
+            sender.sendMessage(instance.config.getString("NoPermission").replace('&', '§'))
         }
 
         return true

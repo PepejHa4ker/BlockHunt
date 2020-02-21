@@ -3,12 +3,11 @@ package ru.mclegendary.blockhunt.executors
 import me.wazup.hideandseek.HideAndSeek
 import me.wazup.hideandseek.HideAndSeekAPI
 
-import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.BlockHunt.Companion.doCmd
-import ru.mclegendary.blockhunt.BlockHunt.Companion.plMsg
-import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
+import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
+
 
 
 object CSGOCrateExecutor {
@@ -26,11 +25,13 @@ object CSGOCrateExecutor {
         if (hasPlayerData.getCoins(player) >= coins) {
             doCmd("has coins remove ${player.name} $coins")
 
-            plMsg("§3$coins коинов снято с Вашего аккаунта.", player)
+            player.sendMessage(instance.config.getString("CoinsRemove")
+                    .replace('&', '§')
+                    .replace("%COINS%", "$coins"))
 
             doCmd("crate give to ${player.name} ${args[2]} ${args[3].toInt()} online")
 
-        } else plMsg("§cУ Вас недостаточно коинов для выполнения покупки!", player)
+        } else player.sendMessage(instance.config.getString("NoCoins").replace('&','§'))
 
 
     }
