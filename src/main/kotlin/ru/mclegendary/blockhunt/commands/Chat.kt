@@ -16,30 +16,37 @@ class Chat : CommandExecutor {
         if(args.isEmpty()) return false
         when {
             args[0].equals("on", true) -> {
-                if (!isChatEnabled()) {
-                   chatEnable(sender)
-                } else
-                    sender.sendMessage("$prefix §cЧат уже включен!"); return true
+                if (!listener.isChatProcessed) {
+                   chatEnable()
+                    sender.sendMessage("$prefix §cЧат был успешно включен")
+                } else sender.sendMessage("$prefix §cЧат уже включен!"); return true
 
             }
             args[0].equals("off", true) -> {
-                if (isChatEnabled()) {
-                    chatDisable(sender)
+                if (listener.isChatProcessed) {
+                    chatDisable()
+                    sender.sendMessage("$prefix §cЧат был успешно выключен")
                 } else sender.sendMessage("$prefix §cЧат уже выключен!"); return true
             }
 
             args[0].equals("toggle", true) -> {
-                if (isChatEnabled()) {
-                    chatDisable(sender)
-                } else chatDisable(sender)
+                if (listener.isChatProcessed) {
+                    chatDisable()
+                    sender.sendMessage("$prefix §cЧат был успешно выключен")
+                } else {
+                    chatEnable()
+                    sender.sendMessage("$prefix §cЧат был успешно включен")
+                }
 
             }
 
             args[0].equals("info", true) -> {
-                if(isChatEnabled()){
+                if(listener.isChatProcessed){
                     sender.sendMessage("$prefix §cЧат включен")
                 } else sender.sendMessage("$prefix §cЧат выключен")
+
             }
+
 
 
             else -> return false
@@ -49,20 +56,13 @@ class Chat : CommandExecutor {
         return true
     }
 
-    private fun chatEnable(sender: CommandSender){
+    private fun chatEnable(){
         listener.isChatProcessed = true
-        sender.sendMessage("$prefix §cЧат был успешно включен")
+
     }
 
-    private fun chatDisable(sender: CommandSender){
+    private fun chatDisable(){
        listener.isChatProcessed = false
-        sender.sendMessage("$prefix §cЧат был успешно выключен")
-    }
 
-    private fun isChatEnabled(): Boolean{
-        if(listener.isChatProcessed) return true
-        if(listener.isChatProcessed) return false
-        return true
     }
-
 }
