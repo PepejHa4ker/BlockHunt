@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.BlockHunt.Companion.doCmd
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
-
+import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
 
 object CSGOCrateExecutor {
@@ -25,13 +25,13 @@ object CSGOCrateExecutor {
         if (hasPlayerData.getCoins(player) >= coins) {
             doCmd("has coins remove ${player.name} $coins")
 
-            player.sendMessage(instance.config.getString("CoinsRemove")
+            player.sendMessage("$prefix ${instance.config.getString("CoinsRemove")}"
                     .replace('&', '§')
                     .replace("%COINS%", "$coins"))
 
             doCmd("crate give to ${player.name} ${args[2]} ${args[3].toInt()} online")
 
-        } else player.sendMessage(instance.config.getString("NoCoins").replace('&','§'))
+        } else player.sendMessage("$prefix ${instance.config.getString("NoCoins").replace('&','§')}")
 
 
     }

@@ -5,6 +5,7 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.BlockHunt.Companion.listener
+import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
 class Chat : CommandExecutor {
     override fun onCommand(
@@ -18,32 +19,32 @@ class Chat : CommandExecutor {
             args[0].equals("on", true) -> {
                 if (!listener.isChatProcessed) {
                    chatEnable()
-                    sender.sendMessage(instance.config.getString("ChatOnSuccess").replace('&', '§'))
-                } else sender.sendMessage(instance.config.getString("ChatAlreadyEnabled").replace('&', '§')); return true
+                    sender.sendMessage("$prefix ${instance.config.getString("ChatOnSuccess").replace('&', '§')}")
+                } else sender.sendMessage("$prefix ${instance.config.getString("ChatAlreadyEnabled").replace('&', '§')}"); return true
 
             }
             args[0].equals("off", true) -> {
                 if (listener.isChatProcessed) {
                     chatDisable()
-                    sender.sendMessage(instance.config.getString("ChatOffSuccess").replace('&', '§'))
-                } else sender.sendMessage(instance.config.getString("ChatAlreadyEnabled").replace('&', '§')); return true
+                    sender.sendMessage("$prefix ${instance.config.getString("ChatOffSuccess").replace('&', '§')}")
+                } else sender.sendMessage("$prefix ${instance.config.getString("ChatAlreadyEnabled").replace('&', '§')}"); return true
             }
 
             args[0].equals("toggle", true) -> {
                 if (listener.isChatProcessed) {
                     chatDisable()
-                    sender.sendMessage(instance.config.getString("ChatOffSuccess").replace('&', '§'))
+                    sender.sendMessage("$prefix ${instance.config.getString("ChatOffSuccess").replace('&', '§')}")
                 } else {
                     chatEnable()
-                    sender.sendMessage(instance.config.getString("ChatOnSuccess").replace('&', '§'))
+                    sender.sendMessage("$prefix ${instance.config.getString("ChatOnSuccess").replace('&', '§')}")
                 }
 
             }
 
             args[0].equals("info", true) -> {
                 if(listener.isChatProcessed){
-                    sender.sendMessage(instance.config.getString("ChatOn").replace('&', '§'))
-                } else sender.sendMessage(instance.config.getString("ChatOff").replace('&', '§'))
+                    sender.sendMessage("$prefix ${instance.config.getString("ChatOn").replace('&', '§')}")
+                } else sender.sendMessage("$prefix ${instance.config.getString("ChatOff").replace('&', '§')}")
 
             }
 

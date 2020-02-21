@@ -1,12 +1,11 @@
 package ru.mclegendary.blockhunt
 
-import org.bukkit.configuration.file.FileConfiguration
+
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.commands.*
 import ru.mclegendary.blockhunt.event.BhListener
 import org.bukkit.Bukkit as b
-import org.bukkit.command.CommandSender as cmdSender
 
 
 class BlockHunt : JavaPlugin() {
@@ -17,14 +16,12 @@ class BlockHunt : JavaPlugin() {
         lateinit var listener: BhListener
         lateinit var prefix: String
 
-        fun log(text: String){b.getConsoleSender().sendMessage("§3[§6BlockHunt§3] $text")}
-
-        fun sendMsg(text: String, sender: cmdSender){(sender.sendMessage("§3[§6Прятки§3] $text"))}
+        fun log(text: String){b.getConsoleSender().sendMessage(text)}
 
         fun plMsg(text: String, player: Player){(player.sendMessage("§3[§6Прятки§3] $text"))}
 
         fun doCmd(cmd: String){b.dispatchCommand(b.getConsoleSender(), cmd)}
-        
+
     }
 
 
@@ -37,7 +34,7 @@ class BlockHunt : JavaPlugin() {
         log(config.getString("Message_On_Enable").replace('&', '§'))
         setupHAS() // HideAndSeek api
         setupICO() // Vault api
-        prefix = "§3[§6Прятки§3]"
+        prefix = config.getString("prefix").replace('&', '§')
         instance = this
         listener = BhListener()
         this.getCommand("reloadcfg").executor = ReloadCfg()

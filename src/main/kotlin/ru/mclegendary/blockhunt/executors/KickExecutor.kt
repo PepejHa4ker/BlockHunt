@@ -3,7 +3,7 @@ package ru.mclegendary.blockhunt.executors
 import org.bukkit.command.CommandSender
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.BlockHunt.Companion.log
-
+import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
 
 class KickExecutor(val sender: CommandSender,  args: Array<out String>) {
@@ -14,27 +14,27 @@ class KickExecutor(val sender: CommandSender,  args: Array<out String>) {
     private val playerReason = args.drop(2).joinToString(" ")
 
     fun kick() {
-        target ?: return sender.sendMessage(instance.config.getString("PlayerOffline")
+        target ?: return sender.sendMessage("$prefix ${instance.config.getString("PlayerOffline")}"
             .replace('&', '§'))
         if(target.hasPermission("blockhunt.kick.bypass")){
-            sender.sendMessage(instance.config.getString("TargetBypass")
+            sender.sendMessage("$prefix ${instance.config.getString("TargetBypass")}"
                 .replace('&', '§'))
             return
         }
 
         target.performCommand("has leave")
         if (playerReason.isEmpty()) {
-            target.sendMessage(instance.config.getString("KickMessage")
+            target.sendMessage("$prefix ${instance.config.getString("KickMessage")}"
                 .replace('&', '§'))
 
-        } else target.sendMessage(instance.config.getString("KickMessageAndReason")
+        } else target.sendMessage("$prefix ${instance.config.getString("KickMessageAndReason")}"
             .replace('&', '§')
             .replace("%REASON%", playerReason))
 
-        sender.sendMessage(instance.config.getString("SenderMessage")
+        sender.sendMessage("$prefix ${instance.config.getString("SenderMessage")}"
             .replace('&', '§')
             .replace("%PLAYER%", target.name))
-           log(instance.config.getString("KickLog")
+           log("$prefix ${instance.config.getString("KickLog")}"
                .replace('&', '§')
                .replace("%PLAYER%", target.name)
                .replace("%SENDER%", sender.name)
@@ -43,25 +43,25 @@ class KickExecutor(val sender: CommandSender,  args: Array<out String>) {
     }
 
     fun kickAll() {
-        targetWorld ?: return sender.sendMessage(instance.config.getString("WorldNotFound")
+        targetWorld ?: return sender.sendMessage("$prefix ${instance.config.getString("WorldNotFound")}"
             .replace('&', '§'))
         for (players in targetWorld.players) {
             players.performCommand("has leave")
             if (playerReason.isEmpty()) {
-                players.sendMessage(instance.config.getString("KickMessage")
+                players.sendMessage("$prefix ${instance.config.getString("KickMessage")}"
                     .replace('&', '§'))
 
-            } else players.sendMessage(instance.config.getString("KickMessageAndReason")
+            } else players.sendMessage("$prefix ${instance.config.getString("KickMessageAndReason")}"
                 .replace('&', '§')
                 .replace("%REASON%", playerReason))
         }
-        sender.sendMessage(instance.config.getString("KickSuccess")
+        sender.sendMessage("$prefix ${instance.config.getString("KickSuccess")}"
             .replace('&','§')
             .replace("%WORLD%", targetWorld.name)
             .replace("%PLAYER%", sender.name)
             .replace("%SENDER%", sender.name))
 
-            log(instance.config.getString("KickLog")
+            log("$prefix ${instance.config.getString("KickLog")}"
                 .replace('&','§')
                 .replace("%WORLD%", targetWorld.name)
                 .replace("%SENDER%", sender.name)

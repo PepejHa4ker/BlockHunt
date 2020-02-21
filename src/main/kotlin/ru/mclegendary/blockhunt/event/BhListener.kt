@@ -10,6 +10,7 @@ import org.bukkit.event.Listener
 import ru.mclegendary.blockhunt.BlockHunt.Companion.doCmd
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.BlockHunt.Companion.plMsg
+import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 import org.bukkit.event.player.AsyncPlayerChatEvent as ChatE
 import org.bukkit.event.player.PlayerChangedWorldEvent as ChWoE
 import org.bukkit.event.player.PlayerSwapHandItemsEvent as ISwapE
@@ -78,7 +79,7 @@ class BhListener (var isChatProcessed: Boolean = true) : Listener {
     @EventHandler
     fun onHandSwap(e: ISwapE) {
         if (e.offHandItem.data.itemType == Material.FIREWORK) {
-            e.player.sendMessage(instance.config.getString("ItemChange").replace('&', '§'))
+            e.player.sendMessage("$prefix ${instance.config.getString("ItemChange").replace('&', '§')}")
             e.isCancelled = true
         }
     }
