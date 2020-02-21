@@ -28,10 +28,10 @@ class BlockHunt : JavaPlugin() {
 
     override fun onEnable() {
         setupFB() // FB api
-        log("§aLoading config.yml")
+        log("$prefix §aLoading config.yml")
         config.options().copyDefaults(true)
         saveConfig()
-        log(config.getString("Message_On_Enable").replace('&', '§'))
+        log("$prefix ${config.getString("Message_On_Enable").replace('&', '§')}")
         setupHAS() // HideAndSeek api
         setupICO() // Vault api
         prefix = config.getString("prefix").replace('&', '§')
