@@ -9,7 +9,6 @@ import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import ru.mclegendary.blockhunt.BlockHunt.Companion.doCmd
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
-import ru.mclegendary.blockhunt.BlockHunt.Companion.plMsg
 import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 import org.bukkit.event.player.AsyncPlayerChatEvent as ChatE
 import org.bukkit.event.player.PlayerChangedWorldEvent as ChWoE
@@ -56,7 +55,7 @@ class BhListener (var isChatProcessed: Boolean = true) : Listener {
         val player = e.player
 
         if (!player.hasPermission("blockhunt.adm") && e.cause == cause.SPECTATE) {
-            plMsg("§cНизя!", player)
+            player.sendMessage("$prefix §cНизя!")
             e.isCancelled = true
         }
     }
