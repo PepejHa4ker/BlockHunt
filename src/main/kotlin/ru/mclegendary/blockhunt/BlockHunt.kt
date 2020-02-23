@@ -35,7 +35,6 @@ class BlockHunt : JavaPlugin() {
         log("$prefix ${config.getString("Message_On_Enable").replace('&', '§')}")
         instance = this
         listener = BhListener()
-        this.getCommand("chat").executor = Chat()
         this.getCommand("lottery").executor = Lottery()
         this.getCommand("exchange").executor = ExChange()
         this.getCommand("csgo").executor = CSGOCrate()

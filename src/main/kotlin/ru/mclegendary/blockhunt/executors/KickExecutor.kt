@@ -61,7 +61,7 @@ class KickExecutor(val sender: CommandSender,  args: Array<out String>) {
             .replace("%PLAYER%", sender.name)
             .replace("%SENDER%", sender.name))
 
-            log("$prefix ${instance.config.getString("KickLog")}"
+            log("$prefix ${instance.config.getString("KickLogWorld")}"
                 .replace('&','§')
                 .replace("%WORLD%", targetWorld.name)
                 .replace("%SENDER%", sender.name)
