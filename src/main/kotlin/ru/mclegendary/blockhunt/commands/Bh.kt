@@ -41,25 +41,31 @@ class Bh : CommandExecutor {
 
             }
 
-            args[0].equals("chat", true) -> {
-                if (args.size < 2) return false
+            args[0].equals("chat", true)  -> {
+                if (sender.hasPermission("blockhunt.togglechat")) {
+                    if (args.size < 2) return false
 
-                when {
+                    when {
 
-                    args[1].equals("on", true) -> ChatSwitchExecutor(sender).chatEnable()
+                        args[1].equals("on", true) -> ChatSwitchExecutor(sender).chatEnable()
 
-                    args[1].equals("off", true) -> ChatSwitchExecutor(sender).chatDisable()
+                        args[1].equals("off", true) -> ChatSwitchExecutor(sender).chatDisable()
 
-                    args[1].equals("info", true) ->
-                        if ((ChatSwitchExecutor(sender).isChatEnabled())) {
-                            sender.sendMessage("$prefix ${instance.config.getString("ChatOn").replace('&', '§')}")
-                        } else sender.sendMessage("$prefix ${instance.config.getString("ChatOff").replace('&', '§')}")
+                        args[1].equals("info", true) ->
+                            if ((ChatSwitchExecutor(sender).isChatEnabled())) {
+                                sender.sendMessage("$prefix ${instance.config.getString("ChatOn").replace
+                                    ('&', '§')}")
+                            } else sender.sendMessage(
+                                "$prefix ${instance.config.getString("ChatOff").replace
+                                    ('&', '§')}"
+                            )
 
-                    else -> return false
+                        else -> return false
 
-                }
+                    }
+                } else  sender.sendMessage("$prefix ${instance.config.getString("NoPermission").replace(
+                    '&', '§')}");return true
             }
-
             else -> return false
 
         } 

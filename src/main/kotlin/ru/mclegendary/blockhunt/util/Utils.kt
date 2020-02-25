@@ -11,6 +11,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent
 
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.BlockHunt.Companion.log
+import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
 
 object Utils  {
@@ -26,22 +27,16 @@ object Utils  {
         }
     }
 
-    //Sleeping command >_>
-    fun delayedModeChange(player: Player, delay: Int, gamemode: String) {
-        instance.server.scheduler.scheduleSyncDelayedTask(instance, {
-            player.gameMode = GameMode.valueOf(gamemode)
-        }, delay.toLong() * 20) // time in ticks
-    }
 
     fun ggFix( e: AsyncPlayerChatEvent,  sender: Player) {
         val playerData = HideAndSeek.api.getPlayerData(sender)
         if (sender.gameMode == GameMode.SPECTATOR && e.message.equals("gg", true) && sender.world.name != "blockhunt") {
             if (playerData.hasCoins(sender, 50)) {
                 playerData.removeCoins(sender, 50)
-               sender.sendMessage(instance.config.getString("GgInSpecWithMoney").replace('&', '§'))
-            } else sender.sendMessage(instance.config.getString("GgInSpec").replace('&', '§'))
+               sender.sendMessage("$prefix ${instance.config.getString("GgInSpecWithMoney").replace('&', '§')}")
+            } else sender.sendMessage("$prefix ${instance.config.getString("GgInSpec").replace('&', '§')}")
             e.isCancelled = true
-          log(instance.config.getString("GgLog")
+          log("$prefix ${instance.config.getString("GgLog")}"
               .replace('&', '§')
               .replace("%PLAYER%", sender.name))
 

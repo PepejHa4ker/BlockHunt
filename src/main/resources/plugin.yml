@@ -1,7 +1,7 @@
 name: BlockHunt
 main: ru.mclegendary.blockhunt.BlockHunt
 authors: [pepej, mclegendary]
-version: '4.5'
+version: '4.6'
 website: https://squareland.ru
 softdepend: [FeatherBoard, HideAndSeek, iConomy]
 description:
@@ -11,7 +11,6 @@ description:
   blockhunt.kick.* - Все права на кик
   blockhunt.kick.other - Возможность исключать игроков с арены
   blockhunt.kick.bypass - Обход кика(НЕ РАБОТАЕТ НА МИРЫ)
-  blockhunt.togglechat - Возможность выключения чата на миры
   blockhunt.reloadconfig - перезагрузка конфига
 
 permissions:
@@ -55,8 +54,8 @@ commands:
     permission: blockhunt.adm
   bh:
     usage: |
-      /<command> §b<kick> <Игрок> [Причина]
-      /<command> §b<kickall> <Мир> [Причина]
+      /<command>§b <kick> <Игрок> [Причина]
+      /<command>§b <kickall> <Мир> [Причина]
       /<command>§b reload
       /<command>§b chat on/off/info
     permission: blockhunt.kick.other
