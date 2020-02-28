@@ -10,7 +10,7 @@ import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
 
-object CSGOCrateExecutor {
+object CSGOCrateExecutor  {
 
     fun csgoGive(sender: CommandSender, args: Array<out String>) {
         val player = sender.server.getPlayer(args[1])

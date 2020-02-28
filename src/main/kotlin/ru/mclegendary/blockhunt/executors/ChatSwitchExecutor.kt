@@ -24,8 +24,6 @@ class ChatSwitchExecutor(val sender: CommandSender) {
     }
 
 
-    fun isChatEnabled() : Boolean {
-        return listener.isChatProcessed
+    fun isChatEnabled() : Boolean = listener.isChatProcessed
 
-    }
 }

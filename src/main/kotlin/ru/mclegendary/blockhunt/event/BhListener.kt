@@ -1,8 +1,10 @@
 package ru.mclegendary.blockhunt.event
 
 
+import com.google.common.collect.Lists.newArrayList
 import org.bukkit.GameMode
 import org.bukkit.Material
+import org.bukkit.entity.Player
 
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -20,7 +22,7 @@ import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause as cause
 import ru.mclegendary.blockhunt.util.Utils.ggFix as gg
 import ru.mclegendary.blockhunt.util.Utils.fbFix as fb
 
-class BhListener (var isChatProcessed: Boolean = true) : Listener {
+class BhListener(var isChatProcessed: Boolean = true) : Listener {
 
     @EventHandler
     fun onChat(e: ChatE) {

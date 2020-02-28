@@ -1,7 +1,6 @@
 package ru.mclegendary.blockhunt
 
 
-import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.commands.*
 import ru.mclegendary.blockhunt.event.BhListener
@@ -15,10 +14,12 @@ class BlockHunt : JavaPlugin() {
         lateinit var instance: BlockHunt
         lateinit var listener: BhListener
         lateinit var prefix: String
+            private set
 
         fun log(text: String){b.getConsoleSender().sendMessage(text)}
 
         fun doCmd(cmd: String){b.dispatchCommand(b.getConsoleSender(), cmd)}
+
 
     }
 
