@@ -38,16 +38,13 @@ permissions:
 commands:
   lottery:
     description: 'Gives random cash number(from: to:) to player'
-    usage: '§c*Только от консоли* = /<command> <игрок> <от> <до>'
-    permission: blockhunt.adm
+    usage: '§c/<command> <игрок> <от> <до>'
   exchange:
     description: 'Exchange'
-    usage: '§c*Только от консоли* = /<command> <money/coins> <игрок> <забрать> <дать'
-    permission: blockhunt.adm
+    usage: '§c/<command> <money/coins> <игрок> <забрать> <дать>'
   csgo:
     description: 'CSGO crate exchanger'
-    usage: '§c*Только от консоли* = /<command> give <игрок> <название кейса> <кол-во> <цена>'
-    permission: blockhunt.adm
+    usage: '§c/<command> give <игрок> <название кейса> <кол-во> <цена>'
   where:
     description: 'Узнать в каком мире находится игрок'
     usage: /<command> <Игрок>

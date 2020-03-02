@@ -20,10 +20,17 @@ class Lottery : CommandExecutor {
         label: String,
         args: Array<out String>
     ): Boolean {
+        if (sender !is ConsoleCommandSender) {
+            sender.sendMessage("$prefix §cТолько с консоли, зайчик")
+            return true}
         if (args.isEmpty()) return false
         val cash = Random.nextInt(args[1].toInt(), args[2].toInt()) //Getting random number to give from command
         val player = Bukkit.getPlayer(args[0])
-        if (sender !is ConsoleCommandSender) return false
+        if (!player.isOnline){
+            sender.sendMessage("$prefix §сИгрок $player§c не найден или оффлайн")
+            return true}
+
+
 
         cashGive(player, cash)
         player.sendMessage(

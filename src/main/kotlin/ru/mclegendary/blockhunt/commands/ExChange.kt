@@ -4,6 +4,7 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
+import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
 import ru.mclegendary.blockhunt.executors.ExChangeExecutor.toCoins
 import ru.mclegendary.blockhunt.executors.ExChangeExecutor.toMoney
@@ -15,8 +16,12 @@ class ExChange : CommandExecutor {
         label: String,
         args: Array<out String>
     ): Boolean {
-        if (args.isEmpty()) return false
-        if (sender !is ConsoleCommandSender) return false
+        if (sender !is ConsoleCommandSender) {
+            sender.sendMessage("$prefix §cТолько с консоли, зайчик")
+            return true}
+
+        if (args.isEmpty() || args.size < 4) return false
+
 
         when {
             args[0].equals("coins", true) -> {
