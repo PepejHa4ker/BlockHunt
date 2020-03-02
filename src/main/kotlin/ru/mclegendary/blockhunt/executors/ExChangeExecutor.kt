@@ -15,10 +15,16 @@ object ExChangeExecutor {
 
     fun toMoney(sender: CommandSender, args: Array<out String>) {
         val player = sender.server.getPlayer(args[1])
-        val coins = args[2].toInt()
+        val coins:Int
 
         val has = HideAndSeekAPI(JavaPlugin.getPlugin(HideAndSeek::class.java))
         val hasPlayerData = has.getPlayerData(player)
+        try {
+            coins = args[2].toInt()
+        } catch (ex:NumberFormatException){
+            sender.sendMessage("§cNaN! ${args[2]} должно быть целочисленным значением! ")
+            return
+        }
 
         if (hasPlayerData.getCoins(player) >= coins) {
             doCmd("has Coins Remove ${player.name} $coins")

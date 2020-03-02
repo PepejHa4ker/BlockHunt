@@ -38,31 +38,28 @@ permissions:
 commands:
   lottery:
     description: 'Gives random cash number(from: to:) to player'
-    usage: From console only = /<command> <player> <from number> <to number>
+    usage: '§c*Только от консоли* = /<command> <игрок> <от> <до>'
     permission: blockhunt.adm
   exchange:
     description: 'Exchange'
-    usage: From console only = /<command> <money/coins> <player> <one> <to another>
+    usage: '§c*Только от консоли* = /<command> <money/coins> <игрок> <забрать> <дать'
     permission: blockhunt.adm
   csgo:
     description: 'CSGO crate exchanger'
-    usage: From console only! = /<command> give <player> <crate-name> <amount> <price>
+    usage: '§c*Только от консоли* = /<command> give <игрок> <название кейса> <кол-во> <цена>'
     permission: blockhunt.adm
   where:
-    description: 'Checking where is player'
-    usage: /<command> <online player>
+    description: 'Узнать в каком мире находится игрок'
+    usage: /<command> <Игрок>
     permission: blockhunt.adm
   bh:
-    usage: |
-      /<command>§b <kick> <Игрок> [Причина]
-      /<command>§b <kickall> <Мир> [Причина]
-      /<command>§b reload
-      /<command>§b chat on/off/info
+    usage: '§c/bh help чтобы увидеть список доступных команд'
+
     permission: blockhunt.kick.other
   op:
-    usage: /<command> <player>
+    usage: '§c/<command> <player>'
   deop:
-    usage: /<command> <player>
+    usage: '§c/<command> <player>'
 
 
 
