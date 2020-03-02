@@ -12,20 +12,17 @@ class OpExecutor(private val sender: CommandSender, args: Array<out String>) {
     fun op() {
         if (target != null && target.isOnline) {
             target.isOp = true
-            sender.sendMessage(success)
-        } else {
+            sender.sendMessage(success)}
+          else {
             offlineTarget.isOp = true
-            sender.sendMessage(success)
-        }
-    }
+            sender.sendMessage(success)}}
+
+
 
     fun deOp() {
         if (target != null && target.isOnline) {
             target.isOp = false
-            sender.sendMessage(success)
-        } else {
+            sender.sendMessage(success)}
+          else {
             offlineTarget.isOp = false
-            sender.sendMessage(success)
-        }
-    }
-}
+            sender.sendMessage(success)}}}

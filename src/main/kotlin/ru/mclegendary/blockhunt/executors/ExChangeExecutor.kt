@@ -27,9 +27,9 @@ object ExChangeExecutor {
                 .replace("%COINS%", "$coins"))
 
             doCmd("money give ${player.name} ${args[3]}")
-        } else player.sendMessage("$prefix ${instance.config.getString("NoCoins").replace('&','§')}")
+        } else player.sendMessage("$prefix ${instance.config.getString("NoCoins").replace('&','§')}")}
 
-    }
+
 
 
     fun toCoins(sender: CommandSender, args: Array<out String>) {
@@ -53,7 +53,6 @@ object ExChangeExecutor {
                 .replace("%PLAYER%", player.name))
 
 
-        } else player.sendMessage("$prefix ${instance.config.getString("NoCoins").replace('&','§')}")
+        } else player.sendMessage("$prefix ${instance.config.getString("NoCoins").replace('&','§')}")}}
 
-    }
-}
+

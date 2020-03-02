@@ -20,14 +20,12 @@ class ExChange : CommandExecutor {
 
         when {
             args[0].equals("coins", true) -> {
-                toCoins(sender, args)
-            }
+                toCoins(sender, args)}
+
 
             args[0].equals("money", true) -> {
-                toMoney(sender, args)
-            }
-        }
+                toMoney(sender, args)}}
 
-        return true
-    }
-}
+
+
+        return true}}

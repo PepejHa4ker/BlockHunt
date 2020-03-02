@@ -13,8 +13,7 @@ object WhereExecutor {
         sender.sendMessage("$prefix ${instance.config.getString("PlayerInWorld")}"
             .replace('&', '§')
             .replace("%PLAYER%", player.name)
-            .replace("%WORLD%", player.world.name))
+            .replace("%WORLD%", player.world.name))}}
 
-    }
-}
+
 

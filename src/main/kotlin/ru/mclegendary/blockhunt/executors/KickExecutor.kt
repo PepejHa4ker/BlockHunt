@@ -17,8 +17,7 @@ class KickExecutor(val sender: CommandSender,  args: Array<out String>) {
             .replace('&', '§'))
         if(target.hasPermission("blockhunt.kick.bypass")){
             sender.sendMessage("$prefix ${instance.config.getString("TargetBypass")}"
-                .replace('&', '§'))
-            return}
+                .replace('&', '§'));return}
 
 
         target.performCommand("has leave")

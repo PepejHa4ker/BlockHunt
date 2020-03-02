@@ -23,22 +23,24 @@ class Lottery : CommandExecutor {
         if (args.isEmpty()) return false
         val cash = Random.nextInt(args[1].toInt(), args[2].toInt()) //Getting random number to give from command
         val player = Bukkit.getPlayer(args[0])
-
         if (sender !is ConsoleCommandSender) return false
+
         cashGive(player, cash)
-        player.sendMessage("$prefix ${instance.config.getString("CashGive")}"
-            .replace("%CASH%", "$cash")
-            .replace('&', '§'))
-        sender.sendMessage("$prefix ${instance.config.getString("CashGiven")}"
-            .replace("%CASH%", "$cash")
-            .replace('&', '§')
-            .replace("%PLAYER%", args[0]))
-        return true
-    }
+        player.sendMessage(
+            "$prefix ${instance.config.getString("CashGive")}"
+                .replace("%CASH%", "$cash")
+                .replace('&', '§'))
+
+        sender.sendMessage(
+            "$prefix ${instance.config.getString("CashGiven")}"
+                .replace("%CASH%", "$cash")
+                .replace('&', '§')
+                .replace("%PLAYER%", args[0]))
+        return true}
 
     private fun cashGive(player: Player, cash: Int) {
-        HideAndSeek.api.getPlayerData(player).addCoins(player, cash)
-    }
-}
+        HideAndSeek.api.getPlayerData(player).addCoins(player, cash)}}
+
+
 
 

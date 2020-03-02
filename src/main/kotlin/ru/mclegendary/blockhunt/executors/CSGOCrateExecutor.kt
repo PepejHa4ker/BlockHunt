@@ -31,8 +31,8 @@ object CSGOCrateExecutor  {
 
             doCmd("crate give to ${player.name} ${args[2]} ${args[3].toInt()} online")
 
-        } else player.sendMessage("$prefix ${instance.config.getString("NoCoins").replace('&','§')}")
+        } else player.sendMessage("$prefix ${instance.config.getString("NoCoins").replace('&','§')}")}}
 
 
-    }
-}
+
+

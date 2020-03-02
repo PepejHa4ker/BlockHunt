@@ -22,13 +22,9 @@ class DeOp : CommandExecutor {
                 OpExecutor(sender, args).deOp()
 
             } else {
-                sender.sendMessage("$prefix ${instance.config.getString("InvalidCommand").replace('&', '§')}"); return false
-            }
+                sender.sendMessage("$prefix ${instance.config.getString("InvalidCommand").replace('&', '§')}"); return false}
         } else {
-            sender.sendMessage("$prefix ${instance.config.getString("NoPermission").replace('&', '§')}")
-        }
+            sender.sendMessage("$prefix ${instance.config.getString("NoPermission").replace('&', '§')}")}
 
+        return true}}
 
-        return true
-    }
-}

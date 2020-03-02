@@ -12,18 +12,18 @@ class ChatSwitchExecutor(val sender: CommandSender) {
         if(!isChatEnabled()) {
             listener.isChatProcessed = true
             sender.sendMessage("$prefix ${instance.config.getString("ChatOnSuccess").replace('&', '§')}")
-        } else return sender.sendMessage("$prefix ${instance.config.getString("ChatAlreadyEnabled").replace('&', '§')}")
+        } else return sender.sendMessage("$prefix ${instance.config.getString("ChatAlreadyEnabled").replace('&', '§')}")}
 
-    }
+
 
     fun chatDisable() {
         if (isChatEnabled()) {
             listener.isChatProcessed = false
             sender.sendMessage("$prefix ${instance.config.getString("ChatOffSuccess").replace('&', '§')}")
-        } else return sender.sendMessage("$prefix ${instance.config.getString("ChatAlreadyDisabled").replace('&', '§')}")
-    }
+        } else return sender.sendMessage("$prefix ${instance.config.getString("ChatAlreadyDisabled").replace('&', '§')}")}
 
 
-    fun isChatEnabled() : Boolean = listener.isChatProcessed
 
-}
+    fun isChatEnabled() : Boolean = listener.isChatProcessed}
+
+

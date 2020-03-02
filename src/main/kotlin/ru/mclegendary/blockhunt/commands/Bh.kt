@@ -22,24 +22,20 @@ class Bh : CommandExecutor {
     ): Boolean {
         when {
             args.isEmpty() -> {
-                sender.sendMessage("§cЧто-то не так с аргументами:"); return false
-            }
+                sender.sendMessage("§cЧто-то не так с аргументами:"); return false}
 
             args[0].equals("kick", true) -> {
                 if (args.size < 2)  return false
-                    KE(sender, args).kick()
-            }
+                    KE(sender, args).kick()}
 
             args[0].equals("kickall", true) -> {
                 if (args.size < 2)  return false
-                    KE(sender, args).kickAll()
-            }
+                    KE(sender, args).kickAll()}
 
             args[0].equals("reload", true) -> {
                 instance.reloadConfig()
-                sender.sendMessage("$prefix ${instance.config.getString("CfgReloaded").replace('&', '§')}")
+                sender.sendMessage("$prefix ${instance.config.getString("CfgReloaded").replace('&', '§')}")}
 
-            }
 
             args[0].equals("chat", true)  -> {
                 if (sender.hasPermission("blockhunt.togglechat")) {
@@ -53,24 +49,25 @@ class Bh : CommandExecutor {
 
                         args[1].equals("info", true) ->
                             if ((ChatSwitchExecutor(sender).isChatEnabled())) {
-                                sender.sendMessage("$prefix ${instance.config.getString("ChatOn").replace
-                                    ('&', '§')}")
-                            } else sender.sendMessage(
+                                sender.sendMessage(
+                                    "$prefix ${instance.config.getString("ChatOn").replace
+                                        ('&', '§')}")}
+
+                              else sender.sendMessage(
                                 "$prefix ${instance.config.getString("ChatOff").replace
-                                    ('&', '§')}"
-                            )
+                                    ('&', '§')}")
 
-                        else -> return false
+                        else -> return false}
 
-                    }
-                } else  sender.sendMessage("$prefix ${instance.config.getString("NoPermission").replace(
-                    '&', '§')}");return true
-            }
-            else -> return false
+                } else sender.sendMessage(
+                    "$prefix ${instance.config.getString("NoPermission").replace(
+                        '&', '§'
+                    )}")
+                return true}
 
-        } 
-        return true
-    }
+            else -> return false}
+
+        return true}}
 
 
-}
+

@@ -17,9 +17,8 @@ class Where : CommandExecutor {
         val player = sender.server.getPlayer(args[0]) ?: return false
 
         when {
-            (args[0].equals(player.name, true)) -> whereAre(sender, args)
-        }
+            (args[0].equals(player.name, true)) -> whereAre(sender, args)}
 
-        return true
-    }
-}
+
+        return true}}
+

@@ -18,10 +18,10 @@ class BlockHunt : JavaPlugin() {
 
         fun log(text: String){b.getConsoleSender().sendMessage(text)}
 
-        fun doCmd(cmd: String){b.dispatchCommand(b.getConsoleSender(), cmd)}
+        fun doCmd(cmd: String){b.dispatchCommand(b.getConsoleSender(), cmd)}}
 
 
-    }
+
 
 
 
@@ -44,38 +44,33 @@ class BlockHunt : JavaPlugin() {
         this.getCommand("deop").executor = DeOp()
         this.getCommand("bh").executor = Bh()
         //
-        server.pluginManager.registerEvents(listener, this)
+        server.pluginManager.registerEvents(listener, this)}
 
-
-    }
     override fun onDisable() {
-        log("$prefix §aI'm sorry my black friend :(")
-    }
+        log("$prefix §aI'm sorry my black friend :(")}
+
 
 
     private fun setupHAS(): Boolean {
         if (server.pluginManager.getPlugin("HideAndSeek") == null) {
             log("$prefix §cCan't find HideAndSeek plugin! Disabling plugin!")
             instance.pluginLoader.disablePlugin(this)
-        } else log("$prefix §aHideAndSeek plugin was found! Good!"); return true
-    }
+        } else log("$prefix §aHideAndSeek plugin was found! Good!"); return true}
+
 
     private fun setupFB(): Boolean {
         if (server.pluginManager.getPlugin("FeatherBoard") == null) {
             log("$prefix §cCan't find FeatherBoard plugin! Disabling plugin!")
             instance.pluginLoader.disablePlugin(this)
-        } else log("$prefix §aFeatherBoard plugin was found! Good!"); return true
-
-    }
+        } else log("$prefix §aFeatherBoard plugin was found! Good!"); return true}
 
     private fun setupICO(): Boolean {
         if (server.pluginManager.getPlugin("Vault") == null) {
             log("$prefix §cCan't find Vault plugin! Disabling plugin!")
             instance.pluginLoader.disablePlugin(this)
-        } else log("$prefix §aVault plugin was found! Good!"); return true
-
-    }
+        } else log("$prefix §aVault plugin was found! Good!"); return true}}
 
 
 
-}
+
+
