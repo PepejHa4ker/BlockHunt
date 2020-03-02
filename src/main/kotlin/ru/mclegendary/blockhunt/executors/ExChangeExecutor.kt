@@ -22,9 +22,7 @@ object ExChangeExecutor {
         try {
             coins = args[2].toInt()
         } catch (ex:NumberFormatException){
-            sender.sendMessage("§cNaN! ${args[2]} должно быть целочисленным значением! ")
-            return
-        }
+            sender.sendMessage("§cNaN! ${args[2]} должно быть целочисленным значением! ");return}
 
         if (hasPlayerData.getCoins(player) >= coins) {
             doCmd("has Coins Remove ${player.name} $coins")
@@ -40,8 +38,13 @@ object ExChangeExecutor {
 
     fun toCoins(sender: CommandSender, args: Array<out String>) {
         val player = sender.server.getPlayer(args[1])
-        val money = args[2].toDouble()
+        val money: Double
         val bankAccount = Accounts().get(player.name).holdings.balance
+
+        try {
+            money = args[2].toDouble()
+        } catch (e: NumberFormatException){
+            sender.sendMessage("§cОшибка! ${args[2]} должно быть дробным значением!");return}
 
         if (bankAccount >= money) {
             doCmd("money take ${player.name} $money")
@@ -57,7 +60,6 @@ object ExChangeExecutor {
                 .replace('&','§')
                 .replace("%COINS%", args[3])
                 .replace("%PLAYER%", player.name))
-
 
         } else player.sendMessage("$prefix ${instance.config.getString("NoCoins").replace('&','§')}")}}
 
