@@ -50,7 +50,7 @@ commands:
     usage: /<command> <Игрок>
     permission: blockhunt.adm
   bh:
-    usage: '§c/bh help чтобы увидеть список доступных команд'
+    usage: '§c/bh help§b чтобы увидеть список доступных команд'
 
     permission: blockhunt.kick.other
   op:

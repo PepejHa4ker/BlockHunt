@@ -27,8 +27,10 @@ object ExChangeExecutor {
         if (hasPlayerData.getCoins(player) >= coins) {
             try {
                 coins2 = args[3].toDouble()
-            } catch (ex:NumberFormatException){
-                sender.sendMessage("§cОшибка! ${args[3]} должно быть дробным значением! ");return}
+            } catch (ex:NumberFormatException) {
+                sender.sendMessage("§cОшибка! ${args[3]} должно быть дробным значением! ")
+                return
+            }
             doCmd("has Coins Remove ${player.name} $coins")
             player.sendMessage("$prefix ${instance.config.getString("CoinsRemove")}"
                 .replace('&', '§')

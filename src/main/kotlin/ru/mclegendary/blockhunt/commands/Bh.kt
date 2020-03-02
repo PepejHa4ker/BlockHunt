@@ -21,34 +21,48 @@ class Bh : CommandExecutor {
 
     ): Boolean {
         when {
-            args.isEmpty() -> {
-                sender.sendMessage("§cЧто-то не так с аргументами:"); return false}
+            args.isEmpty() -> return false
 
             args[0].equals("kick", true) -> {
-                if (args.size < 2)  return false
-                    KE(sender, args).kick()}
+                if (args.size < 2) {
+                    sender.sendMessage("$prefix §e/bh kick <Игрок> [Причина] §c-§b выгнать игрока с арены. Причина может быть пустой")
+                    return true
+                }
+                KE(sender, args).kick()
+            }
 
             args[0].equals("kickall", true) -> {
-                if (args.size < 2)  return false
-                    KE(sender, args).kickAll()}
+                if (args.size < 2) {
+                    sender.sendMessage("$prefix §e/bh kickall <Мир> [Причина] §c-§b выгнать всех игроков с арены в мире. Причина может быть пустой")
+                    return true}
+
+                KE(sender, args).kickAll()}
+
+
 
             args[0].equals("reload", true) -> {
                 instance.reloadConfig()
                 sender.sendMessage("$prefix ${instance.config.getString("CfgReloaded").replace('&', '§')}")}
 
             args[0].equals("help", true) -> {
-                sender.sendMessage(prefix + " §e/bh chat on §c-§b выключить чат на миры\n" +
-                        "$prefix §e/bh chat off §c-§b включить чат на миры\n" +
-                    "$prefix §e/bh reload §c-§b перезагрузить файл конфигурации плагина\n" +
-                    "$prefix §e/bh kick <Игрок> [Причина] §c-§b выгнать игрока с арены. Причина может быть пустой\n" +
-                    "$prefix §e/bh kickall <Мир> [Причина] §c-§b выгнать всех игроков с арены в мире. Причина может быть пустой\n")
+                sender.sendMessage("$prefix §e/bh chat on §c-§b выключить чат на миры")
+                sender.sendMessage("$prefix §e/bh chat off §c-§b включить чат на миры")
+                sender.sendMessage("$prefix §e/bh chat info §c-§b узнать состояние чата")
+                sender.sendMessage("$prefix §e/bh reload §c-§b перезагрузить файл конфигурации плагина")
+                sender.sendMessage("$prefix §e/bh kick <Игрок> [Причина] §c-§b выгнать игрока с арены. Причина может быть пустой")
+                sender.sendMessage("$prefix §e/bh kickall <Мир> [Причина] §c-§b выгнать всех игроков с арены в мире. Причина может быть пустой")}
 
-            }
+
 
 
             args[0].equals("chat", true)  -> {
                 if (sender.hasPermission("blockhunt.togglechat")) {
-                    if (args.size < 2) return false
+                    if (args.size < 2){
+                        sender.sendMessage("$prefix §e/bh chat on §c-§b выключить чат на миры")
+                        sender.sendMessage("$prefix §e/bh chat off §c-§b включить чат на миры")
+                        sender.sendMessage("$prefix §e/bh chat info §c-§b узнать состояние чата")
+                        return true}
+
 
                     when {
                         args[1].equals("on", true) -> ChatSwitchExecutor(sender).chatEnable()
