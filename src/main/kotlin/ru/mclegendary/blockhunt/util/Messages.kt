@@ -1,19 +1,21 @@
 package ru.mclegendary.blockhunt.util
 
-import ru.mclegendary.blockhunt.BlockHunt.Companion.cfg
+import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
+
+object Messages {
+
+    val noPerm: String = instance.config.getString("NoPermission")
+    val invalidCommand: String = instance.config.getString("InvalidCommand")
+    val chatDisabled: String = instance.config.getString("ChatOffSuccess")
+    val chatEnabled: String = instance.config.getString("ChatOnSuccess")
+    val chatAlreadyEnabled: String = instance.config.getString("ChatAlreadyEnabled")
+    val chatAlreadyDisabled: String = instance.config.getString("ChatAlreadyDisabled")
+    val chatOn: String = instance.config.getString("ChatOn")
+    val chatOff: String = instance.config.getString("ChatOff")
+    val cfgRel: String = instance.config.getString("CfgReloaded")
+    val noCoins: String = instance.config.getString("NoCoins")
+    const val onlyCons: String = "&cТолько с консоли, зайчик"
+    val playerOffline: String = instance.config.getString("PlayerOffline")
 
 
-    val noPerm = cfg("NoPermission")
-    val invalidCommand = cfg("InvalidCommand")
-    val chatDisabled = cfg("ChatOffSuccess")
-    val chatEnabled = cfg("ChatOnSuccess")
-    val chatAlreadyEnabled = cfg("ChatAlreadyEnabled")
-    val chatAlreadyDisabled = cfg("ChatAlreadyDisabled")
-    val chatOn = cfg("ChatOn")
-    val chatOff = cfg("ChatOff")
-    val cfgRel = cfg("CfgReloaded")
-    val noCoins = cfg("NoCoins")
-    const val onlyCons = "&cТолько с консоли, зайчик"
-    val playerOffline = cfg("PlayerOffline")
-
-
+}

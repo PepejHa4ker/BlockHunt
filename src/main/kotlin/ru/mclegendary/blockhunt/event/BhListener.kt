@@ -9,27 +9,30 @@ import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import ru.mclegendary.blockhunt.BlockHunt.Companion.doCmd
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
-import ru.mclegendary.blockhunt.util.sendText
+
 import org.bukkit.event.player.AsyncPlayerChatEvent as ChatE
 import org.bukkit.event.player.PlayerChangedWorldEvent as ChWoE
 import org.bukkit.event.player.PlayerSwapHandItemsEvent as ISwapE
 import org.bukkit.event.player.PlayerTeleportEvent as TPE
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause as cause
 
+import ru.mclegendary.blockhunt.util.Utils.isChatEnabled
+import ru.mclegendary.blockhunt.util.Utils.sendText
+import ru.mclegendary.blockhunt.util.Utils.ggFix as gg
+import ru.mclegendary.blockhunt.util.Utils.fbFix as fb
 
-import ru.mclegendary.blockhunt.util.ggFix as gg
-import ru.mclegendary.blockhunt.util.fbFix as fb
+class BhListener : Listener {
 
-class BhListener(var isChatProcessed: Boolean = true) : Listener {
 
     @EventHandler
     fun onChat(e: ChatE) {
+
         val r = e.recipients
         val sender = e.player
         val server = sender.server
         if (sender.gameMode == GameMode.SPECTATOR && (e.message.equals("gg", true) || e.message.equals("good game", true))  && sender.world.name != "blockhunt")
             gg(e, sender)
-        if (isChatProcessed) {
+        if (isChatEnabled()) {
             for (player in r.iterator()) {
                 if (sender.world != player.world) {
                     if (sender.hasPermission("blockhunt.user")) {

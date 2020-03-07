@@ -8,8 +8,8 @@ import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
 import org.bukkit.entity.Player
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
-import ru.mclegendary.blockhunt.util.onlyCons
-import ru.mclegendary.blockhunt.util.sendText
+import ru.mclegendary.blockhunt.util.Messages
+import ru.mclegendary.blockhunt.util.Utils.sendText
 
 import kotlin.random.Random
 
@@ -22,7 +22,7 @@ class Lottery : CommandExecutor {
         args: Array<out String>
     ): Boolean {
         if (sender !is ConsoleCommandSender) {
-            sender.sendText(onlyCons)
+            sender.sendText(Messages.onlyCons)
             return true
         }
         if (args.isEmpty()) return false

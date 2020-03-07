@@ -2,7 +2,7 @@ package ru.mclegendary.blockhunt.executors
 
 import org.bukkit.command.CommandSender
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
-import ru.mclegendary.blockhunt.util.sendText
+import ru.mclegendary.blockhunt.util.Utils.sendText
 
 
 object WhereExecutor {

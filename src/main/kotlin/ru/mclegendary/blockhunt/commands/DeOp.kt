@@ -7,8 +7,8 @@ import org.bukkit.command.ConsoleCommandSender
 
 
 import ru.mclegendary.blockhunt.executors.OpExecutor
-import ru.mclegendary.blockhunt.util.sendText
-import ru.mclegendary.blockhunt.util.*
+import ru.mclegendary.blockhunt.util.Messages
+import ru.mclegendary.blockhunt.util.Utils.sendText
 
 class DeOp : CommandExecutor {
     override fun onCommand(
@@ -23,11 +23,11 @@ class DeOp : CommandExecutor {
                 OpExecutor(sender, args).deOp()
 
             } else {
-                sender.sendText("$invalidCommand")
+                sender.sendText(Messages.invalidCommand)
                  return false
             }
         } else {
-            sender.sendText("$noPerm")
+            sender.sendText(Messages.noPerm)
         }
 
         return true

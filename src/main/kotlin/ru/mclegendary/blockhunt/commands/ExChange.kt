@@ -8,7 +8,7 @@ import org.bukkit.command.ConsoleCommandSender
 import ru.mclegendary.blockhunt.util.*
 import ru.mclegendary.blockhunt.executors.ExChangeExecutor.toCoins
 import ru.mclegendary.blockhunt.executors.ExChangeExecutor.toMoney
-import ru.mclegendary.blockhunt.util.sendText
+import ru.mclegendary.blockhunt.util.Utils.sendText
 
 class ExChange : CommandExecutor {
     override fun onCommand(
@@ -18,7 +18,7 @@ class ExChange : CommandExecutor {
         args: Array<out String>
     ): Boolean {
         if (sender !is ConsoleCommandSender) {
-            sender.sendText(onlyCons)
+            sender.sendText(Messages.onlyCons)
             return true
         }
 

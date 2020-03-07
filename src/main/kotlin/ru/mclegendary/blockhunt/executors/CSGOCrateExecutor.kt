@@ -7,8 +7,8 @@ import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.BlockHunt.Companion.doCmd
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
-import ru.mclegendary.blockhunt.util.noCoins
-import ru.mclegendary.blockhunt.util.sendText
+import ru.mclegendary.blockhunt.util.Messages
+import ru.mclegendary.blockhunt.util.Utils.sendText
 import java.lang.NumberFormatException
 
 
@@ -38,7 +38,7 @@ object CSGOCrateExecutor {
 
             doCmd("crate give to ${player.name} ${args[2]} ${args[3].toInt()} online")
 
-        } else player.sendText("$noCoins}")
+        } else player.sendText("{$Messages.noCoins}")
     }
 }
 

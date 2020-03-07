@@ -24,9 +24,6 @@ class BlockHunt : JavaPlugin() {
         fun doCmd(cmd: String) {
             b.dispatchCommand(b.getConsoleSender(), cmd)
         }
-        fun cfg(string: String){
-            instance.config.getString(string).replace('&', '§')
-        }
     }
 
     init {

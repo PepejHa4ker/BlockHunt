@@ -7,8 +7,8 @@ import org.bukkit.command.ConsoleCommandSender
 
 
 import ru.mclegendary.blockhunt.executors.OpExecutor
-import ru.mclegendary.blockhunt.util.onlyCons
-import ru.mclegendary.blockhunt.util.sendText
+import ru.mclegendary.blockhunt.util.Messages
+import ru.mclegendary.blockhunt.util.Utils.sendText
 
 class Op : CommandExecutor {
     override fun onCommand(
@@ -18,11 +18,13 @@ class Op : CommandExecutor {
         args: Array<out String>
     ): Boolean {
         if (sender !is ConsoleCommandSender) {
-            sender.sendText(onlyCons)
+            sender.sendText(Messages.onlyCons)
             return true
         }
-            if (args.isNotEmpty())
+            if (args.size == 1) {
                 OpExecutor(sender, args).op()
+
+            } else return false
 
         return true
     }

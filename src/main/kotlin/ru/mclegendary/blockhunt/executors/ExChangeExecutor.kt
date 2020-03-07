@@ -7,8 +7,8 @@ import me.wazup.hideandseek.HideAndSeek
 import org.bukkit.command.CommandSender
 import ru.mclegendary.blockhunt.BlockHunt.Companion.doCmd
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
-import ru.mclegendary.blockhunt.util.noCoins
-import ru.mclegendary.blockhunt.util.sendText
+import ru.mclegendary.blockhunt.util.Messages
+import ru.mclegendary.blockhunt.util.Utils.sendText
 
 object ExChangeExecutor {
 
@@ -26,7 +26,7 @@ object ExChangeExecutor {
         }
 
         if (hasPlayerData.getCoins(player) < coins) {
-            sender.sendText("$noCoins")
+            sender.sendText(Messages.noCoins)
             return
         }
         try {
@@ -57,7 +57,7 @@ object ExChangeExecutor {
 
 
         if (bankAccount < money) {
-            sender.sendText("$noCoins")
+            sender.sendText(Messages.noCoins)
             return
         }
         try {

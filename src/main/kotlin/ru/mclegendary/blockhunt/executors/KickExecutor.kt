@@ -4,8 +4,8 @@ import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
-import ru.mclegendary.blockhunt.util.playerOffline
-import ru.mclegendary.blockhunt.util.sendText
+import ru.mclegendary.blockhunt.util.Messages
+import ru.mclegendary.blockhunt.util.Utils.sendText
 
 
 class KickExecutor(val sender: CommandSender, args: Array<out String>) {
@@ -16,7 +16,7 @@ class KickExecutor(val sender: CommandSender, args: Array<out String>) {
     private val playerReason = args.drop(2).joinToString(" ")
 
     fun kick() {
-        target ?: return sender.sendText("$playerOffline")
+        target ?: return sender.sendText(Messages.playerOffline)
         if (target.hasPermission("blockhunt.kick.bypass") && sender !is ConsoleCommandSender) {
             sender.sendText(instance.config.getString("TargetBypass"))
             return

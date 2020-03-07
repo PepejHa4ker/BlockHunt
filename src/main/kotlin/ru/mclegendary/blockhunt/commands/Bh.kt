@@ -4,12 +4,10 @@ package ru.mclegendary.blockhunt.commands
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
-import ru.mclegendary.blockhunt.executors.ChatSwitchExecutor
-import ru.mclegendary.blockhunt.util.*
-import ru.mclegendary.blockhunt.util.sendText
-
-
-
+import ru.mclegendary.blockhunt.util.Messages
+import ru.mclegendary.blockhunt.util.Utils.isChatEnabled
+import ru.mclegendary.blockhunt.util.Utils.setChatEnabled
+import ru.mclegendary.blockhunt.util.Utils.sendText
 import ru.mclegendary.blockhunt.executors.KickExecutor as KE
 
 class Bh : CommandExecutor {
@@ -21,10 +19,11 @@ class Bh : CommandExecutor {
         args: Array<out String>
     ): Boolean {
 
+
         when {
 
             args.isEmpty() -> {
-                sender.sendText("&cЧто-то не так с аргументами:"); return false
+                 return false
             }
 
             args[0].equals("kick", true) -> {
@@ -47,7 +46,7 @@ class Bh : CommandExecutor {
 
             args[0].equals("reload", true) -> {
                 instance.reloadConfig()
-                sender.sendText("$cfgRel")
+                sender.sendText(Messages.cfgRel)
             }
 
             args[0].equals("help", true) -> {
@@ -71,20 +70,34 @@ class Bh : CommandExecutor {
 
 
                     when {
-                        args[1].equals("on", true) -> ChatSwitchExecutor(sender).chatEnable()
+                        args[1].equals("on", true) -> {
+                            if(isChatEnabled()){
+                                sender.sendText(Messages.chatAlreadyEnabled)
+                            } else {
+                                sender.sendText(Messages.chatEnabled)
+                                setChatEnabled(true)
+                            }
+                        }
 
-                        args[1].equals("off", true) -> ChatSwitchExecutor(sender).chatDisable()
+                        args[1].equals("off", true) -> {
+                            if(!isChatEnabled()){
+                                sender.sendText(Messages.chatAlreadyDisabled)
+                            } else {
+                                sender.sendText(Messages.chatDisabled)
+                                setChatEnabled(false)
+                            }
+                        }
 
                         args[1].equals("info", true) ->
-                            if ((ChatSwitchExecutor(sender).isChatEnabled())) {
-                                sender.sendText("$chatOn")
-                            } else sender.sendText("$chatOff}")
+                            if (isChatEnabled()) {
+                                sender.sendText(Messages.chatOn)
+                            } else sender.sendText(Messages.chatOff)
 
 
                         else -> return false
                     }
 
-                } else sender.sendText("$noPerm")
+                } else sender.sendText(Messages.noPerm)
                 return true
             }
 
@@ -93,6 +106,7 @@ class Bh : CommandExecutor {
 
         return true
     }
+
 
 }
 

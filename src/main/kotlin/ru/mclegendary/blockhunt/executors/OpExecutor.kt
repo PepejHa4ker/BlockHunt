@@ -3,7 +3,7 @@
 package ru.mclegendary.blockhunt.executors
 
 import org.bukkit.command.CommandSender
-import ru.mclegendary.blockhunt.util.sendText
+import ru.mclegendary.blockhunt.util.Utils.sendText
 
 class OpExecutor(private val sender: CommandSender, args: Array<out String>) {
     private val target = sender.server.getPlayer(args[0])
