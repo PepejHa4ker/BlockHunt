@@ -29,6 +29,7 @@ dependencies {
     implementation fileTree(dir: "C:\\Libs\\HideAndSeek.jar", include: "*.jar")
     implementation fileTree(dir: "C:\\Libs\\FeatherBoard.jar", include: "*.jar")
     implementation fileTree(dir: "C:\\Libs\\IConomy.jar", include: "*.jar")
+    implementation fileTree(dir: "C:\\Libs\\CommandsApi.jar", include: "*.jar")
 }
 
 

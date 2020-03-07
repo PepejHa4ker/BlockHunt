@@ -4,10 +4,11 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
-import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
-import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
+
 
 import ru.mclegendary.blockhunt.executors.OpExecutor
+import ru.mclegendary.blockhunt.util.sendText
+import ru.mclegendary.blockhunt.util.*
 
 class DeOp : CommandExecutor {
     override fun onCommand(
@@ -22,9 +23,14 @@ class DeOp : CommandExecutor {
                 OpExecutor(sender, args).deOp()
 
             } else {
-                sender.sendMessage("$prefix ${instance.config.getString("InvalidCommand").replace('&', '§')}"); return false}
+                sender.sendText("$invalidCommand")
+                 return false
+            }
         } else {
-            sender.sendMessage("$prefix ${instance.config.getString("NoPermission").replace('&', '§')}")}
+            sender.sendText("$noPerm")
+        }
 
-        return true}}
+        return true
+    }
+}
 

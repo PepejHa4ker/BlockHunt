@@ -1,17 +1,15 @@
 package ru.mclegendary.blockhunt.event
 
 
-import com.google.common.collect.Lists.newArrayList
 import org.bukkit.GameMode
 import org.bukkit.Material
-import org.bukkit.entity.Player
 
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import ru.mclegendary.blockhunt.BlockHunt.Companion.doCmd
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
-import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
+import ru.mclegendary.blockhunt.util.sendText
 import org.bukkit.event.player.AsyncPlayerChatEvent as ChatE
 import org.bukkit.event.player.PlayerChangedWorldEvent as ChWoE
 import org.bukkit.event.player.PlayerSwapHandItemsEvent as ISwapE
@@ -19,8 +17,8 @@ import org.bukkit.event.player.PlayerTeleportEvent as TPE
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause as cause
 
 
-import ru.mclegendary.blockhunt.util.Utils.ggFix as gg
-import ru.mclegendary.blockhunt.util.Utils.fbFix as fb
+import ru.mclegendary.blockhunt.util.ggFix as gg
+import ru.mclegendary.blockhunt.util.fbFix as fb
 
 class BhListener(var isChatProcessed: Boolean = true) : Listener {
 
@@ -29,7 +27,7 @@ class BhListener(var isChatProcessed: Boolean = true) : Listener {
         val r = e.recipients
         val sender = e.player
         val server = sender.server
-        if (sender.gameMode == GameMode.SPECTATOR && e.message.equals("gg", true) && sender.world.name != "blockhunt")
+        if (sender.gameMode == GameMode.SPECTATOR && (e.message.equals("gg", true) || e.message.equals("good game", true))  && sender.world.name != "blockhunt")
             gg(e, sender)
         if (isChatProcessed) {
             for (player in r.iterator()) {
@@ -57,7 +55,7 @@ class BhListener(var isChatProcessed: Boolean = true) : Listener {
         val player = e.player
 
         if (!player.hasPermission("blockhunt.adm") && e.cause == cause.SPECTATE) {
-            player.sendMessage("$prefix §cНизя!")
+            player.sendText("&cНизя!")
             e.isCancelled = true
         }
     }
@@ -80,7 +78,7 @@ class BhListener(var isChatProcessed: Boolean = true) : Listener {
     @EventHandler
     fun onHandSwap(e: ISwapE) {
         if (e.offHandItem.data.itemType == Material.FIREWORK) {
-            e.player.sendMessage("$prefix ${instance.config.getString("ItemChange").replace('&', '§')}")
+            e.player.sendText(instance.config.getString("ItemChange"))
             e.isCancelled = true
         }
     }

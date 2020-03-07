@@ -4,9 +4,11 @@ import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
+import ru.mclegendary.blockhunt.util.playerOffline
+import ru.mclegendary.blockhunt.util.sendText
 
 
-class KickExecutor(val sender: CommandSender,  args: Array<out String>) {
+class KickExecutor(val sender: CommandSender, args: Array<out String>) {
 
     private val server = sender.server
     private val target = server.getPlayer(args[1])
@@ -14,58 +16,52 @@ class KickExecutor(val sender: CommandSender,  args: Array<out String>) {
     private val playerReason = args.drop(2).joinToString(" ")
 
     fun kick() {
-        target ?: return sender.sendMessage("$prefix ${instance.config.getString("PlayerOffline")}"
-            .replace('&', '§'))
-        if(target.hasPermission("blockhunt.kick.bypass") && sender !is ConsoleCommandSender){
-            sender.sendMessage("$prefix ${instance.config.getString("TargetBypass")}"
-                .replace('&', '§'));return}
+        target ?: return sender.sendText("$playerOffline")
+        if (target.hasPermission("blockhunt.kick.bypass") && sender !is ConsoleCommandSender) {
+            sender.sendText(instance.config.getString("TargetBypass"))
+            return
+        }
 
 
         target.performCommand("has leave")
         if (playerReason.isEmpty()) {
-            target.sendMessage("$prefix ${instance.config.getString("KickMessage")}"
-                .replace('&', '§'))
+            target.sendText(instance.config.getString("KickMessage"))
 
-        } else target.sendMessage("$prefix ${instance.config.getString("KickMessageAndReason")}"
-            .replace('&', '§')
-            .replace("%REASON%", playerReason))
+        } else target.sendText(instance.config.getString("KickMessageAndReason").replace("%REASON%", playerReason))
 
-        sender.sendMessage("$prefix ${instance.config.getString("SenderMessage")}"
-            .replace('&', '§')
-            .replace("%PLAYER%", target.name))
-        server.broadcast("$prefix ${instance.config.getString("KickLog")}".replace('&', '§')
-            .replace("%PLAYER%", target.name)
-            .replace("%SENDER%", sender.name)
-            .replace("%REASON%", playerReason),
-            "blockhunt.kick.other")}
+        sender.sendText(instance.config.getString("SenderMessage").replace("%PLAYER%", target.name))
 
-
-
+        server.broadcast(
+            "$prefix ${instance.config.getString("KickLog")}".replace('&', '§')
+                .replace("%PLAYER%", target.name)
+                .replace("%SENDER%", sender.name)
+                .replace("%REASON%", playerReason),
+            "blockhunt.kick.other")
+    }
 
     fun kickAll() {
-        targetWorld ?: return sender.sendMessage("$prefix ${instance.config.getString("WorldNotFound")}"
-            .replace('&', '§'))
+        targetWorld ?: return sender.sendText(instance.config.getString("WorldNotFound"))
         for (players in targetWorld.players) {
             players.performCommand("has leave")
             if (playerReason.isEmpty()) {
-                players.sendMessage("$prefix ${instance.config.getString("KickMessage")}"
-                    .replace('&', '§'))
+                players.sendText(instance.config.getString("KickMessage"))
 
-            } else players.sendMessage("$prefix ${instance.config.getString("KickMessageAndReason")}"
-                .replace('&', '§')
-                .replace("%REASON%", playerReason))
+            } else players.sendText(instance.config.getString("KickMessageAndReason").replace("%REASON%", playerReason))
         }
-        sender.sendMessage("$prefix ${instance.config.getString("KickSuccess")}"
-            .replace('&','§')
-            .replace("%WORLD%", targetWorld.name)
-            .replace("%PLAYER%", sender.name)
-            .replace("%SENDER%", sender.name))
+        sender.sendText(
+            instance.config.getString("KickSuccess")
+                .replace("%WORLD%", targetWorld.name)
+                .replace("%PLAYER%", sender.name)
+                .replace("%SENDER%", sender.name))
 
-        server.broadcast("$prefix ${instance.config.getString("KickLogWorld")}"
-                .replace('&','§')
+        server.broadcast(
+            "$prefix ${instance.config.getString("KickLogWorld")}"
+                .replace('&', '§')
                 .replace("%WORLD%", targetWorld.name)
                 .replace("%SENDER%", sender.name)
                 .replace("%REASON%", playerReason),
-                "blockhunt.kick.other")}}
+            "blockhunt.kick.other")
+    }
+}
 
 

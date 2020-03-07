@@ -8,7 +8,8 @@ import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
 import org.bukkit.entity.Player
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
-import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
+import ru.mclegendary.blockhunt.util.onlyCons
+import ru.mclegendary.blockhunt.util.sendText
 
 import kotlin.random.Random
 
@@ -21,32 +22,35 @@ class Lottery : CommandExecutor {
         args: Array<out String>
     ): Boolean {
         if (sender !is ConsoleCommandSender) {
-            sender.sendMessage("$prefix §cТолько с консоли, зайчик")
-            return true}
+            sender.sendText(onlyCons)
+            return true
+        }
         if (args.isEmpty()) return false
         val cash = Random.nextInt(args[1].toInt(), args[2].toInt()) //Getting random number to give from command
         val player = Bukkit.getPlayer(args[0])
-        if (!player.isOnline){
-            sender.sendMessage("$prefix §сИгрок $player§c не найден или оффлайн")
-            return true}
+        if (!player.isOnline) {
+            sender.sendText("&сИгрок $player&c не найден или оффлайн")
+            return true
+        }
 
 
 
         cashGive(player, cash)
-        player.sendMessage(
-            "$prefix ${instance.config.getString("CashGive")}"
-                .replace("%CASH%", "$cash")
-                .replace('&', '§'))
+        player.sendText(instance.config.getString("CashGive").replace("%CASH%", "$cash"))
 
-        sender.sendMessage(
-            "$prefix ${instance.config.getString("CashGiven")}"
+
+        sender.sendText(
+            instance.config.getString("CashGiven")
                 .replace("%CASH%", "$cash")
-                .replace('&', '§')
                 .replace("%PLAYER%", args[0]))
-        return true}
+
+        return true
+    }
 
     private fun cashGive(player: Player, cash: Int) {
-        HideAndSeek.api.getPlayerData(player).addCoins(player, cash)}}
+        HideAndSeek.api.getPlayerData(player).addCoins(player, cash)
+    }
+}
 
 
 

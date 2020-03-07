@@ -5,6 +5,8 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 
 import ru.mclegendary.blockhunt.executors.WhereExecutor.whereAre
+import ru.mclegendary.blockhunt.util.playerOffline
+import ru.mclegendary.blockhunt.util.sendText
 
 class Where : CommandExecutor {
     override fun onCommand(
@@ -13,12 +15,17 @@ class Where : CommandExecutor {
         label: String,
         args: Array<out String>
     ): Boolean {
+
         if (args.isEmpty()) return false
-        val player = sender.server.getPlayer(args[0]) ?: return false
+        val player = sender.server.getPlayer(args[0])
+        if(player == null){
+            sender.sendText("$playerOffline")
+            return true
+        }
+        if(args[0].equals(player.name, true)) whereAre(sender,args) else return false
 
-        when {
-            (args[0].equals(player.name, true)) -> whereAre(sender, args)}
 
-
-        return true}}
+        return true
+    }
+}
 

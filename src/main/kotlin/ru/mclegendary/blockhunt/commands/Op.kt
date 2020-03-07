@@ -4,10 +4,11 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
-import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
-import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
+
 
 import ru.mclegendary.blockhunt.executors.OpExecutor
+import ru.mclegendary.blockhunt.util.onlyCons
+import ru.mclegendary.blockhunt.util.sendText
 
 class Op : CommandExecutor {
     override fun onCommand(
@@ -16,16 +17,15 @@ class Op : CommandExecutor {
         label: String,
         args: Array<out String>
     ): Boolean {
-        if (sender is ConsoleCommandSender) {
-            if (args.isNotEmpty()) {
-
+        if (sender !is ConsoleCommandSender) {
+            sender.sendText(onlyCons)
+            return true
+        }
+            if (args.isNotEmpty())
                 OpExecutor(sender, args).op()
-            } else {
-                sender.sendMessage("$prefix ${instance.config.getString("InvalidCommand").replace('&', '§')}"); return false}
-        } else {
-            sender.sendMessage("$prefix ${instance.config.getString("NoPermission").replace('&', '§')}")}
 
-
-        return true}}
+        return true
+    }
+}
 
 

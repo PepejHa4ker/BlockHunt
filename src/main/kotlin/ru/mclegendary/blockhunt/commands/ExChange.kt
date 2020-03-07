@@ -4,10 +4,11 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
-import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 
+import ru.mclegendary.blockhunt.util.*
 import ru.mclegendary.blockhunt.executors.ExChangeExecutor.toCoins
 import ru.mclegendary.blockhunt.executors.ExChangeExecutor.toMoney
+import ru.mclegendary.blockhunt.util.sendText
 
 class ExChange : CommandExecutor {
     override fun onCommand(
@@ -17,20 +18,26 @@ class ExChange : CommandExecutor {
         args: Array<out String>
     ): Boolean {
         if (sender !is ConsoleCommandSender) {
-            sender.sendMessage("$prefix §cТолько с консоли, зайчик")
-            return true}
+            sender.sendText(onlyCons)
+            return true
+        }
 
         if (args.isEmpty() || args.size < 4) return false
 
 
         when {
             args[0].equals("coins", true) -> {
-                toCoins(sender, args)}
+                toCoins(sender, args)
+            }
 
 
             args[0].equals("money", true) -> {
-                toMoney(sender, args)}}
+                toMoney(sender, args)
+            }
+        }
 
 
 
-        return true}}
+        return true
+    }
+}

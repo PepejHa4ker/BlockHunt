@@ -1,29 +1,32 @@
 package ru.mclegendary.blockhunt.executors
 
 import org.bukkit.command.CommandSender
-import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.BlockHunt.Companion.listener
-import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
+import ru.mclegendary.blockhunt.util.*
+import ru.mclegendary.blockhunt.util.sendText
 
 class ChatSwitchExecutor(val sender: CommandSender) {
 
-
-    fun chatEnable(){
-        if(!isChatEnabled()) {
+    fun chatEnable() {
+        if (!isChatEnabled()) {
             listener.isChatProcessed = true
-            sender.sendMessage("$prefix ${instance.config.getString("ChatOnSuccess").replace('&', '§')}")
-        } else return sender.sendMessage("$prefix ${instance.config.getString("ChatAlreadyEnabled").replace('&', '§')}")}
-
+            sender.sendText("$chatEnabled")
+        } else return sender.sendText("$chatAlreadyEnabled")
+    }
 
 
     fun chatDisable() {
         if (isChatEnabled()) {
             listener.isChatProcessed = false
-            sender.sendMessage("$prefix ${instance.config.getString("ChatOffSuccess").replace('&', '§')}")
-        } else return sender.sendMessage("$prefix ${instance.config.getString("ChatAlreadyDisabled").replace('&', '§')}")}
+            sender.sendText("$chatDisabled")
+        } else return sender.sendText("$chatAlreadyDisabled")
 
 
+    }
 
-    fun isChatEnabled() : Boolean = listener.isChatProcessed}
+    fun isChatEnabled(): Boolean = listener.isChatProcessed
+}
+
+
 
 
