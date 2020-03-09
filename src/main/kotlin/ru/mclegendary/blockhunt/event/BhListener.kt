@@ -30,25 +30,30 @@ class BhListener : Listener {
         val r = e.recipients
         val sender = e.player
         val server = sender.server
-        if (sender.gameMode == GameMode.SPECTATOR && (e.message.equals("gg", true) || e.message.equals("good game", true))  && sender.world.name != "blockhunt")
+        if (sender.gameMode == GameMode.SPECTATOR && (e.message.equals("gg", true) || e.message.equals("good game", true)) && (!sender.world.name.equals("blockhunt", true))
+            )
             gg(e, sender)
-        if (isChatEnabled()) {
-            for (player in r.iterator()) {
-                if (sender.world != player.world) {
-                    if (sender.hasPermission("blockhunt.user")) {
-                        r.remove(player)
-                        if (!sender.hasPermission("blockhunt.chat")) { //Sending message to admins
-                            server.broadcast(
-                                instance.config.getString("ChatPerWorldFormat")
-                                    .replace('&', '§')
-                                    .replace("%WORLD%", sender.world.name)
-                                    .replace("%PLAYER_NAME%", sender.displayName)
-                                    .replace("%MESSAGE%", e.message),
-                                "blockhunt.chat"
-                            )
-                        } else return
+            if (isChatEnabled()) {
+            try {
+                for (player in r.iterator()) {
+                    if (sender.world != player.world) {
+                        if (sender.hasPermission("blockhunt.user")) {
+                            r.remove(player)
+                            if (!sender.hasPermission("blockhunt.chat")) { //Sending message to admins
+                                server.broadcast(
+                                    instance.config.getString("ChatPerWorldFormat")
+                                        .replace('&', '§')
+                                        .replace("%WORLD%", sender.world.name)
+                                        .replace("%PLAYER_NAME%", sender.displayName)
+                                        .replace("%MESSAGE%", e.message),
+                                    "blockhunt.chat"
+                                )
+                            } else return
+                        }
                     }
                 }
+            } catch (e: ConcurrentModificationException){
+
             }
         }
     }
@@ -69,7 +74,7 @@ class BhListener : Listener {
 
         fb(player) //In Utils
 
-        if (player.world.name == "blockhunt") {
+        if (player.world.name.equals("blockhunt", true)) {
             if (player.gameMode != GameMode.SPECTATOR) {
 
                 player.gameMode = GameMode.ADVENTURE

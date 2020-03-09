@@ -2,6 +2,8 @@ package ru.mclegendary.blockhunt
 
 
 
+import org.bukkit.command.Command
+import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.commands.*
 import ru.mclegendary.blockhunt.event.BhListener
@@ -17,6 +19,7 @@ class BlockHunt : JavaPlugin() {
         lateinit var listener: BhListener
         lateinit var prefix: String
 
+
         fun log(text: String) {
             b.getConsoleSender().sendMessage("$prefix $text")
         }
@@ -24,14 +27,16 @@ class BlockHunt : JavaPlugin() {
         fun doCmd(cmd: String) {
             b.dispatchCommand(b.getConsoleSender(), cmd)
         }
+
     }
 
     init {
         instance = this
         prefix = config.getString("prefix").replace('&', '§')
     }
-
     override fun onEnable() {
+
+
         setupFB() // FB api
         setupHAS() // HideAndSeek api
         setupICO() // Vault api
@@ -50,6 +55,8 @@ class BlockHunt : JavaPlugin() {
 
         server.pluginManager.registerEvents(listener, this)
     }
+
+
 
     override fun onDisable() {
         log("§aI'm sorry my black friend :(")

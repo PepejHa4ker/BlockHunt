@@ -51,7 +51,7 @@ commands:
     permission: blockhunt.adm
   bh:
     usage: '§c/bh help§b чтобы увидеть список доступных команд'
-    permission: blockhunt.kick.other
+
   op:
     usage: '§c/<command> <player>'
   deop:

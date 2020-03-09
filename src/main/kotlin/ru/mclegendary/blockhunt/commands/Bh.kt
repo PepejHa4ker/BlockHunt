@@ -8,7 +8,7 @@ import ru.mclegendary.blockhunt.util.Messages
 import ru.mclegendary.blockhunt.util.Utils.isChatEnabled
 import ru.mclegendary.blockhunt.util.Utils.setChatEnabled
 import ru.mclegendary.blockhunt.util.Utils.sendText
-import ru.mclegendary.blockhunt.executors.KickExecutor as KE
+import ru.mclegendary.blockhunt.executors.KickExecutor as KickExecutor
 
 class Bh : CommandExecutor {
 
@@ -31,7 +31,7 @@ class Bh : CommandExecutor {
                     sender.sendText("&e/bh kick <Игрок> [Причина] &c-&b выгнать игрока с арены. Причина может быть пустой")
                     return true
                 }
-                KE(sender, args).kick()
+                KickExecutor(sender, args).kick()
             }
 
             args[0].equals("kickall", true) -> {
@@ -40,7 +40,7 @@ class Bh : CommandExecutor {
                     return true
                 }
 
-                KE(sender, args).kickAll()
+                KickExecutor(sender, args).kickAll()
             }
 
 
