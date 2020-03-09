@@ -16,7 +16,7 @@ object CSGOCrateExecutor {
 
     fun csgoGive(sender: CommandSender, args: Array<out String>) {
         val player = sender.server.getPlayer(args[1])
-        if (!player.isOnline) return sender.sendText("&сИгрок $player&c не найен или оффлайн")
+        if (!player.isOnline) return sender.sendText("&сИгрок ${player.name}&c не найден или оффлайн")
 
         val coins: Int
         try {
