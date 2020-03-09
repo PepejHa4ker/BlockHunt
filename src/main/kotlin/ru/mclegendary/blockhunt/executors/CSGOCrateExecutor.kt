@@ -1,10 +1,8 @@
 package ru.mclegendary.blockhunt.executors
 
 import me.wazup.hideandseek.HideAndSeek
-import me.wazup.hideandseek.HideAndSeekAPI
 
 import org.bukkit.command.CommandSender
-import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.BlockHunt.Companion.doCmd
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.util.Messages
@@ -27,10 +25,10 @@ object CSGOCrateExecutor {
         }
 
 
-        val has = HideAndSeekAPI(JavaPlugin.getPlugin(HideAndSeek::class.java))
-        val hasPlayerData = has.getPlayerData(player)
+        val api = HideAndSeek.api
+        val playerData = api.getPlayerData(player)
 
-        if (hasPlayerData.getCoins(player) >= coins) {
+        if (playerData.getCoins(player) >= coins) {
             doCmd("has coins remove ${player.name} $coins")
 
             player.sendText(instance.config.getString("CoinsRemove")
