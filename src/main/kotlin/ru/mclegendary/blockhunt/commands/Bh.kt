@@ -28,7 +28,7 @@ class Bh : CommandExecutor {
 
             args[0].equals("kick", true) -> {
                 if (args.size < 2) {
-                    sender.sendText("&e/bh kick <Игрок> [Причина] &c-&b выгнать игрока с арены. Причина может быть пустой")
+                    sender.sendText("&e/bh kick <Игрок> [Причина] &c-&b выгнать игрока с арены. Причина может быть пустой.")
                     return true
                 }
                 KickExecutor(sender, args).kick()
@@ -36,7 +36,7 @@ class Bh : CommandExecutor {
 
             args[0].equals("kickall", true) -> {
                 if (args.size < 2) {
-                    sender.sendText("&e/bh kickall <Мир> [Причина] &c-&b выгнать всех игроков с арены в мире. Причина может быть пустой")
+                    sender.sendText("&e/bh kickall <Мир> [Причина] &c-&b выгнать всех игроков с арены в мире. Причина может быть пустой.")
                     return true
                 }
 
@@ -50,21 +50,21 @@ class Bh : CommandExecutor {
             }
 
             args[0].equals("help", true) -> {
-                sender.sendText("&e/bh chat on &c-&b выключить чат на миры")
-                sender.sendText("&e/bh chat off &c-&b включить чат на миры")
-                sender.sendText("&e/bh chat info &c-&b узнать состояние чата")
-                sender.sendText("&e/bh reload &c-§b перезагрузить файл конфигурации плагина")
-                sender.sendText("&e/bh kick <Игрок> [Причина] &c-&b выгнать игрока с арены. Причина может быть пустой")
-                sender.sendText("&e/bh kickall <Мир> [Причина] &c-&b выгнать всех игроков с арены в мире. Причина может быть пустой")
+                sender.sendText("&e/bh chat on &c-&b выключить чат на миры.")
+                sender.sendText("&e/bh chat off &c-&b включить чат на миры.")
+                sender.sendText("&e/bh chat info &c-&b узнать состояние чата.")
+                sender.sendText("&e/bh reload &c-§b перезагрузить файл конфигурации плагина.")
+                sender.sendText("&e/bh kick <Игрок> [Причина] &c-&b выгнать игрока с арены. Причина может быть пустой.")
+                sender.sendText("&e/bh kickall <Мир> [Причина] &c-&b выгнать всех игроков с арены в мире. Причина может быть пустой.")
             }
 
 
             args[0].equals("chat", true) -> {
                 if (sender.hasPermission("blockhunt.togglechat")) {
                     if (args.size < 2) {
-                        sender.sendText("&e/bh chat on &c-&b выключить чат на миры")
-                        sender.sendText("&e/bh chat off &c-&b включить чат на миры")
-                        sender.sendText("&e/bh chat info &c-&b узнать состояние чата")
+                        sender.sendText("&e/bh chat on &c-&b выключить чат на миры.")
+                        sender.sendText("&e/bh chat off &c-&b включить чат на миры.")
+                        sender.sendText("&e/bh chat info &c-&b узнать состояние чата.")
                         return true
                     }
 
@@ -94,7 +94,10 @@ class Bh : CommandExecutor {
                             } else sender.sendText(Messages.chatOff)
 
 
-                        else -> return false
+                        else -> {
+                            sender.sendText("&cНеизвестный аргумент, однако.")
+                            sender.sendText("&c/bh chat чтобы увидеть список доступных аргументов.")
+                        }
                     }
 
                 } else sender.sendText(Messages.noPerm)
