@@ -1,17 +1,9 @@
 name: BlockHunt
 main: ru.mclegendary.blockhunt.BlockHunt
 authors: [pepej, mclegendary]
-version: '4.6'
+version: 'RELEASE'
 website: https://squareland.ru
 softdepend: [FeatherBoard, HideAndSeek, iConomy]
-description:
-  blockhunnt.* - Все права этого плагина
-  blockhunt.chat - Возможность видеть чат других миров/Посылать туда сообщения
-  blockhunt.adm - админ права на команды
-  blockhunt.kick.* - Все права на кик
-  blockhunt.kick.other - Возможность исключать игроков с арены
-  blockhunt.kick.bypass - Обход кика(НЕ РАБОТАЕТ НА МИРЫ)
-  blockhunt.reloadconfig - перезагрузка конфига
 
 permissions:
     blockhunt.*:
@@ -30,8 +22,7 @@ permissions:
               default: false
         blockhunt.reloadconfig:
           default: op
-        blockhunt.togglechat:
-          default: op
+
 
 
 
@@ -47,15 +38,13 @@ commands:
     usage: '§c/<command> give <игрок> <название кейса> <кол-во> <цена>'
   where:
     description: 'Узнать в каком мире находится игрок'
-    usage: /<command> <Игрок>
-    permission: blockhunt.adm
+    usage: "/§c<command> <Игрок>"
   bh:
     usage: '§c/bh help§b чтобы увидеть список доступных команд'
-
   op:
-    usage: '§c/<command> <player>'
+    usage: '§c/<command> <Игрок>'
   deop:
-    usage: '§c/<command> <player>'
+    usage: '§c/<command> <Игрок>'
 
 
 

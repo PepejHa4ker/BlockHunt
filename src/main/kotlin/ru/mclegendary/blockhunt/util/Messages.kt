@@ -7,7 +7,6 @@ fun getCfg(cfgString: String) : String {
     return instance.config.getString(cfgString).replace('&', '§')
 }
 
-
 object Messages {
 
     val NO_PERM = getCfg("NoPermission")

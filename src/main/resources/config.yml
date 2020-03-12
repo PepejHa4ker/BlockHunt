@@ -2,12 +2,6 @@ prefix: "&3[&6Прятки&3]"
 # Изменения префикса вступают в силу только после перезагрузки
 NoPermission:  "&cНет прав!"
 InvalidCommand: "&cКоманда неверно записана!"
-ChatOn: "&cЧат включен!"
-ChatOff: "&cЧат выключен!"
-ChatOnSuccess: "&cЧат был успешно включен."
-ChatOffSuccess: "&cЧат был успешно выключен."
-ChatAlreadyEnabled: "&cЧат уже включен!"
-ChatAlreadyDisabled: "&cЧат уже был выключен!"
 Message_On_Enable: "&aGet out of my board!."
 CfgReloaded: "&cФайл конфигурации был успешно перезагружен."
 ItemChange: "&cНе в этот раз, дружок!"
@@ -33,9 +27,5 @@ ChatPerWorldFormat: "&7[%WORLD%] %PLAYER_NAME%&6: %MESSAGE%"
 GgInSpecWithMoney: "&cНельзя использовать в режиме спектатора! За это было снято 50 коинов!"
 GgInSpec: "&cНельзя использовать в режиме спектатора!"
 GgLog: "&aИгрок &c%PLAYER% &aиспользовал gg в режиме спектатора"
-blockedcmds:
-  - 'op'
-  - 'ban'
-  - 'kick'
 
 
