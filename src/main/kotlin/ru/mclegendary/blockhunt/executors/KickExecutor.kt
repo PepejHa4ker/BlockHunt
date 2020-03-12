@@ -2,7 +2,6 @@ package ru.mclegendary.blockhunt.executors
 
 import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
-import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 import ru.mclegendary.blockhunt.util.Messages
 import ru.mclegendary.blockhunt.util.Utils.sendText
@@ -33,7 +32,7 @@ class KickExecutor(val sender: CommandSender, args: Array<out String>) {
         sender.sendText(getCfg("SenderMessage").replace("%PLAYER%", target.name))
 
         server.broadcast(
-            "$prefix ${instance.config.getString("KickLog")}".replace('&', '§')
+            "$prefix ${getCfg("KickLog")}"
                 .replace("%PLAYER%", target.name)
                 .replace("%SENDER%", sender.name)
                 .replace("%REASON%", playerReason),
@@ -57,7 +56,6 @@ class KickExecutor(val sender: CommandSender, args: Array<out String>) {
 
         server.broadcast(
             "$prefix ${getCfg("KickLogWorld")}"
-                .replace('&', '§')
                 .replace("%WORLD%", targetWorld.name)
                 .replace("%SENDER%", sender.name)
                 .replace("%REASON%", playerReason),

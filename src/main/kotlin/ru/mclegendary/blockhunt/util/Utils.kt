@@ -3,23 +3,17 @@ package ru.mclegendary.blockhunt.util
 
 import be.maximvdw.featherboard.api.FeatherBoardAPI
 import me.wazup.hideandseek.HideAndSeek
-import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 
 import org.bukkit.GameMode
-import org.bukkit.Server
 import org.bukkit.command.CommandSender
-import org.bukkit.command.ConsoleCommandSender
 import org.bukkit.entity.Player
 import org.bukkit.event.player.AsyncPlayerChatEvent
 
 
-import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.BlockHunt.Companion.log
 import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 object Utils {
-
-    private var enabled: Boolean = true
 
 
     //Fix for FeatherBoard (restore scoreboard if player joined lobby)
@@ -39,12 +33,11 @@ object Utils {
         if (sender.gameMode == GameMode.SPECTATOR && e.message.equals("gg", true) && sender.world.name != "blockhunt") {
             if (playerData.hasCoins(sender, 50)) {
                 playerData.removeCoins(sender, 50)
-                sender.sendMessage("$prefix ${getCfg("GgInSpecWithMoney").replace('&', '§')}")
-            } else sender.sendMessage("$prefix ${getCfg("GgInSpec").replace('&', '§')}")
+                sender.sendText(getCfg("GgInSpecWithMoney"))
+            } else sender.sendText(getCfg("GgInSpec"))
             e.isCancelled = true
             log(
-                "$prefix ${instance.config.getString("GgLog")}"
-                    .replace('&', '§')
+                "$prefix ${getCfg("GgLog")}"
                     .replace("%PLAYER%", sender.name)
             )
 

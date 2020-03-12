@@ -57,12 +57,6 @@ class Bh : CommandExecutor {
                 sender.sendText("&e/bh kickall <Мир> [Причина] &c-&b выгнать всех игроков с арены в мире. Причина может быть пустой.")
             }
 
-
-
-
-
-
-
             else -> return false
         }
 

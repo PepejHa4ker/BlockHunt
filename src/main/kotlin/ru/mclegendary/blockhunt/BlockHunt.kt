@@ -5,6 +5,7 @@ package ru.mclegendary.blockhunt
 import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.commands.*
 import ru.mclegendary.blockhunt.event.BhListener
+import ru.mclegendary.blockhunt.util.getCfg
 
 import org.bukkit.Bukkit as b
 
@@ -30,7 +31,7 @@ class BlockHunt : JavaPlugin() {
 
     init {
         instance = this
-        prefix = config.getString("prefix").replace('&', '§')
+        prefix = getCfg("prefix").replace('&', '§')
     }
     override fun onEnable() {
 
@@ -41,7 +42,7 @@ class BlockHunt : JavaPlugin() {
         log("§aLoading config.yml")
         config.options().copyDefaults(true)
         saveConfig()
-        log(config.getString("Message_On_Enable").replace('&', '§'))
+        log(getCfg("Message_On_Enable").replace('&', '§'))
         listener = BhListener()
         getCommand("lottery").executor = Lottery()
         getCommand("exchange").executor = ExChange()
