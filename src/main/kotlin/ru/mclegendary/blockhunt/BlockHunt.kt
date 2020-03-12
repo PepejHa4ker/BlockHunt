@@ -2,8 +2,6 @@ package ru.mclegendary.blockhunt
 
 
 
-import org.bukkit.command.Command
-import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
 import ru.mclegendary.blockhunt.commands.*
 import ru.mclegendary.blockhunt.event.BhListener
@@ -52,6 +50,7 @@ class BlockHunt : JavaPlugin() {
         getCommand("op").executor = Op()
         getCommand("deop").executor = DeOp()
         getCommand("bh").executor = Bh()
+
 
         server.pluginManager.registerEvents(listener, this)
     }

@@ -23,11 +23,11 @@ class DeOp : CommandExecutor {
                 OpExecutor(sender, args).deOp()
 
             } else {
-                sender.sendText(Messages.invalidCommand)
+                sender.sendText(Messages.INVALID_COMMAND)
                  return false
             }
         } else {
-            sender.sendText(Messages.noPerm)
+            sender.sendText(Messages.NO_PERM)
         }
 
         return true

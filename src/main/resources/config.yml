@@ -33,5 +33,9 @@ ChatPerWorldFormat: "&7[%WORLD%] %PLAYER_NAME%&6: %MESSAGE%"
 GgInSpecWithMoney: "&cНельзя использовать в режиме спектатора! За это было снято 50 коинов!"
 GgInSpec: "&cНельзя использовать в режиме спектатора!"
 GgLog: "&aИгрок &c%PLAYER% &aиспользовал gg в режиме спектатора"
+blockedcmds:
+  - 'op'
+  - 'ban'
+  - 'kick'
 
 

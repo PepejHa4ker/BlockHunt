@@ -4,6 +4,7 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
+import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 
 
 import ru.mclegendary.blockhunt.executors.OpExecutor
@@ -17,17 +18,19 @@ class Op : CommandExecutor {
         label: String,
         args: Array<out String>
     ): Boolean {
+
         if (sender !is ConsoleCommandSender) {
-            sender.sendText(Messages.onlyCons)
+            sender.sendText(Messages.ONLY_CONSOLE)
             return true
         }
-            if (args.size == 1) {
-                OpExecutor(sender, args).op()
+        if (args.size == 1) {
+            OpExecutor(sender, args).op()
 
-            } else return false
+        } else return false
 
         return true
     }
 }
+
 
 

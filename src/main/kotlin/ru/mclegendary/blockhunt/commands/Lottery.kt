@@ -10,6 +10,7 @@ import org.bukkit.entity.Player
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.util.Messages
 import ru.mclegendary.blockhunt.util.Utils.sendText
+import ru.mclegendary.blockhunt.util.getCfg
 
 import kotlin.random.Random
 
@@ -22,7 +23,7 @@ class Lottery : CommandExecutor {
         args: Array<out String>
     ): Boolean {
         if (sender !is ConsoleCommandSender) {
-            sender.sendText(Messages.onlyCons)
+            sender.sendText(Messages.ONLY_CONSOLE)
             return true
         }
         if (args.isEmpty()) return false
@@ -36,11 +37,11 @@ class Lottery : CommandExecutor {
 
 
         cashGive(player, cash)
-        player.sendText(instance.config.getString("CashGive").replace("%CASH%", "$cash"))
+        player.sendText(getCfg("CashGive").replace("%CASH%", "$cash"))
 
 
         sender.sendText(
-            instance.config.getString("CashGiven")
+            getCfg("CashGiven")
                 .replace("%CASH%", "$cash")
                 .replace("%PLAYER%", args[0]))
 

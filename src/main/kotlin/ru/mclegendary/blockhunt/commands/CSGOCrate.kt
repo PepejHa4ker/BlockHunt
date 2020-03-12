@@ -17,7 +17,7 @@ class CSGOCrate : CommandExecutor {
         args: Array<out String>
     ): Boolean {
         if (sender !is ConsoleCommandSender) {
-            sender.sendText(Messages.onlyCons)
+            sender.sendText(Messages.ONLY_CONSOLE)
             return true
         }
         if (args.isEmpty()) return false

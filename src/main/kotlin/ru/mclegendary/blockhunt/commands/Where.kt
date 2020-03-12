@@ -19,7 +19,7 @@ class Where : CommandExecutor {
         if (args.isEmpty()) return false
         val player = sender.server.getPlayer(args[0])
         if(player == null){
-            sender.sendText(Messages.playerOffline)
+            sender.sendText(Messages.PLAYER_OFFLINE)
             return true
         }
         if(args[0].equals(player.name, true)) whereAre(sender,args) else return false

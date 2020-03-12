@@ -9,6 +9,7 @@ import ru.mclegendary.blockhunt.BlockHunt.Companion.doCmd
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.util.Messages
 import ru.mclegendary.blockhunt.util.Utils.sendText
+import ru.mclegendary.blockhunt.util.getCfg
 
 object ExChangeExecutor {
 
@@ -26,7 +27,7 @@ object ExChangeExecutor {
         }
 
         if (hasPlayerData.getCoins(player) < coins) {
-            sender.sendText(Messages.noCoins)
+            sender.sendText(Messages.NO_COINS)
             return
         }
         try {
@@ -36,7 +37,7 @@ object ExChangeExecutor {
             return
         }
         doCmd("has Coins Remove ${player.name} $coins")
-        player.sendText(instance.config.getString("CoinsRemove").replace("%COINS%", "$coins"))
+        player.sendText(getCfg("CoinsRemove").replace("%COINS%", "$coins"))
 
         doCmd("money give ${player.name} $coins2")
     }
@@ -57,7 +58,7 @@ object ExChangeExecutor {
 
 
         if (bankAccount < money) {
-            sender.sendText(Messages.noCoins)
+            sender.sendText(Messages.NO_COINS)
             return
         }
         try {
@@ -67,12 +68,13 @@ object ExChangeExecutor {
             return
         }
         doCmd("money take ${player.name} $money")
-        player.sendText(instance.config.getString("MoneyRemove").replace("%MONEY%", "$money"))
+        player.sendText(getCfg("MoneyRemove").replace("%MONEY%", "$money"))
 
         doCmd("has Coins Add ${player.name} $money2")
-        player.sendText(instance.config.getString("CashGive").replace("%CASH%", args[3]))
+        player.sendText(getCfg("CashGive").replace("%CASH%", args[3]))
 
-        sender.sendText(instance.config.getString("SenderCoinsMsg")
+        sender.sendText(
+            getCfg("SenderCoinsMsg")
                 .replace("%COINS%", args[3])
                 .replace("%PLAYER%", player.name))
 

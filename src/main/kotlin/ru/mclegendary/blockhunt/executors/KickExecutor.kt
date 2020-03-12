@@ -6,6 +6,7 @@ import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
 import ru.mclegendary.blockhunt.util.Messages
 import ru.mclegendary.blockhunt.util.Utils.sendText
+import ru.mclegendary.blockhunt.util.getCfg
 
 
 class KickExecutor(val sender: CommandSender, args: Array<out String>) {
@@ -16,20 +17,20 @@ class KickExecutor(val sender: CommandSender, args: Array<out String>) {
     private val playerReason = args.drop(2).joinToString(" ")
 
     fun kick() {
-        target ?: return sender.sendText(Messages.playerOffline)
+        target ?: return sender.sendText(Messages.PLAYER_OFFLINE)
         if (target.hasPermission("blockhunt.kick.bypass") && sender !is ConsoleCommandSender) {
-            sender.sendText(instance.config.getString("TargetBypass"))
+            sender.sendText(getCfg("TargetBypass"))
             return
         }
 
 
         target.performCommand("has leave")
         if (playerReason.isEmpty()) {
-            target.sendText(instance.config.getString("KickMessage"))
+            target.sendText(getCfg("KickMessage"))
 
-        } else target.sendText(instance.config.getString("KickMessageAndReason").replace("%REASON%", playerReason))
+        } else target.sendText(getCfg("KickMessageAndReason").replace("%REASON%", playerReason))
 
-        sender.sendText(instance.config.getString("SenderMessage").replace("%PLAYER%", target.name))
+        sender.sendText(getCfg("SenderMessage").replace("%PLAYER%", target.name))
 
         server.broadcast(
             "$prefix ${instance.config.getString("KickLog")}".replace('&', '§')
@@ -40,22 +41,22 @@ class KickExecutor(val sender: CommandSender, args: Array<out String>) {
     }
 
     fun kickAll() {
-        targetWorld ?: return sender.sendText(instance.config.getString("WorldNotFound"))
+        targetWorld ?: return sender.sendText(getCfg("WorldNotFound"))
         for (players in targetWorld.players) {
             players.performCommand("has leave")
             if (playerReason.isEmpty()) {
-                players.sendText(instance.config.getString("KickMessage"))
+                players.sendText(getCfg("KickMessage"))
 
-            } else players.sendText(instance.config.getString("KickMessageAndReason").replace("%REASON%", playerReason))
+            } else players.sendText(getCfg("KickMessageAndReason").replace("%REASON%", playerReason))
         }
         sender.sendText(
-            instance.config.getString("KickSuccess")
+            getCfg("KickSuccess")
                 .replace("%WORLD%", targetWorld.name)
                 .replace("%PLAYER%", sender.name)
                 .replace("%SENDER%", sender.name))
 
         server.broadcast(
-            "$prefix ${instance.config.getString("KickLogWorld")}"
+            "$prefix ${getCfg("KickLogWorld")}"
                 .replace('&', '§')
                 .replace("%WORLD%", targetWorld.name)
                 .replace("%SENDER%", sender.name)

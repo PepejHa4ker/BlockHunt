@@ -7,6 +7,7 @@ import ru.mclegendary.blockhunt.BlockHunt.Companion.doCmd
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.util.Messages
 import ru.mclegendary.blockhunt.util.Utils.sendText
+import ru.mclegendary.blockhunt.util.getCfg
 import java.lang.NumberFormatException
 
 
@@ -31,12 +32,13 @@ object CSGOCrateExecutor {
         if (playerData.getCoins(player) >= coins) {
             doCmd("has coins remove ${player.name} $coins")
 
-            player.sendText(instance.config.getString("CoinsRemove")
+            player.sendText(
+                getCfg("CoinsRemove")
                     .replace("%COINS%", "$coins"))
 
             doCmd("crate give to ${player.name} ${args[2]} ${args[3].toInt()} online")
 
-        } else player.sendText("{$Messages.noCoins}")
+        } else player.sendText(Messages.NO_COINS)
     }
 }
 

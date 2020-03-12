@@ -5,8 +5,7 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.util.Messages
-import ru.mclegendary.blockhunt.util.Utils.isChatEnabled
-import ru.mclegendary.blockhunt.util.Utils.setChatEnabled
+
 import ru.mclegendary.blockhunt.util.Utils.sendText
 import ru.mclegendary.blockhunt.executors.KickExecutor as KickExecutor
 
@@ -46,7 +45,7 @@ class Bh : CommandExecutor {
 
             args[0].equals("reload", true) -> {
                 instance.reloadConfig()
-                sender.sendText(Messages.cfgRel)
+                sender.sendText(Messages.CONFIG_RELOADED)
             }
 
             args[0].equals("help", true) -> {
@@ -59,50 +58,10 @@ class Bh : CommandExecutor {
             }
 
 
-            args[0].equals("chat", true) -> {
-                if (sender.hasPermission("blockhunt.togglechat")) {
-                    if (args.size < 2) {
-                        sender.sendText("&e/bh chat on &c-&b выключить чат на миры.")
-                        sender.sendText("&e/bh chat off &c-&b включить чат на миры.")
-                        sender.sendText("&e/bh chat info &c-&b узнать состояние чата.")
-                        return true
-                    }
 
 
-                    when {
-                        args[1].equals("on", true) -> {
-                            if(isChatEnabled()){
-                                sender.sendText(Messages.chatAlreadyEnabled)
-                            } else {
-                                sender.sendText(Messages.chatEnabled)
-                                setChatEnabled(true)
-                            }
-                        }
-
-                        args[1].equals("off", true) -> {
-                            if(!isChatEnabled()){
-                                sender.sendText(Messages.chatAlreadyDisabled)
-                            } else {
-                                sender.sendText(Messages.chatDisabled)
-                                setChatEnabled(false)
-                            }
-                        }
-
-                        args[1].equals("info", true) ->
-                            if (isChatEnabled()) {
-                                sender.sendText(Messages.chatOn)
-                            } else sender.sendText(Messages.chatOff)
 
 
-                        else -> {
-                            sender.sendText("&cНеизвестный аргумент, однако.")
-                            sender.sendText("&c/bh chat чтобы увидеть список доступных аргументов.")
-                        }
-                    }
-
-                } else sender.sendText(Messages.noPerm)
-                return true
-            }
 
             else -> return false
         }

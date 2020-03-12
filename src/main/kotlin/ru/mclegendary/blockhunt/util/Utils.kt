@@ -3,10 +3,13 @@ package ru.mclegendary.blockhunt.util
 
 import be.maximvdw.featherboard.api.FeatherBoardAPI
 import me.wazup.hideandseek.HideAndSeek
+import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 
 import org.bukkit.GameMode
+import org.bukkit.Server
 import org.bukkit.command.CommandSender
+import org.bukkit.command.ConsoleCommandSender
 import org.bukkit.entity.Player
 import org.bukkit.event.player.AsyncPlayerChatEvent
 
@@ -36,8 +39,8 @@ object Utils {
         if (sender.gameMode == GameMode.SPECTATOR && e.message.equals("gg", true) && sender.world.name != "blockhunt") {
             if (playerData.hasCoins(sender, 50)) {
                 playerData.removeCoins(sender, 50)
-                sender.sendMessage("$prefix ${instance.config.getString("GgInSpecWithMoney").replace('&', '§')}")
-            } else sender.sendMessage("$prefix ${instance.config.getString("GgInSpec").replace('&', '§')}")
+                sender.sendMessage("$prefix ${getCfg("GgInSpecWithMoney").replace('&', '§')}")
+            } else sender.sendMessage("$prefix ${getCfg("GgInSpec").replace('&', '§')}")
             e.isCancelled = true
             log(
                 "$prefix ${instance.config.getString("GgLog")}"
@@ -53,12 +56,4 @@ object Utils {
         this.sendMessage(ChatColor.translateAlternateColorCodes('&', "$prefix $message"))
     }
 
-
-    fun isChatEnabled(): Boolean {
-        return enabled
-    }
-
-    fun setChatEnabled(enabled: Boolean) {
-        this.enabled = enabled
-    }
 }

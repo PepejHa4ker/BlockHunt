@@ -18,7 +18,7 @@ class ExChange : CommandExecutor {
         args: Array<out String>
     ): Boolean {
         if (sender !is ConsoleCommandSender) {
-            sender.sendText(Messages.onlyCons)
+            sender.sendText(Messages.ONLY_CONSOLE)
             return true
         }
 

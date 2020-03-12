@@ -1,7 +1,7 @@
 package ru.mclegendary.blockhunt.executors
 
 import org.bukkit.command.CommandSender
-import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
+import ru.mclegendary.blockhunt.util.getCfg
 import ru.mclegendary.blockhunt.util.Utils.sendText
 
 
@@ -11,7 +11,7 @@ object WhereExecutor {
         val player = sender.server.getPlayer(args[0])
 
         sender.sendText(
-            instance.config.getString("PlayerInWorld")
+            getCfg("PlayerInWorld")
                 .replace("%PLAYER%", player.name)
                 .replace("%WORLD%", player.world.name))
     }
