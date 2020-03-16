@@ -43,7 +43,6 @@ class BlockHunt : JavaPlugin() {
         saveConfig()
         log(getCfg("Message_On_Enable").replace('&', '§'))
         listener = BhListener()
-        listener.setUpCooldown()
         getCommand("lottery").executor = Lottery()
         getCommand("exchange").executor = ExChange()
         getCommand("csgo").executor = CSGOCrate()

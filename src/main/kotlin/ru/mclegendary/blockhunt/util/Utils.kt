@@ -6,13 +6,23 @@ import me.wazup.hideandseek.HideAndSeek
 import org.bukkit.ChatColor
 
 import org.bukkit.GameMode
+import org.bukkit.Material
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
+import org.bukkit.event.EventHandler
+import org.bukkit.event.block.Action
+import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.event.player.AsyncPlayerChatEvent
+import org.bukkit.inventory.EquipmentSlot
+import org.bukkit.inventory.ItemStack
+import ru.mclegendary.blockhunt.BlockHunt
+import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 
 
 import ru.mclegendary.blockhunt.BlockHunt.Companion.log
 import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
+import ru.mclegendary.blockhunt.util.Utils.sendText
+
 object Utils {
 
 
@@ -49,4 +59,29 @@ object Utils {
         this.sendMessage(ChatColor.translateAlternateColorCodes('&', "$prefix $message"))
     }
 
+}
+
+
+fun onRightClickBlock2(e: BlockPlaceEvent) {
+    val item = e.itemInHand
+    val p = e.player
+    val itemSlot = p.inventory.heldItemSlot
+    if(instance.config.getBoolean("block_fix.isEnabled")) {
+        if (e.hand == EquipmentSlot.HAND && !e.player.isOp && !e.player.world.name.equals("blockhunt", true)) {
+            if (item != null) {
+                p.inventory.remove(item)
+                p.sendText("&cВы использовали блок, скоро он в к вам вернётся :)")
+                blockPlacing(p, item, instance.config.getLong("block_fix.delay") * 20, itemSlot)
+                e.isCancelled = true
+            }
+        }
+    } else return
+}
+
+
+private fun blockPlacing(p: Player, block: ItemStack, delay: Long, itemSlot: Int) {
+    instance.server.scheduler.scheduleSyncDelayedTask(instance, {
+        val inv = p.inventory
+        inv.setItem(itemSlot, block)
+    }, delay)
 }
