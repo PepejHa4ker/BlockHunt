@@ -35,7 +35,6 @@ class BlockHunt : JavaPlugin() {
     }
     override fun onEnable() {
 
-
         setupFB() // FB api
         setupHAS() // HideAndSeek api
         setupICO() // Vault api
@@ -44,6 +43,7 @@ class BlockHunt : JavaPlugin() {
         saveConfig()
         log(getCfg("Message_On_Enable").replace('&', '§'))
         listener = BhListener()
+        listener.setUpCooldown()
         getCommand("lottery").executor = Lottery()
         getCommand("exchange").executor = ExChange()
         getCommand("csgo").executor = CSGOCrate()
