@@ -6,16 +6,13 @@ import me.wazup.hideandseek.HideAndSeek
 import org.bukkit.ChatColor
 
 import org.bukkit.GameMode
-import org.bukkit.Material
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
-import org.bukkit.event.EventHandler
-import org.bukkit.event.block.Action
+
 import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.event.player.AsyncPlayerChatEvent
 import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.ItemStack
-import ru.mclegendary.blockhunt.BlockHunt
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 
 
@@ -62,7 +59,7 @@ object Utils {
 }
 
 
-fun onRightClickBlock2(e: BlockPlaceEvent) {
+fun onBlockPlace(e: BlockPlaceEvent) {
     val item = e.itemInHand
     val p = e.player
     val itemSlot = p.inventory.heldItemSlot
@@ -70,8 +67,9 @@ fun onRightClickBlock2(e: BlockPlaceEvent) {
         if (e.hand == EquipmentSlot.HAND && !e.player.isOp && !e.player.world.name.equals("blockhunt", true)) {
             if (item != null) {
                 p.inventory.remove(item)
-                p.sendText("&cВы использовали блок, скоро он в к вам вернётся :)")
-                blockPlacing(p, item, instance.config.getLong("block_fix.delay") * 20, itemSlot)
+                val delay = instance.config.getLong("block_fix.delay")
+                p.sendText("&cВы поставили блок, он вернётся через &e$delay&c секунд.")
+                blockPlacing(p, item, delay * 20, itemSlot)
                 e.isCancelled = true
             }
         }

@@ -10,7 +10,7 @@ import org.bukkit.event.block.BlockPlaceEvent
 import ru.mclegendary.blockhunt.BlockHunt.Companion.doCmd
 import ru.mclegendary.blockhunt.util.Utils.sendText
 import ru.mclegendary.blockhunt.util.getCfg
-import ru.mclegendary.blockhunt.util.onRightClickBlock2
+import ru.mclegendary.blockhunt.util.onBlockPlace
 import java.util.*
 import org.bukkit.event.player.AsyncPlayerChatEvent as ChatE
 import org.bukkit.event.player.PlayerChangedWorldEvent as ChWoE
@@ -93,7 +93,7 @@ class BhListener : Listener {
 
 
     @EventHandler
-    fun onRightClickBlock(e: BlockPlaceEvent) {
-        onRightClickBlock2(e)
+    fun blockPlaceHandler(e: BlockPlaceEvent) {
+        onBlockPlace(e) // Utils
     }
 }
