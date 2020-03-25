@@ -17,6 +17,10 @@ class Where : CommandExecutor {
     ): Boolean {
 
         if (args.isEmpty()) return false
+        if(!sender.hasPermission("blockhunt.where")) {
+            sender.sendText(Messages.NO_PERM)
+            return true
+        }
         val player = sender.server.getPlayer(args[0])
         if(player == null){
             sender.sendText(Messages.PLAYER_OFFLINE)

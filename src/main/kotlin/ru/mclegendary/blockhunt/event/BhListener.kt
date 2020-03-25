@@ -85,8 +85,8 @@ class BhListener : Listener {
 
     @EventHandler
     fun onHandSwap(e: ISwapE) {
-        if (!e.player.isOp || !e.player.world.name.equals("blockhunt", true)) {
-            e.player.sendText(getCfg("ItemChange"))
+        if(e.offHandItem == null) return
+        if (!e.player.isOp || !e.player.world.name.equals("blockhunt", true) ) {
             e.isCancelled = true
         }
     }

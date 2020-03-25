@@ -41,7 +41,7 @@ class Lottery : CommandExecutor {
 
 
         sender.sendText(
-            getCfg("CasжжжжhGiven")
+            getCfg("CashGiven")
                 .replace("%CASH%", "$cash")
                 .replace("%PLAYER%", args[0]))
 

@@ -3,6 +3,7 @@ package ru.mclegendary.blockhunt.executors
 import me.wazup.hideandseek.HideAndSeek
 
 import org.bukkit.command.CommandSender
+import org.bukkit.event.player.PlayerSwapHandItemsEvent
 import ru.mclegendary.blockhunt.BlockHunt.Companion.doCmd
 import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 import ru.mclegendary.blockhunt.util.Messages
@@ -40,6 +41,7 @@ object CSGOCrateExecutor {
 
         } else player.sendText(Messages.NO_COINS)
     }
+
 }
 
 

@@ -22,6 +22,8 @@ permissions:
               default: false
         blockhunt.reloadconfig:
           default: op
+        blockhunt.where:
+          description: Access for "Where" command
 
 
 

@@ -8,26 +8,34 @@ import ru.mclegendary.blockhunt.util.Utils.sendText
 class OpExecutor(private val sender: CommandSender, args: Array<out String>) {
     private val target = sender.server.getPlayer(args[0])
     private val offlineTarget = sender.server.getOfflinePlayer(args[0])
-    private val success = "§a§lУспешно"
+    private  val success = "§a§lУспешно"
 
     fun op() {
-        if (target != null && target.isOnline) {
-            target.isOp = true
-            sender.sendText(success)
+        if(!target.isOp) {
+            if (target != null && target.isOnline) {
+                target.isOp = true
+                sender.sendText(success)
+            } else {
+                offlineTarget.isOp = true
+                sender.sendText(success)
+            }
         } else {
-            offlineTarget.isOp = true
-            sender.sendText(success)
+            sender.sendText("&cОшибочка, игрок уже является оператором")
         }
     }
 
 
     fun deOp() {
-        if (target != null && target.isOnline) {
-            target.isOp = false
-            sender.sendText(success)
+        if(target.isOp) {
+            if (target != null && target.isOnline) {
+                target.isOp = false
+                sender.sendText(success)
+            } else {
+                offlineTarget.isOp = false
+                sender.sendText(success)
+            }
         } else {
-            offlineTarget.isOp = false
-            sender.sendText(success)
+            sender.sendText("&cОшибочка, игрок не является оператором")
         }
     }
 }

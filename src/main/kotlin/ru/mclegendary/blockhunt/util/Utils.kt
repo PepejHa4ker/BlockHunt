@@ -7,6 +7,7 @@ import org.bukkit.ChatColor
 
 import org.bukkit.GameMode
 import org.bukkit.command.CommandSender
+import org.bukkit.command.ConsoleCommandSender
 import org.bukkit.entity.Player
 
 import org.bukkit.event.block.BlockPlaceEvent
@@ -18,7 +19,6 @@ import ru.mclegendary.blockhunt.BlockHunt.Companion.instance
 
 import ru.mclegendary.blockhunt.BlockHunt.Companion.log
 import ru.mclegendary.blockhunt.BlockHunt.Companion.prefix
-import ru.mclegendary.blockhunt.util.Utils.sendText
 
 object Utils {
 
@@ -43,12 +43,7 @@ object Utils {
                 sender.sendText(getCfg("GgInSpecWithMoney"))
             } else sender.sendText(getCfg("GgInSpec"))
             e.isCancelled = true
-            log(
-                "$prefix ${getCfg("GgLog")}"
-                    .replace("%PLAYER%", sender.name)
-            )
-
-
+            e.player.server.consoleSender.sendText(getCfg("GgLog").replace("%PLAYER%", sender.name))
         }
     }
 
@@ -68,7 +63,6 @@ fun onBlockPlace(e: BlockPlaceEvent) {
             if (item != null) {
                 p.inventory.remove(item)
                 val delay = instance.config.getLong("block_fix.delay")
-                p.sendText("&cВы поставили блок, он вернётся через &e$delay&c секунд.")
                 blockPlacing(p, item, delay * 20, itemSlot)
                 e.isCancelled = true
             }
@@ -79,7 +73,6 @@ fun onBlockPlace(e: BlockPlaceEvent) {
 
 private fun blockPlacing(p: Player, block: ItemStack, delay: Long, itemSlot: Int) {
     instance.server.scheduler.scheduleSyncDelayedTask(instance, {
-        val inv = p.inventory
-        inv.setItem(itemSlot, block)
+        p.inventory.setItem(itemSlot, block)
     }, delay)
 }
